@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+:root {
+  --primary-gold: #D4AF37;
+  --primary-gold-light: #F9E29C;
+  --background: #000000;
+  --surface: #0D0D0D;
+  --card-border: #1F1F1F;
+  --gold-glow: rgba(212, 175, 55, 0.15);
+}
+
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background-color: var(--background);
+  color: #E5E5E5;
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+}
+
+.gold-border-glow {
+  box-shadow: 0 0 15px var(--gold-glow);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.gold-text {
+  background: linear-gradient(135deg, #D4AF37, #F9E29C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
