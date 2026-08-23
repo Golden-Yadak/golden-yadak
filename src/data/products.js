@@ -1,7 +1,7 @@
 // =============================================================
 //  داده‌های محصولات
-//  فعلاً داده‌ی نمونه (mock) است؛ بعداً از API جایگزین می‌شه.
-//  ساختار فیلدها طوری طراحی شده که با پاسخ API واقعی هم‌خوان باشه.
+//  قیمت‌ها عددی (تومان) هستند و فقط موقع نمایش فرمت می‌شن.
+//  بعداً از API جایگزین می‌شه؛ ساختار فیلدها با پاسخ API هم‌خوان است.
 // =============================================================
 
 export const PRODUCTS = [
@@ -13,7 +13,7 @@ export const PRODUCTS = [
     badgeColor: "bg-emerald-500 text-white",
     title: "شمع سوزنی ایریدیوم برند بوش - سری پلاتینیوم آلمان",
     priceLabel: "قیمت واحد:",
-    price: "۱,۲۵۰,۰۰۰",
+    price: 1250000,
   },
   {
     id: "brake-disc-brembo",
@@ -23,7 +23,7 @@ export const PRODUCTS = [
     badgeColor: "bg-amber-400 text-black",
     title: "دیسک ترمز خنک‌شونده برمبو - مدل High Performance",
     priceLabel: "قیمت جفت:",
-    price: "۸,۹۰۰,۰۰۰",
+    price: 8900000,
   },
   {
     id: "engine-oil-castrol",
@@ -32,8 +32,8 @@ export const PRODUCTS = [
     badge: "۱۵٪-",
     badgeColor: "bg-red-500 text-white",
     title: "روغن موتور تمام سنتتیک کاسترول - Magnatec لوکس",
-    oldPrice: "۱,۳۵۰,۰۰",
-    price: ",۱۴۷,۵۰۰",
+    oldPrice: 1350000,
+    price: 1147500,
   },
   {
     id: "oil-filter-bmw",
@@ -41,7 +41,7 @@ export const PRODUCTS = [
       "https://lh3.googleusercontent.com/aida-public/AB6AXuCrypdwkTTjKAfamJzaZiBtGRH1C-HsMrbMgq8bAvzw-6A0i7l_oRcOlMGEo1adQPcowTfW3tCBxDZgEy23IP1diCx6Cow7_bukQZpb7EQX4y1nz62BedFUs3l27KMckF65SvVgxESmE-BxI8VzeSAwkNsz-x9Y3OwQmHgL-LS1Lk1f9V5kPFRc_NcZ-y0L26GnX2VxztZ_cxs86eSlXQ9c6DGDn-0md1qkF1EeKIPzZFLn-MWa6Dta6jq2rnt_dfr2jpqqKyCDn48",
     title: "فیلتر روغن اورجینال بی ام و - مخصوص سری ۷ و ۵",
     priceLabel: "قیمت واحد:",
-    price: "۴۵۰,۰۰",
+    price: 450000,
   },
   {
     id: "clutch-kit-valeo",
@@ -51,7 +51,7 @@ export const PRODUCTS = [
     badgeColor: "bg-orange-500 text-white",
     title: "کیت کلاچ کامل والئو (Valeo) جعبه آبی - ساخت فرانسه",
     priceLabel: "قیمت کیت:",
-    price: "۶,۸۰۰,۰۰۰",
+    price: 6800000,
   },
   {
     id: "battery-suzuki",
@@ -61,7 +61,7 @@ export const PRODUCTS = [
     badgeColor: "bg-amber-400 text-black",
     title: "باتری ۷۴ آمپر سوزوکی - تکنولوژی ژاپن با ۱۸ ماه ضمانت",
     priceLabel: "قیمت با داغی:",
-    price: "۳,۴۰,۰۰۰",
+    price: 3400000,
   },
 ];
 

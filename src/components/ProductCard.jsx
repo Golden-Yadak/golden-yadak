@@ -1,16 +1,26 @@
+import { useCart } from "../hooks/useCart.js";
+import { formatToman } from "../lib/format.js";
+
 // =============================================================
 //  کارت محصول — برای گرید لیست محصولات و هرجا نیاز به کارت
 //  محصول یکدست باشد استفاده می‌شود.
 //
+//  دکمه‌ی افزودن به سبد به‌طور خودکار به CartContext وصل است.
+//  با prop اختیاری onAddToCart می‌تونی رفتار سفارشی بدی.
+//
 //  props:
-//    product -> {
-//      id, image, title, price,
-//      badge?, badgeColor?, priceLabel?, oldPrice?
-//    }
-//    onAddToCart -> (اختیاری) هندلر دکمه‌ی افزودن به سبد
+//    product -> { id, image, title, price (عدد),
+//                 badge?, badgeColor?, priceLabel?, oldPrice? }
 // =============================================================
 
 export default function ProductCard({ product, onAddToCart }) {
+  const { addItem } = useCart();
+
+  const handleAdd = () => {
+    if (onAddToCart) onAddToCart(product);
+    else addItem(product);
+  };
+
   return (
     <article className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-zinc-900">
       <div className="relative">
@@ -41,12 +51,12 @@ export default function ProductCard({ product, onAddToCart }) {
 
           {product.oldPrice && (
             <span className="text-sm text-white/40 line-through">
-              {product.oldPrice}
+              {formatToman(product.oldPrice)}
             </span>
           )}
 
           <span className="text-xl font-extrabold text-amber-400">
-            {product.price}
+            {formatToman(product.price)}
           </span>
 
           <span className="text-sm text-white/70">تومان</span>
@@ -54,7 +64,7 @@ export default function ProductCard({ product, onAddToCart }) {
 
         <button
           type="button"
-          onClick={onAddToCart}
+          onClick={handleAdd}
           className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-l from-amber-500 via-amber-400 to-yellow-300 py-3 font-extrabold text-black transition hover:brightness-110"
         >
           <span className="material-symbols-outlined">add_shopping_cart</span>

@@ -1,9 +1,28 @@
+import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { PRODUCT_DETAIL as P } from "../data/productDetail";
-import { CONTACT } from "../lib/config";
+import { useCart } from "../hooks/useCart.js";
+import { PRODUCT_DETAIL as P } from "../data/productDetail.js";
+import { CONTACT } from "../lib/config.js";
+import { formatToman, toPersianDigits } from "../lib/format.js";
+
+// محصول نمایش‌داده‌شده در این صفحه (بعداً از API بر اساس آیدی لود می‌شه)
+const VIEWED_PRODUCT = {
+  id: "clutch-valeo-premium",
+  title: "کیت کلاچ والئو (VALEO) مدل پریمیوم",
+  price: 4750000,
+  oldPrice: 5400000,
+  image: P.mainImage,
+};
 
 export default function ProductDetail() {
+  const { addItem } = useCart();
+  const [qty, setQty] = useState(1);
+
+  const discountPercent = Math.round(
+    (1 - VIEWED_PRODUCT.price / VIEWED_PRODUCT.oldPrice) * 100
+  );
+
   return (
     <div dir="rtl" className="min-h-screen bg-zinc-950 text-white">
       <Header />
@@ -36,7 +55,7 @@ export default function ProductDetail() {
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10">
               <img
                 src={P.mainImage}
-                alt="کیت کلاچ والئو (VALEO) مدل پریمیوم"
+                alt={VIEWED_PRODUCT.title}
                 className="h-[420px] w-full object-cover md:h-[520px]"
               />
 
@@ -91,7 +110,7 @@ export default function ProductDetail() {
             </div>
 
             <h1 className="mt-4 text-2xl font-extrabold leading-[1.6] md:text-3xl">
-              کیت کلاچ والئو (VALEO) مدل پریمیوم مناسب خودروهای گروه ایران‌خودرو
+              {VIEWED_PRODUCT.title} مناسب خودروهای گروه ایران‌خودرو
             </h1>
 
             <p className="mt-4 leading-8 text-white/70">
@@ -122,15 +141,15 @@ export default function ProductDetail() {
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <span className="text-lg text-white/40 line-through">
-                ۵,۴۰۰,۰۰
+                {formatToman(VIEWED_PRODUCT.oldPrice)}
               </span>
 
               <span className="rounded-full bg-red-500 px-3 py-1 text-xs font-bold">
-                ۱۲٪ تخفیف
+                {toPersianDigits(discountPercent)}٪ تخفیف
               </span>
 
               <span className="text-3xl font-extrabold text-amber-400">
-                ۴,۷۵۰,۰۰۰
+                {formatToman(VIEWED_PRODUCT.price)}
                 <span className="text-base font-medium text-white/70"> تومان</span>
               </span>
             </div>
@@ -141,22 +160,39 @@ export default function ProductDetail() {
             </div>
 
             <div className="mt-6 flex flex-wrap items-center gap-4">
+              {/* استپر تعداد */}
               <div
                 dir="ltr"
                 className="flex items-center rounded-xl border border-white/10 bg-zinc-900"
               >
-                <button className="px-4 py-3 transition hover:text-amber-300">
+                <button
+                  type="button"
+                  aria-label="decrease"
+                  onClick={() => setQty((q) => Math.max(1, q - 1))}
+                  className="px-4 py-3 transition hover:text-amber-300"
+                >
                   -
                 </button>
 
-                <span className="w-10 text-center font-extrabold">۱</span>
+                <span className="w-10 text-center font-extrabold">
+                  {toPersianDigits(qty)}
+                </span>
 
-                <button className="px-4 py-3 transition hover:text-amber-300">
+                <button
+                  type="button"
+                  aria-label="increase"
+                  onClick={() => setQty((q) => q + 1)}
+                  className="px-4 py-3 transition hover:text-amber-300"
+                >
                   +
                 </button>
               </div>
 
-              <button className="flex min-w-[220px] flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-l from-amber-500 via-amber-400 to-yellow-300 py-3.5 font-extrabold text-black transition hover:brightness-110">
+              <button
+                type="button"
+                onClick={() => addItem(VIEWED_PRODUCT, qty)}
+                className="flex min-w-[220px] flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-l from-amber-500 via-amber-400 to-yellow-300 py-3.5 font-extrabold text-black transition hover:brightness-110"
+              >
                 <span className="material-symbols-outlined">shopping_bag</span>
                 افزودن به سبد خرید
               </button>

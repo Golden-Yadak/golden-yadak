@@ -1,52 +1,60 @@
+import { Link } from "react-router-dom";
 import { BRAND } from "../lib/config";
+import { useCart } from "../hooks/useCart.js";
+import { toPersianDigits } from "../lib/format.js";
 
 // =============================================================
 //  هدر مشترک صفحات فروشگاه
 //  logoIcon و نام برند از کانفیگ مرکزی میاد.
-//  prop اختیاری `navItems` نوار ناوبری پایین هدر رو رسم می‌کنه
-//  (مثلاً صفحه‌ی اصلی). صفحات داخلی این prop رو پاس نمی‌دن.
+//  شمارنده‌ی سبد خرید از CartContext تغذیه می‌شه (زنده).
+//  prop اختیاری `navItems` نوار ناوبری پایین هدر رو رسم می‌کنه.
 // =============================================================
 
 export default function Header({ navItems }) {
+  const { totalItems } = useCart();
+
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-zinc-950/90 backdrop-blur">
       <div className="mx-auto w-full max-w-7xl px-4">
         <div className="flex items-center justify-between gap-4 py-4">
           {/* لوگو */}
-          <a href="/" className="flex items-center gap-2 text-2xl font-extrabold">
+          <Link to="/" className="flex items-center gap-2 text-2xl font-extrabold">
             <span className="material-symbols-outlined text-amber-400">
               {BRAND.logoIcon}
             </span>
             {BRAND.name}
-          </a>
+          </Link>
 
           {/* اکشن‌های هدر */}
           <div className="flex items-center gap-3 md:gap-5">
-            <a
-              href="#"
+            <button
+              type="button"
               aria-label="search"
               className="rounded-full p-2 transition hover:bg-white/10"
             >
               <span className="material-symbols-outlined">search</span>
-            </a>
+            </button>
 
-            <a
-              href="#"
+            <Link
+              to="/login"
               className="flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 transition hover:border-amber-400/60 hover:text-amber-300"
             >
               <span className="material-symbols-outlined">account_circle</span>
               <span className="hidden sm:inline">پنل کاربری</span>
-            </a>
+            </Link>
 
-            <a
-              href="#"
+            <Link
+              to="/cart"
+              aria-label="cart"
               className="relative rounded-full border border-white/10 p-2 transition hover:border-amber-400/60 hover:text-amber-300"
             >
               <span className="material-symbols-outlined">shopping_bag</span>
-              <span className="absolute -left-2 -top-2 flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-amber-400 px-1 text-xs font-bold text-black">
-                ۲
-              </span>
-            </a>
+              {totalItems > 0 && (
+                <span className="absolute -left-2 -top-2 flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-amber-400 px-1 text-xs font-bold text-black">
+                  {toPersianDigits(totalItems)}
+                </span>
+              )}
+            </Link>
           </div>
         </div>
 
