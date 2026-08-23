@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { BRAND } from "../lib/config";
 import { NAV_ITEMS, FOOTER_COLUMNS } from "../data/navigation";
 
 export default function Homepage() {
