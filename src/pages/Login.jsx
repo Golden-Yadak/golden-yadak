@@ -1,3 +1,5 @@
+import { BRAND } from "../lib/config";
+
 export default function Login() {
   return (
     <div
@@ -9,7 +11,7 @@ export default function Login() {
         <section className="relative hidden md:block">
           <img
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUpti7vD27KZL1rZ41e-tVLZ3nGUHrC9KnjrgK4fVbCMoLG0UQ3rqqoh5774rEp76u52OPZXjW08vwCJAaeJp_exwCbSoqbYYFSxxMa5MvmL_Rgp8TmpFxIoGCD5tiN-HIfgI8pUWdDr79-JqGFkH7WgsA6f8BkB01mKyaIIa_9riOohzJ7gbnlNCAwdLoWA4jFdbEA6K1ymSgEPcWENcWwr-NpYzLcVuNYGkzp-vnj4VElxA7_LrFh4s1coVvfouQswWKFxbm04E"
-            alt="لوکس‌یدک"
+            alt={BRAND.name}
             className="absolute inset-0 h-full w-full object-cover"
           />
 
@@ -42,7 +44,7 @@ export default function Login() {
               <span className="material-symbols-outlined">diamond</span>
             </span>
 
-            <span className="text-2xl font-extrabold">لوکس‌یدک</span>
+            <span className="text-2xl font-extrabold">{BRAND.name}</span>
           </div>
 
           <div className="mt-16">
@@ -78,7 +80,7 @@ export default function Login() {
             </button>
 
             <p className="mt-6 text-center text-[11px] leading-6 text-white/40">
-              با ورود به لوکس‌یدک، شما{" "}
+              با ورود به {BRAND.name}، شما{" "}
               <a
                 href="#"
                 className="font-bold text-amber-400 transition hover:text-amber-300"

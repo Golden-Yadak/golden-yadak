@@ -7,4 +7,9 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  server: {
+    host: "0.0.0.0",
+    // اجازه‌ی دسترسی از طریق هاست‌های پیش‌نمایش محیط توسعه
+    allowedHosts: true,
+  },
 });
