@@ -11,6 +11,7 @@ import { renderToString } from "react-dom/server";
 import { createElement as h } from "react";
 import { MemoryRouter } from "react-router-dom";
 import { CartProvider } from "../src/context/CartContext.jsx";
+import { AuthProvider } from "../src/context/AuthContext.jsx";
 
 import Homepage from "../src/pages/Homepage.jsx";
 import Products from "../src/pages/Products.jsx";
@@ -35,7 +36,9 @@ let failed = 0;
 for (const [name, Comp] of Object.entries(pages)) {
   try {
     const html = renderToString(
-      h(CartProvider, null, h(MemoryRouter, null, h(Comp)))
+      h(AuthProvider, null,
+        h(CartProvider, null, h(MemoryRouter, null, h(Comp)))
+      )
     );
     console.log(`✅ ${name}: رندر شد (${html.length} کاراکتر)`);
   } catch (error) {

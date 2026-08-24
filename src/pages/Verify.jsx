@@ -1,13 +1,80 @@
-import { BRAND } from "../lib/config";
+import { useState, useEffect } from "react";
+import { useNavigate, Link, Navigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth.js";
+import { BRAND, APP_CONFIG } from "../lib/config.js";
+import { toPersianDigits } from "../lib/format.js";
+import { isValidOtp, maskMobile } from "../lib/validation.js";
+
+// قالب‌بندی ثانیه به mm:ss فارسی
+function formatTimer(total) {
+  const m = Math.floor(total / 60);
+  const s = total % 60;
+  const mm = String(m).padStart(2, "0");
+  const ss = String(s).padStart(2, "0");
+  return toPersianDigits(`${mm}:${ss}`);
+}
 
 export default function Verify() {
+  const navigate = useNavigate();
+  const {
+    phoneNumber,
+    pendingCode,
+    resendSeconds,
+    verifyCode,
+    resendCode,
+    error: ctxError,
+    clearError,
+  } = useAuth();
+
+  const [code, setCode] = useState("");
+  const [localError, setLocalError] = useState("");
+  const [secondsLeft, setSecondsLeft] = useState(resendSeconds);
+
+  const error = localError || ctxError;
+
+  // شمارش معکوس تایمر ارسال مجدد (باید قبل از هر return باشد)
+  useEffect(() => {
+    if (secondsLeft <= 0) return;
+    const timer = setTimeout(() => setSecondsLeft((s) => s - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [secondsLeft]);
+
+  // اگر کاربر بدون درخواست کد مستقیماً به این صفحه آمده → برگشت به ورود
+  if (!phoneNumber || !pendingCode) {
+    return <Navigate to="/login" replace />;
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!isValidOtp(code)) {
+      setLocalError("کد تایید باید ۴ رقم باشد");
+      return;
+    }
+    // اعتبارسنجی نهایی در context انجام می‌شود
+    verifyCode(code);
+    // چون pendingCode را داریم، موفقیت را محلی هم چک می‌کنیم برای هدایت
+    if (code === pendingCode) {
+      navigate("/");
+    } else {
+      setLocalError("کد تایید اشتباه است");
+    }
+  }
+
+  function handleResend() {
+    if (secondsLeft > 0) return;
+    resendCode();
+    setSecondsLeft(resendSeconds);
+    setLocalError("");
+    setCode("");
+  }
+
   return (
     <div
       dir="rtl"
       className="flex min-h-screen items-center justify-center bg-[#050505] px-4 py-10 text-white"
     >
       <div className="grid w-full max-w-5xl overflow-hidden rounded-[2rem] border border-white/5 bg-[#151515] shadow-2xl shadow-black/60 md:grid-cols-2">
-        {/* نیمه تصویر - سمت راست */}
+        {/* نیمه تصویر */}
         <section className="relative hidden md:block">
           <img
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUpti7vD27KZL1rZ41e-tVLZ3nGUHrC9KnjrgK4fVbCMoLG0UQ3rqqoh5774rEp76u52OPZXjW08vwCJAaeJp_exwCbSoqbYYFSxxMa5MvmL_Rgp8TmpFxIoGCD5tiN-HIfgI8pUWdDr79-JqGFkH7WgsA6f8BkB01mKyaIIa_9riOohzJ7gbnlNCAwdLoWA4jFdbEA6K1ymSgEPcWENcWwr-NpYzLcVuNYGkzp-vnj4VElxA7_LrFh4s1coVvfouQswWKFxbm04E"
@@ -20,7 +87,7 @@ export default function Verify() {
           <div className="relative flex h-full flex-col justify-end p-10">
             <div className="flex items-center gap-4">
               <span className="text-sm font-bold tracking-[0.35em] text-amber-400">
-                LUXURY YADAK
+                {BRAND.nameLatin}
               </span>
               <span className="h-px w-16 bg-amber-400/70"></span>
             </div>
@@ -37,57 +104,104 @@ export default function Verify() {
           </div>
         </section>
 
-        {/* نیمه فرم - سمت چپ */}
+        {/* نیمه فرم */}
         <section className="flex flex-col p-10 md:p-12">
-          <div className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3">
             <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-300 to-amber-500 text-black">
-              <span className="material-symbols-outlined">diamond</span>
+              <span className="material-symbols-outlined">{BRAND.logoIcon}</span>
             </span>
-
             <span className="text-2xl font-extrabold">{BRAND.name}</span>
-          </div>
+          </Link>
 
           <div className="mt-16">
             <h2 className="text-3xl font-extrabold">کد تایید را وارد کنید</h2>
 
             <p className="mt-4 leading-7 text-white/60">
-              کد تایید برای شماره <span dir="ltr">۰۹۱۲۳۴۵۶۷۸۹</span> ارسال شد
+              کد تایید برای شماره{" "}
+              <span dir="ltr" className="font-bold text-white/80">
+                {toPersianDigits(maskMobile(phoneNumber))}
+              </span>{" "}
+              ارسال شد
             </p>
 
-            <a
-              href="#"
+            <Link
+              to="/login"
               className="mt-4 inline-block text-sm font-bold text-amber-400 transition hover:text-amber-300"
             >
               ویرایش شماره
-            </a>
+            </Link>
 
-            <input
-              dir="ltr"
-              inputMode="numeric"
-              maxLength={4}
-              className="mt-6 w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3.5 text-center text-2xl tracking-[0.5em] outline-none transition focus:border-amber-400/60"
-            />
+            <form onSubmit={handleSubmit} noValidate>
+              <input
+                dir="ltr"
+                inputMode="numeric"
+                maxLength={4}
+                autoComplete="one-time-code"
+                placeholder="----"
+                value={code}
+                onChange={(e) => {
+                  // فقط ارقام (فارسی/لاتین) را می‌پذیریم
+                  const cleaned = e.target.value.replace(/[^\d۰-۹]/g, "");
+                  setCode(cleaned);
+                  if (localError) setLocalError("");
+                  if (ctxError) clearError();
+                }}
+                className="mt-6 w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3.5 text-center text-2xl tracking-[0.5em] outline-none transition focus:border-amber-400/60"
+              />
 
-            <button className="mt-6 w-full rounded-xl bg-gradient-to-l from-amber-500 via-amber-400 to-yellow-300 py-3.5 font-extrabold text-black transition hover:brightness-110">
-              تایید و ورود
-            </button>
+              {error && (
+                <p className="mt-3 flex items-center gap-2 text-sm text-red-400">
+                  <span className="material-symbols-outlined text-base">
+                    error
+                  </span>
+                  {error}
+                </p>
+              )}
+
+              <button
+                type="submit"
+                className="mt-6 w-full rounded-xl bg-gradient-to-l from-amber-500 via-amber-400 to-yellow-300 py-3.5 font-extrabold text-black transition hover:brightness-110"
+              >
+                تایید و ورود
+              </button>
+            </form>
 
             <div className="mt-6 flex items-center justify-center gap-2 text-sm text-white/50">
               <span className="material-symbols-outlined text-base">timer</span>
               <span>
-                ارسال مجدد کد در <span dir="ltr">۰۰:۵۹</span>
+                ارسال مجدد کد در{" "}
+                <span dir="ltr">{formatTimer(Math.max(0, secondsLeft))}</span>
               </span>
             </div>
 
-            <a
-              href="#"
+            <button
+              type="button"
+              onClick={handleResend}
+              disabled={secondsLeft > 0}
+              className="mt-3 w-full text-center text-sm font-bold text-amber-400 transition hover:text-amber-300 disabled:cursor-not-allowed disabled:text-white/20 disabled:hover:text-white/20"
+            >
+              ارسال مجدد کد
+            </button>
+
+            {/* راهنمای کد تستی فقط در محیط توسعه */}
+            {APP_CONFIG.isDev && (
+              <div className="mt-6 rounded-xl border border-amber-400/20 bg-amber-400/5 px-4 py-3 text-center text-xs text-amber-200/80">
+                محیط توسعه — کد تستی:{" "}
+                <span dir="ltr" className="font-extrabold text-amber-300">
+                  {toPersianDigits(pendingCode)}
+                </span>
+              </div>
+            )}
+
+            <Link
+              to="/login"
               className="mt-6 flex items-center justify-center gap-2 text-sm text-white/50 transition hover:text-white"
             >
               <span className="material-symbols-outlined text-base">
                 arrow_forward
               </span>
               بازگشت به مرحله قبل
-            </a>
+            </Link>
           </div>
 
           <div className="mt-16 flex items-center justify-center gap-4 md:mt-auto md:pt-16">

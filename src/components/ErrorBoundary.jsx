@@ -22,7 +22,6 @@ export default class ErrorBoundary extends Component {
 
   componentDidCatch(error, info) {
     // لاگ در کنسول مرورگر برای دیباگ
-    // eslint-disable-next-line no-console
     console.error("ErrorBoundary:", error, info);
   }
 

@@ -1,17 +1,25 @@
 import { Link } from "react-router-dom";
 import { BRAND } from "../lib/config";
 import { useCart } from "../hooks/useCart.js";
+import { useAuth } from "../hooks/useAuth.js";
 import { toPersianDigits } from "../lib/format.js";
+import { maskMobile } from "../lib/validation.js";
 
 // =============================================================
 //  هدر مشترک صفحات فروشگاه
-//  logoIcon و نام برند از کانفیگ مرکزی میاد.
-//  شمارنده‌ی سبد خرید از CartContext تغذیه می‌شه (زنده).
-//  prop اختیاری `navItems` نوار ناوبری پایین هدر رو رسم می‌کنه.
+//  - شمارنده‌ی سبد خرید از CartContext (زنده)
+//  - بخش کاربری از AuthContext (ورود/خروج)
+//  - prop اختیاری `navItems` نوار ناوبری پایین هدر
 // =============================================================
+
+// نمایش شماره با ارقام فارسی
+function persianMobile(phone) {
+  return toPersianDigits(phone ? maskMobile(phone) : "");
+}
 
 export default function Header({ navItems }) {
   const { totalItems } = useCart();
+  const { isAuthenticated, phoneNumber, logout } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-zinc-950/90 backdrop-blur">
@@ -35,13 +43,26 @@ export default function Header({ navItems }) {
               <span className="material-symbols-outlined">search</span>
             </button>
 
-            <Link
-              to="/login"
-              className="flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 transition hover:border-amber-400/60 hover:text-amber-300"
-            >
-              <span className="material-symbols-outlined">account_circle</span>
-              <span className="hidden sm:inline">پنل کاربری</span>
-            </Link>
+            {isAuthenticated ? (
+              <button
+                type="button"
+                onClick={logout}
+                className="flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-400/10 px-4 py-2 text-amber-300 transition hover:border-amber-400/70"
+              >
+                <span className="material-symbols-outlined">logout</span>
+                <span className="hidden sm:inline" dir="ltr">
+                  {persianMobile(phoneNumber)} · خروج
+                </span>
+              </button>
+            ) : (
+              <Link
+                to="/login"
+                className="flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 transition hover:border-amber-400/60 hover:text-amber-300"
+              >
+                <span className="material-symbols-outlined">account_circle</span>
+                <span className="hidden sm:inline">ورود / پنل کاربری</span>
+              </Link>
+            )}
 
             <Link
               to="/cart"

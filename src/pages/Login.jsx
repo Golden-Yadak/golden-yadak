@@ -1,13 +1,35 @@
-import { BRAND } from "../lib/config";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth.js";
+import { BRAND } from "../lib/config.js";
+import { isValidIranMobile, normalizeMobile } from "../lib/validation.js";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const { requestCode, error: ctxError, clearError } = useAuth();
+  const [phone, setPhone] = useState("");
+  const [localError, setLocalError] = useState("");
+
+  const error = localError || ctxError;
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!isValidIranMobile(phone)) {
+      setLocalError("شماره موبایل معتبر وارد کنید (۱۱ رقم، شامل ۰۹)");
+      return;
+    }
+    setLocalError("");
+    requestCode(normalizeMobile(phone));
+    navigate("/verify");
+  }
+
   return (
     <div
       dir="rtl"
       className="flex min-h-screen items-center justify-center bg-[#050505] px-4 py-10 text-white"
     >
       <div className="grid w-full max-w-5xl overflow-hidden rounded-[2rem] border border-white/5 bg-[#151515] shadow-2xl shadow-black/60 md:grid-cols-2">
-        {/* نیمه تصویر - سمت راست */}
+        {/* نیمه تصویر */}
         <section className="relative hidden md:block">
           <img
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUpti7vD27KZL1rZ41e-tVLZ3nGUHrC9KnjrgK4fVbCMoLG0UQ3rqqoh5774rEp76u52OPZXjW08vwCJAaeJp_exwCbSoqbYYFSxxMa5MvmL_Rgp8TmpFxIoGCD5tiN-HIfgI8pUWdDr79-JqGFkH7WgsA6f8BkB01mKyaIIa_9riOohzJ7gbnlNCAwdLoWA4jFdbEA6K1ymSgEPcWENcWwr-NpYzLcVuNYGkzp-vnj4VElxA7_LrFh4s1coVvfouQswWKFxbm04E"
@@ -20,7 +42,7 @@ export default function Login() {
           <div className="relative flex h-full flex-col justify-end p-10">
             <div className="flex items-center gap-4">
               <span className="text-sm font-bold tracking-[0.35em] text-amber-400">
-                LUXURY YADAK
+                {BRAND.nameLatin}
               </span>
               <span className="h-px w-16 bg-amber-400/70"></span>
             </div>
@@ -37,15 +59,14 @@ export default function Login() {
           </div>
         </section>
 
-        {/* نیمه فرم - سمت چپ */}
+        {/* نیمه فرم */}
         <section className="flex flex-col p-10 md:p-12">
-          <div className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3">
             <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-300 to-amber-500 text-black">
-              <span className="material-symbols-outlined">diamond</span>
+              <span className="material-symbols-outlined">{BRAND.logoIcon}</span>
             </span>
-
             <span className="text-2xl font-extrabold">{BRAND.name}</span>
-          </div>
+          </Link>
 
           <div className="mt-16">
             <h2 className="text-3xl font-extrabold">خوش آمدید</h2>
@@ -54,109 +75,65 @@ export default function Login() {
               برای ورود یا ثبت‌نام، شماره موبایل خود را وارد کنید.
             </p>
 
-            <label
-              htmlFor="mobile"
-              className="mt-8 block text-sm font-bold text-white/70"
-            >
-              شماره موبایل
-            </label>
+            <form onSubmit={handleSubmit} noValidate>
+              <label
+                htmlFor="mobile"
+                className="mt-8 block text-sm font-bold text-white/70"
+              >
+                شماره موبایل
+              </label>
 
-            <div className="mt-3 flex items-center gap-3 rounded-xl border border-white/10 bg-black/40 px-4 py-3.5 transition focus-within:border-amber-400/60">
-              <span className="material-symbols-outlined text-white/40">
-                smartphone
-              </span>
+              <div className="mt-3 flex items-center gap-3 rounded-xl border border-white/10 bg-black/40 px-4 py-3.5 transition focus-within:border-amber-400/60">
+                <span className="material-symbols-outlined text-white/40">
+                  smartphone
+                </span>
 
-              <input
-                id="mobile"
-                type="tel"
-                dir="ltr"
-                placeholder="۰۹۲۳۴۵۶۷۸۹"
-                className="w-full bg-transparent text-left outline-none placeholder:text-white/30"
-              />
-            </div>
+                <input
+                  id="mobile"
+                  name="mobile"
+                  type="tel"
+                  dir="ltr"
+                  inputMode="numeric"
+                  autoComplete="tel"
+                  placeholder="09123456789"
+                  value={phone}
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                    if (localError) setLocalError("");
+                    if (ctxError) clearError();
+                  }}
+                  className="w-full bg-transparent text-left outline-none placeholder:text-white/30"
+                />
+              </div>
 
-            <button className="mt-6 w-full rounded-xl bg-gradient-to-l from-amber-500 via-amber-400 to-yellow-300 py-3.5 font-extrabold text-black transition hover:brightness-110">
-              ارسال کد تایید
-            </button>
+              {error && (
+                <p className="mt-3 flex items-center gap-2 text-sm text-red-400">
+                  <span className="material-symbols-outlined text-base">
+                    error
+                  </span>
+                  {error}
+                </p>
+              )}
+
+              <button
+                type="submit"
+                className="mt-6 w-full rounded-xl bg-gradient-to-l from-amber-500 via-amber-400 to-yellow-300 py-3.5 font-extrabold text-black transition hover:brightness-110"
+              >
+                ارسال کد تایید
+              </button>
+            </form>
 
             <p className="mt-6 text-center text-[11px] leading-6 text-white/40">
               با ورود به {BRAND.name}، شما{" "}
-              <a
-                href="#"
-                className="font-bold text-amber-400 transition hover:text-amber-300"
-              >
+              <a href="#" className="font-bold text-amber-400 transition hover:text-amber-300">
                 شرایط و قوانین
               </a>{" "}
               و{" "}
-              <a
-                href="#"
-                className="font-bold text-amber-400 transition hover:text-amber-300"
-              >
+              <a href="#" className="font-bold text-amber-400 transition hover:text-amber-300">
                 سیاست حریم خصوصی
               </a>{" "}
               ما را می‌پذیرید.
             </p>
-          </div>
-
-          {/*
-            مرحله ۲: تایید هویت
-            مطابق قالب اصلی، این بخش در حالت اولیه مخفی است.
-            هر وقت گفتی منطقش را اضافه می‌کنیم.
-          */}
-          <div className="hidden">
-            <div className="mt-10 border-t border-white/10 pt-8">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h2 className="text-2xl font-extrabold">تایید هویت</h2>
-
-                  <p className="mt-3 leading-7 text-white/60">
-                    کد ۴ رقمی ارسال شده به{" "}
-                    <span dir="ltr">۰۹۲****۳۵</span> را وارد کنید.
-                  </p>
-                </div>
-
-                <button
-                  aria-label="edit"
-                  className="rounded-full border border-white/10 p-2 transition hover:border-amber-400/60 hover:text-amber-300"
-                >
-                  <span className="material-symbols-outlined">edit</span>
-                </button>
-              </div>
-
-              <input
-                dir="ltr"
-                inputMode="numeric"
-                maxLength={4}
-                className="mt-6 w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-center text-2xl tracking-[0.5em] outline-none transition focus:border-amber-400/60"
-              />
-
-              <button className="mt-6 w-full rounded-xl bg-gradient-to-l from-amber-500 via-amber-400 to-yellow-300 py-3.5 font-extrabold text-black transition hover:brightness-110">
-                تایید و ورود
-              </button>
-
-              <div className="mt-6 flex items-center justify-center gap-2 text-sm text-white/50">
-                <span className="material-symbols-outlined text-base">
-                  schedule
-                </span>
-                <span>
-                  <span dir="ltr">۰۱:۴۵</span> تا ارسال مجدد
-                </span>
-              </div>
-
-              <button className="mt-3 w-full text-center text-sm font-bold text-amber-400 transition hover:text-amber-300">
-                ارسال مجدد کد
-              </button>
-
-              <a
-                href="#"
-                className="mt-6 flex items-center justify-center gap-2 text-sm text-white/50 transition hover:text-white"
-              >
-                <span className="material-symbols-outlined text-base">
-                  arrow_forward
-                </span>
-                بازگشت به مرحله قبل
-              </a>
-            </div>
           </div>
 
           <div className="mt-16 flex items-center justify-center gap-4 md:mt-auto md:pt-16">
