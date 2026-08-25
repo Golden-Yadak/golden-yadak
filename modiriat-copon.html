@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>مدیریت تخفیف‌ها | پنل ادمین لوکس‌یدک</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-light: #F9E29C;
+            --gold-dark: #AA8B24;
+            --background: #0B0B0B;
+            --surface: #141414;
+            --card-border: #2A2A2A;
+            --text-main: #E5E5E5;
+            --text-muted: #8E8E8E;
+        }
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(to bottom right, var(--gold-light), var(--gold-primary), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .luxury-card {
+            background-color: var(--surface);
+            border: 1px solid var(--card-border);
+            border-radius: 1.5rem;
+        }
+        .gold-input {
+            background-color: #0B0B0B;
+            border: 1px solid var(--card-border);
+            border-radius: 0.75rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .gold-input:focus {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+            outline: none;
+            ring: 0;
+        }
+        .luxury-button {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+            transition: all 0.3s ease;
+        }
+        .luxury-button:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+        .status-active {
+            background: rgba(34, 197, 94, 0.1);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+        .status-expired {
+            background: rgba(239, 68, 68, 0.1);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        .nav-item-active {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold-primary);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .sidebar-icon {
+            color: var(--gold-primary);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "gold": {
+                            DEFAULT: "#D4AF37",
+                            light: "#F9E29C",
+                            dark: "#AA8B24"
+                        },
+                        "luxury-black": "#0B0B0B",
+                        "luxury-surface": "#141414",
+                        "luxury-border": "#2A2A2A"
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-luxury-black text-gray-200 min-h-screen">
+<header class="sticky top-0 z-50 bg-luxury-black/95 backdrop-blur-lg border-b border-luxury-border">
+<div class="container mx-auto px-4 py-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-gradient-to-br from-gold-light via-gold to-gold-dark p-2 rounded-lg">
+<span class="material-icons text-black">admin_panel_settings</span>
+</div>
+<div>
+<h1 class="text-xl font-black tracking-tighter">پنل مدیریت <span class="gold-gradient-text text-lg">لوکس‌یدک</span></h1>
+<p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Discount &amp; Promotion Management</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3 px-4 py-2 bg-luxury-surface rounded-full border border-luxury-border">
+<div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+<span class="text-xs font-bold text-gray-400">مدیر ارشد: ادمین مرکزی</span>
+</div>
+<button class="text-gray-400 hover:text-gold transition-colors">
+<span class="material-icons">notifications_none</span>
+</button>
+</div>
+</div>
+</header>
+<main class="container mx-auto px-4 py-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<aside class="lg:col-span-3 space-y-2">
+<div class="luxury-card p-4">
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 p-3 rounded-xl text-gray-400 hover:bg-luxury-black hover:text-gold transition-all" href="#">
+<span class="material-icons sidebar-icon text-xl">dashboard</span>
+<span class="text-sm font-bold">داشبورد</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-xl text-gray-400 hover:bg-luxury-black hover:text-gold transition-all" href="#">
+<span class="material-icons sidebar-icon text-xl">inventory_2</span>
+<span class="text-sm font-bold">مدیریت محصولات</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-xl text-gray-400 hover:bg-luxury-black hover:text-gold transition-all" href="#">
+<span class="material-icons sidebar-icon text-xl">shopping_cart</span>
+<span class="text-sm font-bold">مدیریت سفارشات</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-xl nav-item-active transition-all" href="#">
+<span class="material-icons sidebar-icon text-xl">confirmation_number</span>
+<span class="text-sm font-bold">کپن‌ها و تخفیفات</span>
+</a>
+</nav>
+</div>
+<div class="luxury-card p-6 bg-gradient-to-br from-gold/5 to-transparent">
+<h4 class="text-gold font-black text-sm mb-2">گزارش سریع</h4>
+<div class="space-y-4 mt-4">
+<div class="flex justify-between items-center">
+<span class="text-xs text-gray-500">تخفیف‌های فعال</span>
+<span class="text-sm font-black text-white">۱۲</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs text-gray-500">استفاده شده (امروز)</span>
+<span class="text-sm font-black text-white">۴۸</span>
+</div>
+</div>
+</div>
+</aside>
+<div class="lg:col-span-9 space-y-8">
+<section class="luxury-card overflow-hidden">
+<div class="border-b border-luxury-border p-6 flex justify-between items-center bg-luxury-surface/50">
+<h2 class="text-xl font-black text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-gold">add_circle</span>
+                        ایجاد کد تخفیف جدید
+                    </h2>
+</div>
+<form class="p-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-bold text-gray-400 mr-1">نام یا کد کوپن</label>
+<input class="gold-input w-full p-3 text-sm" placeholder="مثلا: LUXURY2024" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-gray-400 mr-1">نوع و مقدار تخفیف</label>
+<div class="flex">
+<select class="gold-input rounded-l-none border-l-0 p-3 text-sm bg-luxury-black">
+<option>درصد (%)</option>
+<option>مبلغ ثابت (تومان)</option>
+</select>
+<input class="gold-input w-full rounded-r-none p-3 text-sm" placeholder="مقدار" type="number"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-gray-400 mr-1">سقف تعداد استفاده</label>
+<input class="gold-input w-full p-3 text-sm" placeholder="مثلا: ۱۰۰" type="number"/>
+</div>
+<div class="space-y-2 relative">
+<label class="text-xs font-bold text-gray-400 mr-1">تاریخ شروع</label>
+<input class="gold-input w-full p-3 text-sm" type="date"/>
+</div>
+<div class="space-y-2 relative">
+<label class="text-xs font-bold text-gray-400 mr-1">تاریخ انقضا</label>
+<input class="gold-input w-full p-3 text-sm" type="date"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-gray-400 mr-1">محدودیت اعمال</label>
+<select class="gold-input w-full p-3 text-sm">
+<option>بدون محدودیت (همه)</option>
+<option>دسته بندی خاص</option>
+<option>کاربران VIP</option>
+<option>کاربران جدید</option>
+</select>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-luxury-border flex justify-end gap-4">
+<button class="px-8 py-3 rounded-xl border border-luxury-border text-gray-500 hover:text-white transition-all text-sm font-bold" type="reset">انصراف</button>
+<button class="luxury-button px-10 py-3 rounded-xl text-black text-sm font-black shadow-lg" type="submit">ثبت و انتشار کوپن</button>
+</div>
+</form>
+</section>
+<section class="luxury-card overflow-hidden">
+<div class="border-b border-luxury-border p-6 flex justify-between items-center bg-luxury-surface/50">
+<h2 class="text-xl font-black text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-gold">list_alt</span>
+                        لیست کوپن‌های تعریف شده
+                    </h2>
+<div class="flex gap-2">
+<button class="p-2 bg-luxury-black border border-luxury-border rounded-lg text-gray-500 hover:text-gold">
+<span class="material-icons text-sm">filter_list</span>
+</button>
+<button class="p-2 bg-luxury-black border border-luxury-border rounded-lg text-gray-500 hover:text-gold">
+<span class="material-icons text-sm">download</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-right border-collapse">
+<thead>
+<tr class="bg-luxury-black/40 text-gray-500 text-[10px] uppercase tracking-widest border-b border-luxury-border">
+<th class="p-5 font-black">کد تخفیف</th>
+<th class="p-5 font-black">نوع / مقدار</th>
+<th class="p-5 font-black">محدودیت</th>
+<th class="p-5 font-black">استفاده شده</th>
+<th class="p-5 font-black">بازه زمانی</th>
+<th class="p-5 font-black text-center">وضعیت</th>
+<th class="p-5 font-black text-center">عملیات</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-luxury-border/50">
+<tr class="hover:bg-white/[0.02] transition-colors">
+<td class="p-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-gold/10 flex items-center justify-center text-gold border border-gold/20">
+<span class="material-icons text-sm">local_offer</span>
+</div>
+<span class="font-black text-sm text-white">YADAK_VIP_40</span>
+</div>
+</td>
+<td class="p-5">
+<span class="text-sm font-bold text-gold">۴۰٪ تخفیف</span>
+</td>
+<td class="p-5 text-xs text-gray-400">فقط کاربران سطح VIP</td>
+<td class="p-5">
+<div class="w-full bg-luxury-black h-1.5 rounded-full mt-1 max-w-[80px]">
+<div class="bg-gold h-full rounded-full" style="width: 75%"></div>
+</div>
+<span class="text-[10px] text-gray-500 mt-1 block">۷۵ / ۱۰۰</span>
+</td>
+<td class="p-5 text-xs text-gray-400">۱۴۰۳/۰۲/۰۱ - ۱۴۰۳/۰۳/۰۱</td>
+<td class="p-5 text-center">
+<span class="px-3 py-1 rounded-full text-[10px] font-black status-active uppercase">فعال</span>
+</td>
+<td class="p-5">
+<div class="flex items-center justify-center gap-2">
+<button class="p-2 text-gray-500 hover:text-gold transition-colors"><span class="material-icons text-lg">edit</span></button>
+<button class="p-2 text-gray-500 hover:text-red-500 transition-colors"><span class="material-icons text-lg">delete_outline</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-white/[0.02] transition-colors">
+<td class="p-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-gold/10 flex items-center justify-center text-gold border border-gold/20">
+<span class="material-icons text-sm">local_offer</span>
+</div>
+<span class="font-black text-sm text-white">WELCOME_1402</span>
+</div>
+</td>
+<td class="p-5">
+<span class="text-sm font-bold text-gold">۵۰۰,۰۰۰ تومان</span>
+</td>
+<td class="p-5 text-xs text-gray-400">بدون محدودیت</td>
+<td class="p-5">
+<div class="w-full bg-luxury-black h-1.5 rounded-full mt-1 max-w-[80px]">
+<div class="bg-gray-600 h-full rounded-full" style="width: 100%"></div>
+</div>
+<span class="text-[10px] text-gray-500 mt-1 block">۵۰۰ / ۵۰۰</span>
+</td>
+<td class="p-5 text-xs text-gray-400">۱۴۰۲/۱۰/۰۱ - ۱۴۰۲/۱۱/۰۱</td>
+<td class="p-5 text-center">
+<span class="px-3 py-1 rounded-full text-[10px] font-black status-expired uppercase">منقضی شده</span>
+</td>
+<td class="p-5">
+<div class="flex items-center justify-center gap-2">
+<button class="p-2 text-gray-500 hover:text-gold transition-colors"><span class="material-icons text-lg">visibility</span></button>
+<button class="p-2 text-gray-500 hover:text-red-500 transition-colors"><span class="material-icons text-lg">delete_outline</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-white/[0.02] transition-colors">
+<td class="p-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-gold/10 flex items-center justify-center text-gold border border-gold/20">
+<span class="material-icons text-sm">local_offer</span>
+</div>
+<span class="font-black text-sm text-white">BRAKE_LUX</span>
+</div>
+</td>
+<td class="p-5">
+<span class="text-sm font-bold text-gold">۱۵٪ تخفیف</span>
+</td>
+<td class="p-5 text-xs text-gray-400">دسته دیسک و لنت</td>
+<td class="p-5">
+<div class="w-full bg-luxury-black h-1.5 rounded-full mt-1 max-w-[80px]">
+<div class="bg-gold h-full rounded-full" style="width: 12%"></div>
+</div>
+<span class="text-[10px] text-gray-500 mt-1 block">۲۴ / ۲۰۰</span>
+</td>
+<td class="p-5 text-xs text-gray-400">۱۴۰۳/۰۱/۱۵ - ۱۴۰۳/۰۴/۱۵</td>
+<td class="p-5 text-center">
+<span class="px-3 py-1 rounded-full text-[10px] font-black status-active uppercase">فعال</span>
+</td>
+<td class="p-5">
+<div class="flex items-center justify-center gap-2">
+<button class="p-2 text-gray-500 hover:text-gold transition-colors"><span class="material-icons text-lg">edit</span></button>
+<button class="p-2 text-gray-500 hover:text-red-500 transition-colors"><span class="material-icons text-lg">delete_outline</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 bg-luxury-surface/30 border-t border-luxury-border flex justify-between items-center">
+<span class="text-xs text-gray-500">نمایش ۱۰ مورد از ۲۴ کوپن تعریف شده</span>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-luxury-border text-gray-500 hover:border-gold hover:text-gold transition-all">۱</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-gold bg-gold text-black font-bold">۲</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-luxury-border text-gray-500 hover:border-gold hover:text-gold transition-all">۳</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<footer class="mt-20 border-t border-luxury-border py-8 text-center">
+<div class="container mx-auto px-4">
+<p class="text-[10px] text-gray-600 tracking-[0.2em] uppercase font-bold">
+            ADMIN PANEL v2.4.0 — COPYRIGHT © 2024 LUXURY YADAK.
+        </p>
+</div>
+</footer>
+
+</body></html>

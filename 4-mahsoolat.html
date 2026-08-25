@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>یدک‌آنلاین | مرجع تخصصی قطعات لوکس خودرو</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --primary-gold: #D4AF37;
+            --primary-gold-light: #F9E29C;
+            --background: #000000;
+            --surface: #0D0D0D;
+            --card-border: #1F1F1F;
+            --gold-glow: rgba(212, 175, 55, 0.15);
+        }
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--background);
+            color: #E5E5E5;
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        }
+        .gold-border-glow {
+            box-shadow: 0 0 15px var(--gold-glow);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        .gold-text {
+            background: linear-gradient(135deg, #D4AF37, #F9E29C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "gold": "#D4AF37",
+                        "luxury-black": "#000000",
+                        "luxury-grey": "#0D0D0D",
+                        "card-border": "#1F1F1F"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-luxury-black">
+<header class="sticky top-0 z-50 bg-luxury-black/95 backdrop-blur-md border-b border-gold/20 shadow-xl">
+<div class="container mx-auto px-4 py-4 flex items-center justify-between gap-6">
+<div class="flex items-center gap-3 order-1">
+<div class="gold-gradient p-2.5 rounded-xl shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+<span class="material-icons text-black">settings_input_component</span>
+</div>
+<h1 class="text-2xl font-black text-white tracking-tighter italic">لوکس<span class="gold-text">یدک</span></h1>
+</div>
+<div class="flex-grow max-w-2xl relative order-3 lg:order-2">
+<input class="w-full h-12 pr-12 pl-4 rounded-xl border border-card-border bg-luxury-grey text-white focus:ring-1 focus:ring-gold focus:border-gold transition-all outline-none text-sm placeholder-gray-600" placeholder="جستجوی قطعات تخصصی و برندهای لوکس..." type="text"/>
+<span class="material-icons absolute right-4 top-3 text-gold">search</span>
+</div>
+<div class="flex items-center gap-6 order-2 lg:order-3">
+<button class="flex items-center gap-2 text-gray-400 hover:text-gold transition-colors">
+<span class="material-icons">person_outline</span>
+<span class="hidden lg:inline text-sm font-bold">پنل کاربری</span>
+</button>
+<div class="h-6 w-px bg-card-border"></div>
+<button class="relative p-2 text-gray-400 hover:text-gold transition-colors">
+<span class="material-icons">shopping_cart</span>
+<span class="absolute -top-1 -left-1 gold-gradient text-black text-[10px] w-5 h-5 flex items-center justify-center rounded-full font-bold shadow-lg">۲</span>
+</button>
+</div>
+</div>
+</header>
+<main class="container mx-auto px-4 py-8">
+<div class="flex flex-col lg:flex-row gap-8">
+<aside class="w-full lg:w-72 flex-shrink-0">
+<div class="bg-luxury-grey p-6 rounded-3xl border border-card-border sticky top-28">
+<h3 class="text-lg font-black text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-gold">filter_list</span>
+                    فیلتر پیشرفته
+                </h3>
+<div class="space-y-8">
+<div>
+<h4 class="text-sm font-bold text-gray-300 mb-4 border-r-2 border-gold pr-2">دسته‌بندی</h4>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-card-border bg-luxury-black text-gold focus:ring-gold focus:ring-offset-luxury-grey" type="checkbox"/>
+<span class="text-sm text-gray-400 group-hover:text-gold transition-colors">قطعات موتوری</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-card-border bg-luxury-black text-gold focus:ring-gold focus:ring-offset-luxury-grey" type="checkbox"/>
+<span class="text-sm text-gray-400 group-hover:text-gold transition-colors">سیستم تعلیق</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-card-border bg-luxury-black text-gold focus:ring-gold focus:ring-offset-luxury-grey" type="checkbox"/>
+<span class="text-sm text-gray-400 group-hover:text-gold transition-colors">تجهیزات روشنایی</span>
+</label>
+</div>
+</div>
+<div>
+<h4 class="text-sm font-bold text-gray-300 mb-4 border-r-2 border-gold pr-2">محدوده قیمت</h4>
+<input class="w-full h-1 bg-card-border rounded-lg appearance-none cursor-pointer accent-gold" max="100" min="0" type="range"/>
+<div class="flex justify-between mt-2 text-[10px] text-gray-500 font-bold">
+<span>۱۰ میلیون +</span>
+<span>۱ میلیون</span>
+</div>
+</div>
+<div>
+<h4 class="text-sm font-bold text-gray-300 mb-4 border-r-2 border-gold pr-2">برندهای تجاری</h4>
+<div class="grid grid-cols-1 gap-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 border-card-border bg-luxury-black text-gold focus:ring-gold focus:ring-offset-luxury-grey" name="brand" type="radio"/>
+<span class="text-sm text-gray-400 group-hover:text-gold transition-colors">بوش (Bosch)</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 border-card-border bg-luxury-black text-gold focus:ring-gold focus:ring-offset-luxury-grey" name="brand" type="radio"/>
+<span class="text-sm text-gray-400 group-hover:text-gold transition-colors">برمبو (Brembo)</span>
+</label>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 py-3 gold-gradient text-black font-black rounded-xl shadow-lg hover:brightness-110 transition-all">
+                    اعمال فیلترها
+                </button>
+</div>
+</aside>
+<section class="flex-grow">
+<div class="flex items-center justify-between mb-8 bg-luxury-grey p-4 rounded-2xl border border-card-border">
+<div class="flex items-center gap-4">
+<span class="text-gray-500 text-sm">ترتیب بر اساس:</span>
+<button class="text-gold text-sm font-bold border-b-2 border-gold pb-1">محبوب‌ترین</button>
+<button class="text-gray-400 text-sm font-bold hover:text-white transition-colors">گران‌ترین</button>
+<button class="text-gray-400 text-sm font-bold hover:text-white transition-colors">جدیدترین</button>
+</div>
+<div class="text-gray-500 text-xs font-bold">نمایش ۱۲ محصول از ۴۵۰</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<div class="bg-luxury-grey rounded-3xl border border-card-border p-5 group hover:gold-border-glow transition-all duration-300">
+<div class="relative mb-6 rounded-2xl overflow-hidden bg-luxury-black p-4 border border-card-border aspect-square flex items-center justify-center">
+<img alt="شمع پایه بلند" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD08aUpVbBjTo1BWsryX1imdfB-M5vR5cy1d7r2aTdZf6QgIz3_mMoR3e8ZlgcPHeyjnR5N7lIjrQ4oaq88dZze6clU4BByKIkEi8IiY16i1fd6AQhnwBDCGpEtrgFsFot50S82xfg947Lb4T0VCziQPZJkR1So70r1Hiwj1x8FCRQN5DOkA_phn05I5mYB02bvtsv-SDoFt7uAJPoZU_Rywic6ZPf_98cQtTbnRkDXin610yTXWU2FAAmK_mlpWpQ1RRr46QLkWfc"/>
+<span class="absolute top-4 right-4 bg-luxury-black/80 backdrop-blur-md border border-gold/30 text-gold px-3 py-1 rounded-lg text-[10px] font-black">اصالت تضمینی</span>
+</div>
+<h3 class="text-white font-bold text-sm mb-4 h-10 overflow-hidden leading-relaxed">شمع سوزنی ایریدیوم برند بوش - سری پلاتینیوم آلمان</h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="text-gray-500 text-xs">قیمت واحد:</span>
+<div class="text-left">
+<span class="gold-text font-black text-xl">۱,۲۵۰,۰۰۰</span>
+<span class="text-[10px] text-gray-500 mr-1">تومان</span>
+</div>
+</div>
+<button class="w-full py-3 gold-gradient text-black font-black rounded-xl flex items-center justify-center gap-2 hover:brightness-110 shadow-lg transition-all">
+<span class="material-icons text-sm">add_shopping_cart</span>
+                            افزودن به سبد خرید
+                        </button>
+</div>
+</div>
+<div class="bg-luxury-grey rounded-3xl border border-card-border p-5 group hover:gold-border-glow transition-all duration-300">
+<div class="relative mb-6 rounded-2xl overflow-hidden bg-luxury-black p-4 border border-card-border aspect-square flex items-center justify-center">
+<img alt="دیسک ترمز" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpKH3BHIgaqOGCy-s7uElWjm0wuo5r5oP-ZI3OxbMzWkTSYnV9sY30Yi064DIFy9GOT657LVE3YYwFISkYjrGVG_ZUWqNm2J5_zqXHX7GkiHGbPHQGZInmLsVkhDRNeK5STZJWMITRHsB5VZtJTDJIjBEmcm4THxbFmo5Q7LfzcwMghsfteDXgNUb2f14uXW7WsNcy4eZOW4fbMpvQ0rQkAlNL5Qe2qdHiiZ-DOc_g-IUDIDsSI-pShlYUANiCfeIvrTpu__oSvpg"/>
+<span class="absolute top-4 right-4 bg-luxury-black/80 backdrop-blur-md border border-gold/30 text-gold px-3 py-1 rounded-lg text-[10px] font-black">ویژه</span>
+</div>
+<h3 class="text-white font-bold text-sm mb-4 h-10 overflow-hidden leading-relaxed">دیسک ترمز خنک‌شونده برمبو - مدل High Performance</h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="text-gray-500 text-xs">قیمت جفت:</span>
+<div class="text-left">
+<span class="gold-text font-black text-xl">۸,۹۰۰,۰۰۰</span>
+<span class="text-[10px] text-gray-500 mr-1">تومان</span>
+</div>
+</div>
+<button class="w-full py-3 gold-gradient text-black font-black rounded-xl flex items-center justify-center gap-2 hover:brightness-110 shadow-lg transition-all">
+<span class="material-icons text-sm">add_shopping_cart</span>
+                            افزودن به سبد خرید
+                        </button>
+</div>
+</div>
+<div class="bg-luxury-grey rounded-3xl border border-card-border p-5 group hover:gold-border-glow transition-all duration-300">
+<div class="relative mb-6 rounded-2xl overflow-hidden bg-luxury-black p-4 border border-card-border aspect-square flex items-center justify-center">
+<img alt="روغن موتور" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs_9MCj8nW40lYUethz4GfwgrVcFslwB8X-j4RCSZ9IWSFjyA0GxM-w7oKvBqoFDoIGYd0YsSbHVLfMn4vDncA9dN8MDVkuuKwle6l4JuGwDynGK8k-vDkYRm5TT4daAl3JPOVXPEMkqzEeSyMazeiLk-_3F8CMeoHE63skVbWBI7f0TD5FonG2M6svx_tJIffk5sHmDDQ-Cgkoz3hxdN9kXoH8twoPUigAp2H1-bIkHxWH_hqesY2qlBa4qQfDw8sbM_XrFfCVBE"/>
+<div class="absolute top-4 left-4 bg-red-600 text-white px-2 py-1 rounded-lg text-[10px] font-black">۱۵٪-</div>
+</div>
+<h3 class="text-white font-bold text-sm mb-4 h-10 overflow-hidden leading-relaxed">روغن موتور تمام سنتتیک کاسترول - Magnatec لوکس</h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="text-gray-400 line-through text-xs">۱,۳۵۰,۰۰۰</span>
+<div class="text-left">
+<span class="gold-text font-black text-xl">۱,۱۴۷,۵۰۰</span>
+<span class="text-[10px] text-gray-500 mr-1">تومان</span>
+</div>
+</div>
+<button class="w-full py-3 gold-gradient text-black font-black rounded-xl flex items-center justify-center gap-2 hover:brightness-110 shadow-lg transition-all">
+<span class="material-icons text-sm">add_shopping_cart</span>
+                            افزودن به سبد خرید
+                        </button>
+</div>
+</div>
+<div class="bg-luxury-grey rounded-3xl border border-card-border p-5 group hover:gold-border-glow transition-all duration-300">
+<div class="relative mb-6 rounded-2xl overflow-hidden bg-luxury-black p-4 border border-card-border aspect-square flex items-center justify-center">
+<img alt="فیلتر روغن" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrypdwkTTjKAfamJzaZiBtGRH1C-HsMrbMgq8bAvzw-6A0i7l_oRcOlMGEo1adQPcowTfW3tCBxDZgEy23IP1diCx6Cow7_bukQZpb7EQX4y1nz62BedFUs3l27KMckF65SvVgxESmE-BxI8VzeSAwkNsz-x9Y3OwQmHgL-LS1Lk1f9V5kPFRc_NcZ-y0L26GnX2VxztZ_cxs86eSlXQ9c6DGDn-0md1qkF1EeKIPzZFLn-MWa6Dta6jq2rnt_dfr2jpqqKyCDn48"/>
+</div>
+<h3 class="text-white font-bold text-sm mb-4 h-10 overflow-hidden leading-relaxed">فیلتر روغن اورجینال بی ام و - مخصوص سری ۷ و ۵</h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="text-gray-500 text-xs">قیمت واحد:</span>
+<div class="text-left">
+<span class="gold-text font-black text-xl">۴۵۰,۰۰۰</span>
+<span class="text-[10px] text-gray-500 mr-1">تومان</span>
+</div>
+</div>
+<button class="w-full py-3 gold-gradient text-black font-black rounded-xl flex items-center justify-center gap-2 hover:brightness-110 shadow-lg transition-all">
+<span class="material-icons text-sm">add_shopping_cart</span>
+                            افزودن به سبد خرید
+                        </button>
+</div>
+</div>
+<div class="bg-luxury-grey rounded-3xl border border-card-border p-5 group hover:gold-border-glow transition-all duration-300">
+<div class="relative mb-6 rounded-2xl overflow-hidden bg-luxury-black p-4 border border-card-border aspect-square flex items-center justify-center">
+<img alt="کلاچ" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcd2DGnJlV2Co3kSuTzkJBTEhYQkW5uLQcDeorhJZG6-0QeKdnVg9iT4cZm4e7ukr0zySlzTw2KcuA9mpqaXMaBaQGbdgPKlMbRAfxiowU8koxoxRx6EtlbgF9CnGUd9ABrxDNPzm5T40Kv4BBBwRldNVWXcrEeFiq3jTOtWAEHbxCkAcv83FEQm7USL_ljbSJKNdV-B5IR91TlmyUM6-1H6nMrDzBdakyfQ5U7KdBg1nJgsu7tlDSxXs-D9Yx4fD4BgbzLyq46nU"/>
+<span class="absolute top-4 right-4 bg-luxury-black/80 backdrop-blur-md border border-gold/30 text-gold px-3 py-1 rounded-lg text-[10px] font-black">نایاب</span>
+</div>
+<h3 class="text-white font-bold text-sm mb-4 h-10 overflow-hidden leading-relaxed">کیت کلاچ کامل والئو (Valeo) جعبه آبی - ساخت فرانسه</h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="text-gray-500 text-xs">قیمت کیت:</span>
+<div class="text-left">
+<span class="gold-text font-black text-xl">۶,۸۰۰,۰۰۰</span>
+<span class="text-[10px] text-gray-500 mr-1">تومان</span>
+</div>
+</div>
+<button class="w-full py-3 gold-gradient text-black font-black rounded-xl flex items-center justify-center gap-2 hover:brightness-110 shadow-lg transition-all">
+<span class="material-icons text-sm">add_shopping_cart</span>
+                            افزودن به سبد خرید
+                        </button>
+</div>
+</div>
+<div class="bg-luxury-grey rounded-3xl border border-card-border p-5 group hover:gold-border-glow transition-all duration-300">
+<div class="relative mb-6 rounded-2xl overflow-hidden bg-luxury-black p-4 border border-card-border aspect-square flex items-center justify-center">
+<img alt="باتری" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOdKme51mkE6otXDJZ8tBYYo1O6bMWiFyEOCNZ5PpHfca0awiDPPgoKXiSxKFS11w0udtKbt8fA62D8CGwT4UlnzCku1SKRMTVXjRytVlBe2I7NN6UqIJ1qBbiB2IFF8bNXunj1xEN6d1-iOr0ysNOWeMkaTgphdCsmO7Yfe-bdNHF2c06ACrnBOo5ggHA0tIsCWClurBlYWQzLTnAgHmS7-xZHboOcox7v5ooo5bfhRPyjKNZhH8lIsUbqaeU-mDlACr1k3XssCA"/>
+<span class="absolute top-4 right-4 bg-luxury-black/80 backdrop-blur-md border border-gold/30 text-gold px-3 py-1 rounded-lg text-[10px] font-black">گارانتی طلایی</span>
+</div>
+<h3 class="text-white font-bold text-sm mb-4 h-10 overflow-hidden leading-relaxed">باتری ۷۴ آمپر سوزوکی - تکنولوژی ژاپن با ۱۸ ماه ضمانت</h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="text-gray-500 text-xs">قیمت با داغی:</span>
+<div class="text-left">
+<span class="gold-text font-black text-xl">۳,۴۰۰,۰۰۰</span>
+<span class="text-[10px] text-gray-500 mr-1">تومان</span>
+</div>
+</div>
+<button class="w-full py-3 gold-gradient text-black font-black rounded-xl flex items-center justify-center gap-2 hover:brightness-110 shadow-lg transition-all">
+<span class="material-icons text-sm">add_shopping_cart</span>
+                            افزودن به سبد خرید
+                        </button>
+</div>
+</div>
+</div>
+<div class="mt-12 flex justify-center gap-2">
+<button class="w-10 h-10 rounded-xl bg-luxury-grey border border-card-border text-gold flex items-center justify-center hover:gold-border-glow transition-all">
+<span class="material-icons">chevron_right</span>
+</button>
+<button class="w-10 h-10 rounded-xl gold-gradient text-black font-black flex items-center justify-center">۱</button>
+<button class="w-10 h-10 rounded-xl bg-luxury-grey border border-card-border text-gray-400 flex items-center justify-center hover:text-gold transition-all">۲</button>
+<button class="w-10 h-10 rounded-xl bg-luxury-grey border border-card-border text-gray-400 flex items-center justify-center hover:text-gold transition-all">۳</button>
+<button class="w-10 h-10 rounded-xl bg-luxury-grey border border-card-border text-gold flex items-center justify-center hover:gold-border-glow transition-all">
+<span class="material-icons">chevron_left</span>
+</button>
+</div>
+</section>
+</div>
+</main>
+<footer class="bg-luxury-grey text-white pt-20 pb-10 border-t border-gold/20 mt-20">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+<div class="col-span-1">
+<div class="flex items-center gap-3 mb-8">
+<div class="gold-gradient p-2.5 rounded-xl">
+<span class="material-icons text-black">settings_input_component</span>
+</div>
+<h1 class="text-3xl font-black italic">لوکس<span class="gold-text">یدک</span></h1>
+</div>
+<p class="text-sm text-gray-400 leading-loose mb-8">مرجع تخصصی تامین قطعات یدکی خودروهای لوکس و وارداتی با استانداردهای بین‌المللی و تضمین کیفیت طلایی.</p>
+<div class="flex gap-4">
+<a class="w-11 h-11 bg-luxury-black border border-card-border rounded-xl flex items-center justify-center hover:border-gold transition-all text-gold shadow-lg" href="#"><span class="material-icons text-xl">share</span></a>
+<a class="w-11 h-11 bg-luxury-black border border-card-border rounded-xl flex items-center justify-center hover:border-gold transition-all text-gold shadow-lg" href="#"><span class="material-icons text-xl">alternate_email</span></a>
+<a class="w-11 h-11 bg-luxury-black border border-card-border rounded-xl flex items-center justify-center hover:border-gold transition-all text-gold shadow-lg" href="#"><span class="material-icons text-xl">call</span></a>
+</div>
+</div>
+<div>
+<h4 class="font-black mb-8 text-xl border-r-4 border-gold pr-4">خدمات لوکس</h4>
+<ul class="space-y-5 text-sm text-gray-400">
+<li><a class="hover:text-gold transition-colors" href="#">مشاوره فنی VIP</a></li>
+<li><a class="hover:text-gold transition-colors" href="#">سفارش قطعات نایاب</a></li>
+<li><a class="hover:text-gold transition-colors" href="#">گارانتی طلایی تعویض</a></li>
+<li><a class="hover:text-gold transition-colors" href="#">ارسال سریع با پیک اختصاصی</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-black mb-8 text-xl border-r-4 border-gold pr-4">دسته‌بندی‌ها</h4>
+<ul class="space-y-5 text-sm text-gray-400">
+<li><a class="hover:text-gold transition-colors" href="#">کیت بدنه تیونینگ</a></li>
+<li><a class="hover:text-gold transition-colors" href="#">سیستم‌های اگزوز لوکس</a></li>
+<li><a class="hover:text-gold transition-colors" href="#">رینگ و لاستیک اورجینال</a></li>
+<li><a class="hover:text-gold transition-colors" href="#">قطعات فنی موتور</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-black mb-8 text-xl border-r-4 border-gold pr-4">اعتبارات</h4>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-luxury-black border border-gold/20 p-4 rounded-2xl aspect-square flex flex-col items-center justify-center shadow-inner group hover:border-gold transition-all">
+<span class="text-gold font-black text-[10px]">PREMIUM</span>
+<span class="text-gray-600 text-[8px]">MEMBER</span>
+</div>
+<div class="bg-luxury-black border border-gold/20 p-4 rounded-2xl aspect-square flex flex-col items-center justify-center shadow-inner group hover:border-gold transition-all">
+<span class="text-gold font-black text-[10px]">ORIGINAL</span>
+<span class="text-gray-600 text-[8px]">CERTIFIED</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-10 border-t border-card-border flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-500">
+<p>تمامی حقوق مادی و معنوی برای مجموعه لوکس‌یدک محفوظ است. ۱۴۰۲ ©</p>
+<div class="flex gap-8">
+<a class="hover:text-gold transition-colors" href="#">شرایط و ضوابط</a>
+<a class="hover:text-gold transition-colors" href="#">همکاری با ما</a>
+</div>
+</div>
+</div>
+</footer>
+
+</body></html>

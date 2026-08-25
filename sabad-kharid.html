@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>پرداخت و نهایی‌سازی سفارش | لوکس‌یدک</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-light: #F9E29C;
+            --gold-dark: #AA8B24;
+            --background: #0B0B0B;
+            --surface: #141414;
+            --card-border: #2A2A2A;
+            --text-main: #E5E5E5;
+            --text-muted: #8E8E8E;
+        }
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(to bottom right, var(--gold-light), var(--gold-primary), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .luxury-button {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+            transition: all 0.3s ease;
+        }
+        .luxury-button:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+        .payment-card-active {
+            border-color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.05);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+        .stepper-line {
+            height: 2px;
+            background: linear-gradient(to left, var(--gold-primary), var(--luxury-border));
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "gold": {
+                            DEFAULT: "#D4AF37",
+                            light: "#F9E29C",
+                            dark: "#AA8B24"
+                        },
+                        "luxury-black": "#0B0B0B",
+                        "luxury-surface": "#141414",
+                        "luxury-border": "#2A2A2A"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-luxury-black text-gray-200">
+<header class="sticky top-0 z-50 bg-luxury-black/95 backdrop-blur-lg border-b border-luxury-border">
+<div class="container mx-auto px-4 py-5 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-gradient-to-br from-gold-light via-gold to-gold-dark p-2 rounded-lg">
+<span class="material-icons text-black text-xl">diamond</span>
+</div>
+<h1 class="text-xl font-black tracking-tighter">لوکس‌<span class="gold-gradient-text">یدک</span></h1>
+</div>
+<div class="hidden md:flex items-center gap-2 text-sm text-gray-400">
+<span class="material-icons text-gold">verified_user</span>
+<span>پرداخت امن و تضمین شده</span>
+</div>
+<button class="text-gray-400 hover:text-gold flex items-center gap-2 text-sm" onclick="history.back()">
+<span>بازگشت به سبد خرید</span>
+<span class="material-icons text-sm">arrow_back</span>
+</button>
+</div>
+</header>
+<main class="container mx-auto px-4 py-12">
+<div class="max-w-4xl mx-auto mb-16">
+<div class="flex items-center justify-between relative">
+<div class="flex flex-col items-center gap-3 z-10">
+<div class="w-10 h-10 rounded-full bg-gold text-black flex items-center justify-center font-bold shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+<span class="material-icons text-sm">check</span>
+</div>
+<span class="text-xs font-bold text-gold">اطلاعات ارسال</span>
+</div>
+<div class="flex-grow h-0.5 bg-gold mx-4 mb-8"></div>
+<div class="flex flex-col items-center gap-3 z-10">
+<div class="w-12 h-12 rounded-full border-2 border-gold bg-luxury-surface text-gold flex items-center justify-center font-bold shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+<span class="text-lg">۲</span>
+</div>
+<span class="text-sm font-black text-white">پرداخت و نهایی‌سازی</span>
+</div>
+<div class="flex-grow h-0.5 bg-luxury-border mx-4 mb-8"></div>
+<div class="flex flex-col items-center gap-3 z-10 opacity-50">
+<div class="w-10 h-10 rounded-full border border-luxury-border bg-luxury-surface text-gray-500 flex items-center justify-center font-bold">
+<span class="text-sm">۳</span>
+</div>
+<span class="text-xs font-bold">تایید نهایی</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+<div class="lg:col-span-8 space-y-10">
+<section class="bg-luxury-surface border border-luxury-border rounded-3xl p-8">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-icons text-gold">payments</span>
+<h2 class="text-xl font-black text-white">انتخاب روش پرداخت</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<label class="cursor-pointer group">
+<input checked="" class="hidden" name="payment_method" type="radio"/>
+<div class="payment-card-active p-6 rounded-2xl border border-luxury-border h-full flex flex-col items-center text-center transition-all group-hover:border-gold/50">
+<div class="w-16 h-16 bg-luxury-black rounded-full flex items-center justify-center mb-4 border border-luxury-border">
+<span class="material-symbols-outlined text-3xl text-gold">credit_card</span>
+</div>
+<h3 class="font-bold text-white mb-2">درگاه آنلاین شتاب</h3>
+<p class="text-[10px] text-gray-500 leading-relaxed">پرداخت با کلیه کارت‌های عضو شتاب با امنیت بالا</p>
+</div>
+</label>
+<label class="cursor-pointer group">
+<input class="hidden" name="payment_method" type="radio"/>
+<div class="bg-luxury-black p-6 rounded-2xl border border-luxury-border h-full flex flex-col items-center text-center transition-all group-hover:border-gold/50">
+<div class="w-16 h-16 bg-luxury-surface rounded-full flex items-center justify-center mb-4 border border-luxury-border">
+<span class="material-symbols-outlined text-3xl text-gray-400 group-hover:text-gold transition-colors">calendar_month</span>
+</div>
+<h3 class="font-bold text-gray-300 mb-2">پرداخت اقساطی</h3>
+<p class="text-[10px] text-gray-500 leading-relaxed">ویژه مشتریان VIP با چک صیادی یا ضمانت طلا</p>
+</div>
+</label>
+<label class="cursor-pointer group">
+<input class="hidden" name="payment_method" type="radio"/>
+<div class="bg-luxury-black p-6 rounded-2xl border border-luxury-border h-full flex flex-col items-center text-center transition-all group-hover:border-gold/50">
+<div class="w-16 h-16 bg-luxury-surface rounded-full flex items-center justify-center mb-4 border border-luxury-border">
+<span class="material-symbols-outlined text-3xl text-gray-400 group-hover:text-gold transition-colors">account_balance_wallet</span>
+</div>
+<h3 class="font-bold text-gray-300 mb-2">کیف پول دیجیتال</h3>
+<p class="text-[10px] text-gray-500 leading-relaxed">استفاده از اعتبار باشگاه مشتریان لوکس‌یدک</p>
+</div>
+</label>
+</div>
+</section>
+<section class="bg-luxury-surface border border-luxury-border rounded-3xl p-8">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-3">
+<span class="material-icons text-gold">fact_check</span>
+<h2 class="text-xl font-black text-white">مرور نهایی سفارش</h2>
+</div>
+<span class="text-xs text-gray-500 font-bold">۲ کالا در سبد</span>
+</div>
+<div class="space-y-6">
+<div class="flex gap-6 p-4 bg-luxury-black/40 rounded-2xl border border-luxury-border/50">
+<div class="w-24 h-24 bg-luxury-black rounded-xl border border-luxury-border overflow-hidden p-2 flex-shrink-0">
+<img alt="Item" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpKH3BHIgaqOGCy-s7uElWjm0wuo5r5oP-ZI3OxbMzWkTSYnV9sY30Yi064DIFy9GOT657LVE3YYwFISkYjrGVG_ZUWqNm2J5_zqXHX7GkiHGbPHQGZInmLsVkhDRNeK5STZJWMITRHsB5VZtJTDJIjBEmcm4THxbFmo5Q7LfzcwMghsfteDXgNUb2f14uXW7WsNcy4eZOW4fbMpvQ0rQkAlNL5Qe2qdHiiZ-DOc_g-IUDIDsSI-pShlYUANiCfeIvrTpu__oSvpg"/>
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div>
+<h4 class="font-bold text-sm text-gray-200 mb-1">دیسک ترمز کربن-سرامیک پرفورمنس</h4>
+<p class="text-[10px] text-gray-500">کد محصول: LY-90882 | مدل اختصاصی سری M</p>
+</div>
+<div class="flex justify-between items-end">
+<div class="text-xs text-gray-400 font-bold">تعداد: ۱ عدد</div>
+<div class="text-gold font-black">۱۰,۸۰۰,۰۰۰ <span class="text-[10px] font-normal text-gray-500 mr-1">تومان</span></div>
+</div>
+</div>
+</div>
+<div class="flex gap-6 p-4 bg-luxury-black/40 rounded-2xl border border-luxury-border/50">
+<div class="w-24 h-24 bg-luxury-black rounded-xl border border-luxury-border overflow-hidden p-2 flex-shrink-0">
+<img alt="Item" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOdKme51mkE6otXDJZ8tBYYo1O6bMWiFyEOCNZ5PpHfca0awiDPPgoKXiSxKFS11w0udtKbt8fA62D8CGwT4UlnzCku1SKRMTVXjRytVlBe2I7NN6UqIJ1qBbiB2IFF8bNXunj1xEN6d1-iOr0ysNOWeMkaTgphdCsmO7Yfe-bdNHF2c06ACrnBOo5ggHA0tIsCWClurBlYWQzLTnAgHmS7-xZHboOcox7v5ooo5bfhRPyjKNZhH8lIsUbqaeU-mDlACr1k3XssCA"/>
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div>
+<h4 class="font-bold text-sm text-gray-200 mb-1">باتری لیتیومی فوق سبک موتوراسپرت</h4>
+<p class="text-[10px] text-gray-500">کد محصول: LY-44120 | وزن کاهش یافته</p>
+</div>
+<div class="flex justify-between items-end">
+<div class="text-xs text-gray-400 font-bold">تعداد: ۱ عدد</div>
+<div class="text-gold font-black">۸,۹۰۰,۰۰۰ <span class="text-[10px] font-normal text-gray-500 mr-1">تومان</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-luxury-border grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex gap-4">
+<span class="material-icons text-gray-600">location_on</span>
+<div>
+<p class="text-[10px] text-gray-500 mb-1 uppercase tracking-widest">آدرس ارسال</p>
+<p class="text-xs text-gray-300 leading-loose">تهران، الهیه، خیابان فرشته، پلاک ۴۲، واحد ۸</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-icons text-gray-600">local_shipping</span>
+<div>
+<p class="text-[10px] text-gray-500 mb-1 uppercase tracking-widest">روش ارسال</p>
+<p class="text-xs text-gray-300">ارسال اختصاصی VIP (بیمه کامل)</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="lg:col-span-4">
+<div class="bg-luxury-surface border border-luxury-border rounded-3xl p-8 sticky top-32">
+<h3 class="text-lg font-black text-white mb-8 flex items-center gap-2">
+<span class="w-1 h-6 bg-gold rounded-full"></span>
+                    خلاصه صورت‌حساب
+                </h3>
+<div class="space-y-5 mb-8">
+<div class="flex justify-between items-center text-sm">
+<span class="text-gray-500">مجموع قیمت کالاها</span>
+<span class="text-gray-300 font-bold">۱۹,۷۰۰,۰۰۰ تومان</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-gray-500">هزینه بسته‌بندی لوکس</span>
+<span class="text-gray-300 font-bold">۲۵۰,۰۰۰ تومان</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-gray-500">هزینه ارسال VIP</span>
+<span class="text-gold font-bold">رایگان</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-red-500">سود شما از خرید</span>
+<span class="text-red-500 font-bold">۱,۲۰۰,۰۰۰- تومان</span>
+</div>
+<div class="pt-5 border-t border-luxury-border">
+<div class="flex justify-between items-center">
+<span class="text-white font-black">مبلغ قابل پرداخت</span>
+<div class="text-left">
+<div class="text-2xl font-black gold-gradient-text">۱۸,۷۵۰,۰۰۰</div>
+<div class="text-[10px] text-gray-500">تومان</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-8">
+<div class="relative">
+<input class="w-full h-12 bg-luxury-black border border-luxury-border rounded-xl px-4 text-xs focus:ring-1 focus:ring-gold focus:border-gold outline-none" placeholder="کد تخفیف (در صورت وجود)" type="text"/>
+<button class="absolute left-2 top-2 bottom-2 px-4 bg-luxury-border text-white text-[10px] font-bold rounded-lg hover:bg-gray-800 transition-colors">اعمال</button>
+</div>
+</div>
+<button class="luxury-button w-full py-5 rounded-2xl text-black font-black text-lg shadow-lg mb-6">
+                    تکمیل خرید و پرداخت
+                </button>
+<p class="text-[10px] text-gray-500 text-center leading-loose">
+                    با کلیک بر روی دکمه تکمیل خرید، شما <a class="text-gold underline" href="#">شرایط و قوانین</a> استفاده از خدمات لوکس‌یدک را می‌پذیرید.
+                </p>
+</div>
+<div class="mt-8 grid grid-cols-2 gap-4">
+<div class="bg-luxury-surface/50 border border-luxury-border p-4 rounded-2xl flex flex-col items-center gap-2">
+<span class="material-icons text-gold">verified</span>
+<span class="text-[9px] font-bold text-gray-400">ضمانت اصالت</span>
+</div>
+<div class="bg-luxury-surface/50 border border-luxury-border p-4 rounded-2xl flex flex-col items-center gap-2">
+<span class="material-icons text-gold">security</span>
+<span class="text-[9px] font-bold text-gray-400">پرداخت امن</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-luxury-black border-t border-luxury-border mt-20 py-10">
+<div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-3">
+<span class="material-icons text-gold text-lg">diamond</span>
+<span class="text-sm font-black text-gray-400">LUXURY YADAK PREMIUM SERVICE</span>
+</div>
+<div class="flex gap-8 text-[10px] text-gray-600 font-bold tracking-widest uppercase">
+<a class="hover:text-gold transition-colors" href="#">Help Center</a>
+<a class="hover:text-gold transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-gold transition-colors" href="#">Secure Payment</a>
+</div>
+<p class="text-[10px] text-gray-600 font-bold">© 2024 ALL RIGHTS RESERVED</p>
+</div>
+</footer>
+
+</body></html>

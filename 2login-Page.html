@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>لوکس‌یدک | ورود و ثبت‌نام</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-light: #F9E29C;
+            --gold-dark: #AA8B24;
+            --background: #0B0B0B;
+            --surface: #141414;
+            --card-border: #2A2A2A;
+            --text-main: #E5E5E5;
+            --text-muted: #8E8E8E;
+        }
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            overflow: hidden;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(to bottom right, var(--gold-light), var(--gold-primary), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .luxury-button {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+            transition: all 0.3s ease;
+        }
+        .luxury-button:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+        .otp-input {
+            @apply w-12 h-14 bg-luxury-surface border border-luxury-border rounded-xl text-center text-xl font-bold text-white focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all;
+        }
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "gold": {
+                            DEFAULT: "#D4AF37",
+                            light: "#F9E29C",
+                            dark: "#AA8B24"
+                        },
+                        "luxury-black": "#0B0B0B",
+                        "luxury-surface": "#141414",
+                        "luxury-border": "#2A2A2A"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-luxury-black min-h-screen flex items-center justify-center p-4">
+<div class="max-w-6xl w-full h-[700px] grid grid-cols-1 lg:grid-cols-2 rounded-[2.5rem] overflow-hidden border border-luxury-border shadow-[0_0_80px_rgba(0,0,0,0.8)]">
+<div class="relative hidden lg:block overflow-hidden">
+<img alt="Luxury Engine" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUpti7vD27KZL1rZ41e-tVLZ3nGUHrC9KnjrgK4fVbCMoLG0UQ3rqqoh5774rEp76u52OPZXjW08vwCJAaeJp_exwCbSoqbYYFSxxMa5MvmL_Rgp8TmpFxIoGCD5tiN-HIfgI8pUWdDr79-JqGFkH7WgsA6f8BkB01mKyaIIa_9riOohzJ7gbnlNCAwdLoWA4jFdbEA6K1ymSgEPcWENcWwr-NpYzLcVuNYGkzp-vnj4VElxA7_LrFh4s1coVvfouQswWKFxbm04E"/>
+<div class="absolute inset-0 bg-gradient-to-l from-luxury-black via-transparent to-transparent"></div>
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute bottom-12 right-12 text-right">
+<div class="flex items-center gap-3 mb-4 justify-end">
+<span class="text-gold text-xs font-black tracking-[0.3em]">LUXURY YADAK</span>
+<span class="w-12 h-px bg-gold"></span>
+</div>
+<h2 class="text-4xl font-black text-white leading-tight mb-4">قدرت و اصالت در<br/><span class="gold-gradient-text">قلب خودروی شما</span></h2>
+<p class="text-gray-400 font-light max-w-sm">دسترسی به کمیاب‌ترین قطعات خودروهای لوکس و سوپر اسپرت با ضمانت‌نامه بین‌المللی.</p>
+</div>
+</div>
+<div class="bg-luxury-surface relative flex flex-col justify-center px-8 lg:px-20 py-12 border-r border-luxury-border">
+<div class="absolute top-12 right-8 lg:right-20 flex items-center gap-3">
+<div class="bg-gradient-to-br from-gold-light via-gold to-gold-dark p-2 rounded-lg">
+<span class="material-icons text-black text-lg">diamond</span>
+</div>
+<h1 class="text-xl font-black">لوکس‌<span class="gold-gradient-text">یدک</span></h1>
+</div>
+<div class="space-y-8" id="phone-flow">
+<div>
+<h3 class="text-2xl font-black text-white mb-2">خوش آمدید</h3>
+<p class="text-gray-500 text-sm">برای ورود یا ثبت‌نام، شماره موبایل خود را وارد کنید.</p>
+</div>
+<div class="space-y-4">
+<div class="relative">
+<label class="block text-xs font-bold text-gray-500 mb-2 mr-1">شماره موبایل</label>
+<input class="w-full h-14 bg-luxury-black border border-luxury-border rounded-xl pr-12 text-white focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all placeholder:text-gray-700" dir="ltr" placeholder="۰۹۱۲۳۴۵۶۷۸۹" type="text"/>
+<span class="material-icons absolute right-4 top-10 text-gray-600">smartphone</span>
+</div>
+<button class="luxury-button w-full h-14 rounded-xl text-black font-black text-sm shadow-lg shadow-gold/10" onclick="document.getElementById('phone-flow').classList.add('hidden'); document.getElementById('otp-flow').classList.remove('hidden');">ارسال کد تایید</button>
+</div>
+<p class="text-[10px] text-gray-600 text-center leading-relaxed">
+                    با ورود به لوکس‌یدک، شما <a class="text-gold" href="#">شرایط و قوانین</a> و <a class="text-gold" href="#">سیاست حریم خصوصی</a> ما را می‌پذیرید.
+                </p>
+</div>
+<div class="hidden space-y-8" id="otp-flow">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="text-2xl font-black text-white mb-2">تایید هویت</h3>
+<p class="text-gray-500 text-sm">کد ۴ رقمی ارسال شده به <span class="text-white font-bold" dir="ltr">۰۹۱۲****۳۴۵</span> را وارد کنید.</p>
+</div>
+<button class="text-gold hover:text-gold-light transition-colors" onclick="document.getElementById('otp-flow').classList.add('hidden'); document.getElementById('phone-flow').classList.remove('hidden');">
+<span class="material-icons">edit</span>
+</button>
+</div>
+<div class="space-y-8">
+<div class="flex justify-center gap-4" dir="ltr">
+<input autofocus="" class="otp-input" maxlength="1" type="text"/>
+<input class="otp-input" maxlength="1" type="text"/>
+<input class="otp-input" maxlength="1" type="text"/>
+<input class="otp-input" maxlength="1" type="text"/>
+</div>
+<div class="flex flex-col gap-4">
+<button class="luxury-button w-full h-14 rounded-xl text-black font-black text-sm shadow-lg shadow-gold/10">تایید و ورود</button>
+<div class="flex justify-between items-center px-2">
+<div class="flex items-center gap-2 text-xs font-bold text-gray-500">
+<span class="material-icons text-sm">schedule</span>
+<span>۰۱:۴۵ تا ارسال مجدد</span>
+</div>
+<button class="text-xs font-bold text-gray-600 cursor-not-allowed">ارسال مجدد کد</button>
+</div>
+</div>
+</div>
+<button class="flex items-center justify-center gap-2 w-full text-gray-500 hover:text-white transition-colors text-sm font-bold" onclick="document.getElementById('otp-flow').classList.add('hidden'); document.getElementById('phone-flow').classList.remove('hidden');">
+<span class="material-icons text-base">arrow_forward</span>
+                    بازگشت به مرحله قبل
+                </button>
+</div>
+<div class="absolute bottom-12 right-8 lg:right-20">
+<div class="flex items-center gap-4">
+<div class="flex -space-x-2 space-x-reverse">
+<div class="w-8 h-8 rounded-full border-2 border-luxury-surface bg-luxury-black flex items-center justify-center overflow-hidden">
+<span class="material-icons text-xs text-gold">verified</span>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-luxury-surface bg-luxury-black flex items-center justify-center overflow-hidden">
+<span class="material-icons text-xs text-gold">security</span>
+</div>
+</div>
+<p class="text-[10px] text-gray-600 font-bold uppercase tracking-widest">Secure Luxury Access</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-gold/5 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-gold/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+</body></html>

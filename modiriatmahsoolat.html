@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>پنل مدیریت | افزودن محصول جدید</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-light: #F9E29C;
+            --gold-dark: #AA8B24;
+            --background: #0B0B0B;
+            --surface: #141414;
+            --card-border: #2A2A2A;
+            --text-main: #E5E5E5;
+            --text-muted: #8E8E8E;
+        }
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(to bottom right, var(--gold-light), var(--gold-primary), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .admin-card {
+            background-color: var(--surface);
+            border: 1px solid var(--card-border);
+            border-radius: 1.5rem;
+        }
+        .form-input {
+            @apply w-full bg-luxury-black border border-luxury-border rounded-xl px-4 py-3 text-sm focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all text-gray-200 placeholder-gray-600;
+        }
+        .form-label {
+            @apply block text-xs font-bold text-gray-500 mb-2 mr-1 uppercase tracking-wider;
+        }
+        .save-button {
+            background: linear-gradient(to bottom right, var(--gold-light), var(--gold-primary), var(--gold-dark));
+            transition: all 0.3s ease;
+            color: #000000;
+        }
+        .save-button:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+            transform: translateY(-1px);
+        }
+        select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23D4AF37' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: left 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-left: 2.5rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "gold": {
+                            DEFAULT: "#D4AF37",
+                            light: "#F9E29C",
+                            dark: "#AA8B24"
+                        },
+                        "luxury-black": "#0B0B0B",
+                        "luxury-surface": "#141414",
+                        "luxury-border": "#2A2A2A"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-luxury-black text-gray-200">
+<header class="sticky top-0 z-50 bg-luxury-black/95 backdrop-blur-lg border-b border-luxury-border">
+<div class="container mx-auto px-4 py-4 flex items-center justify-between">
+<div class="flex items-center gap-12">
+<div class="flex items-center gap-3">
+<div class="bg-gradient-to-br from-gold-light via-gold to-gold-dark p-2 rounded-lg">
+<span class="material-icons text-black text-sm">diamond</span>
+</div>
+<h1 class="text-xl font-black tracking-tight">پنل مدیریت <span class="gold-gradient-text">یدک آنلاین</span></h1>
+</div>
+<nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-gray-400">
+<a class="hover:text-gold transition-colors" href="#">داشبورد</a>
+<a class="text-gold border-b-2 border-gold pb-1 font-bold" href="#">مدیریت محصولات</a>
+<a class="hover:text-gold transition-colors" href="#">مدیریت سفارشات</a>
+<a class="hover:text-gold transition-colors" href="#">کپن‌ها و تخفیفات</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-left hidden sm:block">
+<p class="text-xs font-black text-white">مدیریت کل سیستم</p>
+<p class="text-[10px] text-gold uppercase tracking-widest">Administrator Access</p>
+</div>
+<div class="w-10 h-10 rounded-full border border-gold/30 overflow-hidden">
+<img alt="Admin" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCspbZ9RbY4bkH37eLsTz6J0G_yQwmJS0d9m5tivLNadPZX1V527xBvbXo_bHOcWvTVddz9y-7xEEUpjZW70F0BmtGiSOODb1R424oQChrMC_DFb8HfqVSg4M1-cIMbOWlAiXT1fESbIiGj3k6P2bDzAHb7HgbHBAFPTEWlFQkAk5Boq5WitVx2pfzLuNfPbud8P9rVpbaE0rVjUxB3qdheJIxoW3RImS-SLUiIE12a-4EqkD71-ASbLXzr7jXApV3JoSitUTIEph4"/>
+</div>
+</div>
+</div>
+</header>
+<main class="container mx-auto px-4 py-10">
+<div class="flex flex-col lg:flex-row gap-8">
+<div class="w-full lg:w-1/3 space-y-8">
+<section class="admin-card p-8">
+<h3 class="text-sm font-black text-white mb-6 flex items-center gap-2">
+<span class="material-icons text-gold text-lg">image</span>
+                        تصاویر محصول
+                    </h3>
+<div class="aspect-square w-full rounded-2xl border-2 border-dashed border-luxury-border bg-luxury-black flex flex-col items-center justify-center gap-4 hover:border-gold/50 transition-all cursor-pointer group">
+<span class="material-symbols-outlined text-5xl text-gray-700 group-hover:text-gold transition-colors">add_photo_alternate</span>
+<p class="text-xs text-gray-500 font-bold group-hover:text-gray-300">کلیک کنید یا تصویر را بکشید</p>
+<p class="text-[10px] text-gray-600 uppercase">JPG, PNG (Max 5MB)</p>
+</div>
+<div class="grid grid-cols-3 gap-4 mt-6">
+<div class="aspect-square rounded-xl bg-luxury-black border border-luxury-border flex items-center justify-center overflow-hidden">
+<img alt="Preview" class="w-full h-full object-contain opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrypdwkTTjKAfamJzaZiBtGRH1C-HsMrbMgq8bAvzw-6A0i7l_oRcOlMGEo1adQPcowTfW3tCBxDZgEy23IP1diCx6Cow7_bukQZpb7EQX4y1nz62BedFUs3l27KMckF65SvVgxESmE-BxI8VzeSAwkNsz-x9Y3OwQmHgL-LS1Lk1f9V5kPFRc_NcZ-y0L26GnX2VxztZ_cxs86eSlXQ9c6DGDn-0md1qkF1EeKIPzZFLn-MWa6Dta6jq2rnt_dfr2jpqqKyCDn48"/>
+</div>
+<div class="aspect-square rounded-xl bg-luxury-black border border-luxury-border flex items-center justify-center text-gray-700">
+<span class="material-icons">add</span>
+</div>
+<div class="aspect-square rounded-xl bg-luxury-black border border-luxury-border flex items-center justify-center text-gray-700">
+<span class="material-icons">add</span>
+</div>
+</div>
+</section>
+<section class="admin-card p-8">
+<h3 class="text-sm font-black text-white mb-6 flex items-center gap-2">
+<span class="material-icons text-gold text-lg">settings</span>
+                        وضعیت و انتشار
+                    </h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-luxury-black rounded-xl border border-luxury-border">
+<span class="text-xs font-bold text-gray-400">وضعیت نمایش</span>
+<div class="w-12 h-6 bg-gold/20 rounded-full relative p-1 cursor-pointer">
+<div class="w-4 h-4 bg-gold rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-luxury-black rounded-xl border border-luxury-border">
+<span class="text-xs font-bold text-gray-400">موجودی در انبار</span>
+<input class="bg-transparent text-left w-16 text-gold font-black border-none focus:ring-0" type="number" value="12"/>
+</div>
+</div>
+<button class="save-button w-full mt-8 py-4 rounded-xl font-black text-sm flex items-center justify-center gap-2 shadow-lg">
+<span class="material-icons text-lg">save</span>
+                        ذخیره محصول جدید
+                    </button>
+<button class="w-full mt-4 py-4 rounded-xl border border-luxury-border text-gray-500 font-bold text-sm hover:bg-luxury-border/30 transition-all">
+                        انصراف
+                    </button>
+</section>
+</div>
+<div class="w-full lg:w-2/3 space-y-8">
+<section class="admin-card p-8">
+<h3 class="text-lg font-black text-white mb-8 flex items-center gap-3">
+<span class="w-1.5 h-6 bg-gold rounded-full"></span>
+                        اطلاعات پایه محصول (General Info)
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="md:col-span-2">
+<label class="form-label">نام کامل محصول</label>
+<input class="form-input" placeholder="مثال: کیت کلاچ تقویت شده پلاتینیوم سری X" type="text"/>
+</div>
+<div>
+<label class="form-label">شناسه کالا (SKU)</label>
+<input class="form-input" placeholder="LX-8890-GER" type="text"/>
+</div>
+<div>
+<label class="form-label">دسته بندی</label>
+<select class="form-input">
+<option>قطعات موتوری</option>
+<option>سیستم تعلیق</option>
+<option>ترمز و ایمنی</option>
+<option>بدنه و آیرودینامیک</option>
+</select>
+</div>
+<div>
+<label class="form-label">قیمت اصلی (تومان)</label>
+<input class="form-input" placeholder="۱۵,۵۰۰,۰۰۰" type="text"/>
+</div>
+<div>
+<label class="form-label">تخفیف ویژه (%)</label>
+<input class="form-input" placeholder="۰" type="number"/>
+</div>
+</div>
+</section>
+<section class="admin-card p-8">
+<h3 class="text-lg font-black text-white mb-8 flex items-center gap-3">
+<span class="w-1.5 h-6 bg-gold rounded-full"></span>
+                        مشخصات فنی (Technical Specs)
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div>
+<label class="form-label">وزن (کیلوگرم)</label>
+<input class="form-input" placeholder="۴.۵" type="text"/>
+</div>
+<div>
+<label class="form-label">ابعاد (سانتی‌متر)</label>
+<input class="form-input" placeholder="۳۰x۳۰x۱۰" type="text"/>
+</div>
+<div>
+<label class="form-label">کشور سازنده</label>
+<input class="form-input" placeholder="آلمان" type="text"/>
+</div>
+<div>
+<label class="form-label">مدت گارانتی</label>
+<input class="form-input" placeholder="۲۴ ماه طلایی" type="text"/>
+</div>
+<div class="md:col-span-4">
+<label class="form-label">توضیحات فنی محصول</label>
+<textarea class="form-input resize-none" placeholder="جزئیات ساختاری و آلیاژهای به کار رفته را اینجا بنویسید..." rows="4"></textarea>
+</div>
+</div>
+</section>
+<section class="admin-card p-8 border-gold/30 shadow-[0_0_30px_rgba(212,175,55,0.05)]">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-lg font-black text-white flex items-center gap-3">
+<span class="w-1.5 h-6 bg-gold rounded-full"></span>
+                            سازگاری خودرو (Vehicle Compatibility)
+                        </h3>
+<button class="text-gold text-xs font-black border border-gold/40 px-4 py-2 rounded-lg hover:bg-gold/10 transition-all flex items-center gap-2">
+<span class="material-icons text-sm">add</span>
+                            افزودن مدل جدید
+                        </button>
+</div>
+<div class="bg-luxury-black/50 rounded-2xl border border-luxury-border overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-px bg-luxury-border">
+<div class="bg-luxury-surface p-4">
+<label class="form-label !mb-1">برند</label>
+<select class="form-input !bg-transparent !border-none !ring-0">
+<option>Porsche</option>
+<option>BMW</option>
+<option>Mercedes-Benz</option>
+</select>
+</div>
+<div class="bg-luxury-surface p-4">
+<label class="form-label !mb-1">مدل</label>
+<select class="form-input !bg-transparent !border-none !ring-0">
+<option>911 Carrera</option>
+<option>718 Cayman</option>
+<option>Panamera</option>
+</select>
+</div>
+<div class="bg-luxury-surface p-4">
+<label class="form-label !mb-1">سال تولید</label>
+<select class="form-input !bg-transparent !border-none !ring-0">
+<option>2020-2024</option>
+<option>2015-2019</option>
+</select>
+</div>
+<div class="bg-luxury-surface p-4">
+<label class="form-label !mb-1">تیپ (Trim)</label>
+<select class="form-input !bg-transparent !border-none !ring-0">
+<option>Turbo S</option>
+<option>GT3</option>
+<option>S</option>
+</select>
+</div>
+</div>
+</div>
+<div class="mt-6 flex flex-wrap gap-3">
+<div class="bg-luxury-black border border-luxury-border py-2 px-4 rounded-full flex items-center gap-3 group">
+<span class="text-[10px] font-black text-gray-400">PORSCHE 911 (2020+) - TURBO S</span>
+<button class="text-gray-600 group-hover:text-red-500 transition-colors">
+<span class="material-icons text-sm">close</span>
+</button>
+</div>
+<div class="bg-luxury-black border border-luxury-border py-2 px-4 rounded-full flex items-center gap-3 group">
+<span class="text-[10px] font-black text-gray-400">BMW M4 (2021+) - COMPETITION</span>
+<button class="text-gray-600 group-hover:text-red-500 transition-colors">
+<span class="material-icons text-sm">close</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<footer class="bg-luxury-black border-t border-luxury-border py-6 mt-20">
+<div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-[10px] text-gray-600 tracking-widest uppercase font-bold">SYSTEM VERSION 3.2.0 | ADMIN PANEL</p>
+<div class="flex gap-8 text-[10px] text-gray-600 font-bold uppercase tracking-widest">
+<span class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> SERVER: ONLINE</span>
+<span>LAST BACKUP: 2 HOURS AGO</span>
+</div>
+</div>
+</footer>
+
+</body></html>

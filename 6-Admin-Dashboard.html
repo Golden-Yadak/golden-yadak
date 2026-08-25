@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>پنل مدیریت | یدک آنلاین</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-light: #F9E29C;
+            --gold-dark: #AA8B24;
+            --accent-red: #C53030;
+            --background: #050505;
+            --surface: #121212;
+            --card-charcoal: #1A1A1A;
+            --luxury-border: #2A2A2A;
+            --text-main: #E5E5E5;
+            --text-muted: #8E8E8E;
+        }
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+        }
+        .sidebar-link-active {
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%);
+            border-right: 3px solid var(--gold-primary);
+            color: var(--gold-primary);
+        }
+        .sidebar-link-active span {
+            color: var(--gold-primary);
+        }
+        .stat-card-gradient {
+            background: linear-gradient(145deg, var(--card-charcoal) 0%, #0d0d0d 100%);
+        }
+        .gold-glow {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "gold": {
+                            DEFAULT: "#D4AF37",
+                            light: "#F9E29C",
+                            dark: "#AA8B24"
+                        },
+                        "accent-red": "#C53030",
+                        "luxury-black": "#050505",
+                        "luxury-surface": "#121212",
+                        "luxury-card": "#1A1A1A",
+                        "luxury-border": "#2A2A2A"
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-luxury-black text-gray-200 min-h-screen flex">
+<aside class="w-64 border-l border-luxury-border bg-luxury-surface flex flex-col fixed inset-y-0 right-0 z-50">
+<div class="p-8 border-b border-luxury-border">
+<div class="flex items-center gap-3">
+<div class="bg-gradient-to-br from-gold-light via-gold to-gold-dark p-2 rounded-lg shadow-lg">
+<span class="material-icons text-black text-xl">diamond</span>
+</div>
+<h1 class="text-xl font-black tracking-tight text-white">یدک<span class="text-gold">‌آنلاین</span></h1>
+</div>
+<p class="text-[10px] text-gray-500 mt-2 font-bold tracking-widest uppercase">Admin Management</p>
+</div>
+<nav class="flex-grow py-6 overflow-y-auto scrollbar-hide">
+<div class="px-4 mb-4 text-[10px] text-gray-600 font-bold uppercase tracking-[0.2em]">منوی پیشرفته</div>
+<a class="flex items-center gap-4 px-6 py-3.5 sidebar-link-active transition-all group" href="#">
+<span class="material-symbols-outlined text-lg">dashboard</span>
+<span class="text-sm font-bold">داشبورد</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3.5 text-gray-500 hover:text-gold transition-all group" href="#">
+<span class="material-symbols-outlined text-lg text-gold">inventory_2</span>
+<span class="text-sm font-bold">مدیریت محصولات</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3.5 text-gray-500 hover:text-gold transition-all group" href="#">
+<span class="material-symbols-outlined text-lg text-gold">shopping_cart</span>
+<span class="text-sm font-bold">مدیریت سفارشات</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3.5 text-gray-500 hover:text-gold transition-all group" href="#">
+<span class="material-symbols-outlined text-lg text-gold">confirmation_number</span>
+<span class="text-sm font-bold">کپن‌ها و تخفیفات</span>
+</a>
+</nav>
+<div class="p-6 border-t border-luxury-border">
+<div class="bg-luxury-card p-4 rounded-2xl border border-luxury-border flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold">
+<span class="material-icons text-xl">person</span>
+</div>
+<div class="flex-grow">
+<p class="text-xs font-black text-white">مدیر سیستم</p>
+<p class="text-[10px] text-gray-500">خروج از حساب</p>
+</div>
+<button class="text-gray-600 hover:text-accent-red">
+<span class="material-icons text-lg">logout</span>
+</button>
+</div>
+</div>
+</aside>
+<main class="flex-grow mr-64">
+<header class="h-20 bg-luxury-surface/50 backdrop-blur-md border-b border-luxury-border flex items-center justify-between px-8 sticky top-0 z-40">
+<div class="flex items-center gap-4">
+<h2 class="text-xl font-black text-white">خلاصه وضعیت داشبورد</h2>
+<div class="bg-gold/10 px-3 py-1 rounded-full border border-gold/20">
+<span class="text-[10px] text-gold font-bold">امروز: ۲۸ اردیبهشت ۱۴۰۳</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative">
+<button class="text-gray-400 hover:text-gold relative transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-accent-red rounded-full ring-2 ring-luxury-black"></span>
+</button>
+</div>
+<div class="h-6 w-px bg-luxury-border"></div>
+<div class="flex items-center gap-3">
+<div class="text-left">
+<p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Status</p>
+<p class="text-xs font-black text-green-500">آنلاین</p>
+</div>
+</div>
+</div>
+</header>
+<div class="p-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="stat-card-gradient p-6 rounded-3xl border border-luxury-border gold-glow">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-gold/10 rounded-2xl flex items-center justify-center text-gold">
+<span class="material-symbols-outlined text-2xl">payments</span>
+</div>
+<span class="text-green-500 text-xs font-black flex items-center gap-1">
+<span class="material-icons text-sm">trending_up</span> ۱۲٪+
+                        </span>
+</div>
+<p class="text-sm text-gray-500 mb-1">فروش امروز</p>
+<h3 class="text-2xl font-black text-white">۱۴,۵۰۰,۰۰۰ <span class="text-[10px] font-normal text-gray-600">تومان</span></h3>
+</div>
+<div class="stat-card-gradient p-6 rounded-3xl border border-luxury-border">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-gray-800 rounded-2xl flex items-center justify-center text-gray-400">
+<span class="material-symbols-outlined text-2xl">account_balance_wallet</span>
+</div>
+<span class="text-green-500 text-xs font-black flex items-center gap-1">
+<span class="material-icons text-sm">trending_up</span> ۸٪+
+                        </span>
+</div>
+<p class="text-sm text-gray-500 mb-1">فروش ماهانه</p>
+<h3 class="text-2xl font-black text-white">۴۲۰,۰۰۰,۰۰۰ <span class="text-[10px] font-normal text-gray-600">تومان</span></h3>
+</div>
+<div class="stat-card-gradient p-6 rounded-3xl border border-luxury-border">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-accent-red/10 rounded-2xl flex items-center justify-center text-accent-red">
+<span class="material-symbols-outlined text-2xl">shopping_basket</span>
+</div>
+<span class="text-gray-500 text-[10px] font-bold">۲۴ ساعت اخیر</span>
+</div>
+<p class="text-sm text-gray-500 mb-1">سفارشات جدید</p>
+<h3 class="text-2xl font-black text-white">۱۸ <span class="text-[10px] font-normal text-gray-600">عدد</span></h3>
+</div>
+<div class="stat-card-gradient p-6 rounded-3xl border border-luxury-border">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500">
+<span class="material-symbols-outlined text-2xl">local_shipping</span>
+</div>
+<span class="text-accent-red text-xs font-black">۴ فوری</span>
+</div>
+<p class="text-sm text-gray-500 mb-1">ارسال‌های معلق</p>
+<h3 class="text-2xl font-black text-white">۱۲ <span class="text-[10px] font-normal text-gray-600">مرسوله</span></h3>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 bg-luxury-card rounded-[2rem] border border-luxury-border p-8 relative overflow-hidden">
+<div class="flex items-center justify-between mb-10">
+<div>
+<h3 class="text-lg font-black text-white mb-1">نمودار عملکرد فروش</h3>
+<p class="text-xs text-gray-500">تحلیل هفتگی تراکنش‌های موفق</p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 rounded-lg bg-luxury-black border border-luxury-border text-[10px] font-bold text-gray-400">روزانه</button>
+<button class="px-4 py-1.5 rounded-lg bg-gold/10 border border-gold/30 text-[10px] font-bold text-gold">هفتگی</button>
+</div>
+</div>
+<div class="h-64 w-full relative">
+<svg class="w-full h-full" viewBox="0 0 800 200">
+<defs>
+<linearGradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#D4AF37" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#D4AF37" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+<path d="M0 150 Q 100 80, 200 120 T 400 60 T 600 90 T 800 30" fill="none" stroke="#D4AF37" stroke-linecap="round" stroke-width="4"></path>
+<path d="M0 150 Q 100 80, 200 120 T 400 60 T 600 90 T 800 30 V 200 H 0 Z" fill="url(#chartGradient)"></path>
+<line stroke="#2A2A2A" stroke-dasharray="4" stroke-width="1" x1="0" x2="800" y1="180" y2="180"></line>
+<line stroke="#2A2A2A" stroke-dasharray="4" stroke-width="1" x1="0" x2="800" y1="140" y2="140"></line>
+<line stroke="#2A2A2A" stroke-dasharray="4" stroke-width="1" x1="0" x2="800" y1="100" y2="100"></line>
+<line stroke="#2A2A2A" stroke-dasharray="4" stroke-width="1" x1="0" x2="800" y1="60" y2="60"></line>
+</svg>
+<div class="flex justify-between mt-4 text-[10px] font-bold text-gray-600 px-2 uppercase tracking-widest">
+<span>شنبه</span><span>یکشنبه</span><span>دوشنبه</span><span>سه‌شنبه</span><span>چهارشنبه</span><span>پنجشنبه</span><span>جمعه</span>
+</div>
+</div>
+</div>
+<div class="bg-luxury-card rounded-[2rem] border border-luxury-border p-8">
+<h3 class="text-lg font-black text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-accent-red text-xl font-bold">report_problem</span>
+                        محصولات کم‌موجود یا تمام شده
+                    </h3>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 bg-luxury-black border border-luxury-border rounded-xl p-2 flex-shrink-0">
+<img alt="Product" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrypdwkTTjKAfamJzaZiBtGRH1C-HsMrbMgq8bAvzw-6A0i7l_oRcOlMGEo1adQPcowTfW3tCBxDZgEy23IP1diCx6Cow7_bukQZpb7EQX4y1nz62BedFUs3l27KMckF65SvVgxESmE-BxI8VzeSAwkNsz-x9Y3OwQmHgL-LS1Lk1f9V5kPFRc_NcZ-y0L26GnX2VxztZ_cxs86eSlXQ9c6DGDn-0md1qkF1EeKIPzZFLn-MWa6Dta6jq2rnt_dfr2jpqqKyCDn48"/>
+</div>
+<div class="flex-grow">
+<h4 class="text-xs font-bold text-gray-200 mb-1">فیلتر روغن سری M</h4>
+<div class="flex items-center gap-2">
+<span class="text-[10px] text-gray-500 font-bold">موجودی انبار:</span>
+<span class="text-[10px] text-accent-red font-black">تمام شده</span>
+</div>
+</div>
+<div class="w-2 h-2 rounded-full bg-accent-red animate-pulse"></div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 bg-luxury-black border border-luxury-border rounded-xl p-2 flex-shrink-0">
+<img alt="Product" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD08aUpVbBjTo1BWsryX1imdfB-M5vR5cy1d7r2aTdZf6QgIz3_mMoR3e8ZlgcPHeyjnR5N7lIjrQ4oaq88dZze6clU4BByKIkEi8IiY16i1fd6AQhnwBDCGpEtrgFsFot50S82xfg947Lb4T0VCziQPZJkR1So70r1Hiwj1x8FCRQN5DOkA_phn05I5mYB02bvtsv-SDoFt7uAJPoZU_Rywic6ZPf_98cQtTbnRkDXin610yTXWU2FAAmK_mlpWpQ1RRr46QLkWfc"/>
+</div>
+<div class="flex-grow">
+<h4 class="text-xs font-bold text-gray-200 mb-1">شمع ایریدیوم لیزری</h4>
+<div class="flex items-center gap-2">
+<span class="text-[10px] text-gray-500 font-bold">موجودی انبار:</span>
+<span class="text-[10px] text-accent-red font-black">۲ عدد</span>
+</div>
+</div>
+<div class="w-2 h-2 rounded-full bg-accent-red"></div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 bg-luxury-black border border-luxury-border rounded-xl p-2 flex-shrink-0">
+<img alt="Product" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOdKme51mkE6otXDJZ8tBYYo1O6bMWiFyEOCNZ5PpHfca0awiDPPgoKXiSxKFS11w0udtKbt8fA62D8CGwT4UlnzCku1SKRMTVXjRytVlBe2I7NN6UqIJ1qBbiB2IFF8bNXunj1xEN6d1-iOr0ysNOWeMkaTgphdCsmO7Yfe-bdNHF2c06ACrnBOo5ggHA0tIsCWClurBlYWQzLTnAgHmS7-xZHboOcox7v5ooo5bfhRPyjKNZhH8lIsUbqaeU-mDlACr1k3XssCA"/>
+</div>
+<div class="flex-grow">
+<h4 class="text-xs font-bold text-gray-200 mb-1">باتری لیتیومی ریسینگ</h4>
+<div class="flex items-center gap-2">
+<span class="text-[10px] text-gray-500 font-bold">موجودی انبار:</span>
+<span class="text-[10px] text-accent-red font-black">۵ عدد (بحرانی)</span>
+</div>
+</div>
+<div class="w-2 h-2 rounded-full bg-accent-red"></div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 bg-luxury-black border border-luxury-border rounded-xl p-2 flex-shrink-0">
+<img alt="Product" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrypdwkTTjKAfamJzaZiBtGRH1C-HsMrbMgq8bAvzw-6A0i7l_oRcOlMGEo1adQPcowTfW3tCBxDZgEy23IP1diCx6Cow7_bukQZpb7EQX4y1nz62BedFUs3l27KMckF65SvVgxESmE-BxI8VzeSAwkNsz-x9Y3OwQmHgL-LS1Lk1f9V5kPFRc_NcZ-y0L26GnX2VxztZ_cxs86eSlXQ9c6DGDn-0md1qkF1EeKIPzZFLn-MWa6Dta6jq2rnt_dfr2jpqqKyCDn48"/>
+</div>
+<div class="flex-grow">
+<h4 class="text-xs font-bold text-gray-200 mb-1">لنت ترمز Brembo</h4>
+<div class="flex items-center gap-2">
+<span class="text-[10px] text-gray-500 font-bold">موجودی انبار:</span>
+<span class="text-[10px] text-accent-red font-black">۱ عدد</span>
+</div>
+</div>
+<div class="w-2 h-2 rounded-full bg-accent-red"></div>
+</div>
+</div>
+<button class="w-full mt-8 py-3 border border-luxury-border rounded-xl text-[10px] font-black text-gray-400 hover:text-accent-red hover:border-accent-red transition-all uppercase tracking-widest">مدیریت موجودی انبار</button>
+</div>
+</div>
+<div class="mt-8 bg-luxury-card rounded-[2rem] border border-luxury-border overflow-hidden">
+<div class="px-8 py-6 border-b border-luxury-border flex items-center justify-between">
+<h3 class="text-lg font-black text-white">آخرین سفارشات ثبت شده</h3>
+<button class="text-gold text-[10px] font-bold uppercase tracking-widest border-b border-gold/30 hover:border-gold pb-0.5">مدیریت سفارشات</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-right">
+<thead>
+<tr class="text-gray-500 text-[10px] font-bold uppercase tracking-[0.2em] bg-luxury-black/30">
+<th class="px-8 py-4 font-bold">شناسه سفارش</th>
+<th class="px-8 py-4 font-bold">مشتری</th>
+<th class="px-8 py-4 font-bold">محصولات</th>
+<th class="px-8 py-4 font-bold">مبلغ کل</th>
+<th class="px-8 py-4 font-bold text-center">وضعیت</th>
+<th class="px-8 py-4 font-bold">تاریخ</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-luxury-border">
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-8 py-5 text-sm font-black text-gold">#ORD-9942</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-luxury-border flex items-center justify-center text-[10px] font-bold text-gray-400">AA</div>
+<span class="text-xs font-bold text-gray-200">آرش افشار</span>
+</div>
+</td>
+<td class="px-8 py-5 text-[10px] text-gray-400">کیت بدنه (۱)</td>
+<td class="px-8 py-5 text-xs font-bold text-gray-200">۱۲۵,۰۰۰,۰۰۰ ت</td>
+<td class="px-8 py-5">
+<div class="flex justify-center">
+<span class="px-3 py-1 rounded-full bg-green-500/10 text-green-500 text-[10px] font-black border border-green-500/20">تایید شده</span>
+</div>
+</td>
+<td class="px-8 py-5 text-[10px] text-gray-500 font-bold">۱۴:۳۰ - امروز</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-8 py-5 text-sm font-black text-gold">#ORD-9941</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-luxury-border flex items-center justify-center text-[10px] font-bold text-gray-400">MS</div>
+<span class="text-xs font-bold text-gray-200">محمد سعیدی</span>
+</div>
+</td>
+<td class="px-8 py-5 text-[10px] text-gray-400">دیسک ترمز (۲)</td>
+<td class="px-8 py-5 text-xs font-bold text-gray-200">۲۱,۶۰۰,۰۰۰ ت</td>
+<td class="px-8 py-5">
+<div class="flex justify-center">
+<span class="px-3 py-1 rounded-full bg-gold/10 text-gold text-[10px] font-black border border-gold/20">در انتظار</span>
+</div>
+</td>
+<td class="px-8 py-5 text-[10px] text-gray-500 font-bold">۱۲:۱۵ - امروز</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+
+</body></html>
