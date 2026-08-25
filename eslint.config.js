@@ -18,4 +18,9 @@ export default defineConfig([
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
   },
+  {
+    // اسکریپت‌های Node (مثل تست رندر) از globals محیط Node استفاده می‌کنند
+    files: ['scripts/**/*.{js,jsx}'],
+    languageOptions: { globals: globals.node },
+  },
 ])

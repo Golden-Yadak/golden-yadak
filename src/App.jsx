@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Verify from "./pages/Verify";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
+import Cart from "./pages/Cart";
 import AdminDashboard from "./pages/AdminDashboard";
 
 const BASE_DOMAIN = import.meta.env.VITE_BASE_DOMAIN || "";
@@ -89,6 +90,8 @@ function MainSubdomainApp({ subdomain }) {
       <Route path="/products" element={<Products subdomain={subdomain} />} />
 
       <Route path="/product" element={<ProductDetail subdomain={subdomain} />} />
+
+      <Route path="/cart" element={<Cart subdomain={subdomain} />} />
 
       <Route path="/admin" element={<AdminDashboard subdomain={subdomain} />} />
 
