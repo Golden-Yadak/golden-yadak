@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>مدیریت محصولات | لوکس‌یدک</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-light: #F9E29C;
+            --gold-dark: #AA8B24;
+            --background: #0B0B0B;
+            --surface: #141414;
+            --card-border: #2A2A2A;
+            --text-main: #E5E5E5;
+            --text-muted: #8E8E8E;
+        }
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(to bottom right, var(--gold-light), var(--gold-primary), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .luxury-button {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+            transition: all 0.3s ease;
+        }
+        .luxury-button:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: var(--background);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--card-border);
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-dark);
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--gold-primary) !important;
+            box-shadow: 0 0 0 1px var(--gold-primary) !important;
+        }
+        .toggle-checkbox:checked {
+            @apply right-0 border-gold bg-gold;
+            right: 0;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            @apply bg-gold/20;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "gold": {
+                            DEFAULT: "#D4AF37",
+                            light: "#F9E29C",
+                            dark: "#AA8B24"
+                        },
+                        "luxury-black": "#0B0B0B",
+                        "luxury-surface": "#141414",
+                        "luxury-border": "#2A2A2A"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-luxury-black text-gray-200">
+<div class="flex min-h-screen">
+<aside class="w-64 border-l border-luxury-border bg-luxury-surface/50 hidden lg:flex flex-col">
+<div class="p-8 flex items-center gap-3">
+<div class="bg-gradient-to-br from-gold-light via-gold to-gold-dark p-2 rounded-lg shadow-lg">
+<span class="material-icons text-black text-xl">diamond</span>
+</div>
+<h1 class="text-xl font-black">لوکس‌<span class="gold-gradient-text">یدک</span></h1>
+</div>
+<nav class="flex-grow px-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-gold/60 hover:text-gold transition-colors" href="#">
+<span class="material-symbols-outlined text-gold">dashboard</span>
+<span class="font-bold text-sm">داشبورد</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-gold/10 text-gold rounded-xl border border-gold/20 shadow-[0_0_15px_rgba(212,175,55,0.05)]" href="#">
+<span class="material-symbols-outlined text-gold">inventory_2</span>
+<span class="font-bold text-sm">مدیریت محصولات</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gold/60 hover:text-gold transition-colors" href="#">
+<span class="material-symbols-outlined text-gold">shopping_cart</span>
+<span class="font-bold text-sm">مدیریت سفارشات</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gold/60 hover:text-gold transition-colors" href="#">
+<span class="material-symbols-outlined text-gold">confirmation_number</span>
+<span class="font-bold text-sm">کپن‌ها و تخفیفات</span>
+</a>
+</nav>
+<div class="p-4 border-t border-luxury-border">
+<div class="flex items-center gap-3 p-3 bg-luxury-black rounded-2xl border border-luxury-border">
+<div class="w-10 h-10 rounded-full bg-gold/20 border border-gold/40 flex items-center justify-center">
+<span class="material-icons text-gold">person</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-white">مدیریت سیستم</span>
+<span class="text-[10px] text-gray-500">پنل ادمین</span>
+</div>
+<button class="ms-auto text-gray-600 hover:text-red-500 transition-colors">
+<span class="material-icons text-sm">logout</span>
+</button>
+</div>
+</div>
+</aside>
+<main class="flex-grow flex flex-col">
+<header class="h-20 border-b border-luxury-border bg-luxury-black/50 backdrop-blur-md flex items-center justify-between px-8 sticky top-0 z-30">
+<div class="flex items-center gap-4">
+<h2 class="text-xl font-black text-white">مدیریت محصولات</h2>
+<div class="h-6 w-px bg-luxury-border"></div>
+<span class="text-xs text-gray-500 font-bold">نمایش ۱۲۸ محصول</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="luxury-button text-black px-6 py-2.5 rounded-xl font-black text-sm flex items-center gap-2">
+<span class="material-icons text-sm">add</span>
+                    افزودن محصول جدید
+                </button>
+</div>
+</header>
+<div class="p-8">
+<div class="bg-luxury-surface border border-luxury-border rounded-[2rem] p-6 mb-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+<div class="relative lg:col-span-1">
+<span class="material-icons absolute right-3 top-3 text-gold text-sm">search</span>
+<input class="w-full h-11 pr-10 pl-4 rounded-xl border border-luxury-border bg-luxury-black text-sm text-white placeholder-gray-600 focus:ring-1 focus:ring-gold" placeholder="جستجوی نام یا کد فنی..." type="text"/>
+</div>
+<select class="h-11 rounded-xl border border-luxury-border bg-luxury-black text-sm text-gray-400 px-4">
+<option>همه برندها</option>
+<option>پورشه</option>
+<option>ب‌ام‌و</option>
+<option>مرسدس بنز</option>
+</select>
+<select class="h-11 rounded-xl border border-luxury-border bg-luxury-black text-sm text-gray-400 px-4">
+<option>همه دسته‌بندی‌ها</option>
+<option>کیت‌های بدنه</option>
+<option>سیستم ترمز</option>
+<option>موتور و گیربکس</option>
+</select>
+<select class="h-11 rounded-xl border border-luxury-border bg-luxury-black text-sm text-gray-400 px-4">
+<option>وضعیت موجودی</option>
+<option>موجود در انبار</option>
+<option>اتمام موجودی</option>
+<option>کمتر از ۵ عدد</option>
+</select>
+<div class="flex items-center gap-2">
+<div class="relative flex-grow">
+<span class="absolute left-3 top-2.5 text-[10px] text-gray-600">تومان</span>
+<input class="w-full h-11 pr-4 pl-10 rounded-xl border border-luxury-border bg-luxury-black text-sm text-white placeholder-gray-600" placeholder="قیمت از" type="number"/>
+</div>
+<span class="text-gray-600">-</span>
+<div class="relative flex-grow">
+<span class="absolute left-3 top-2.5 text-[10px] text-gray-600">تومان</span>
+<input class="w-full h-11 pr-4 pl-10 rounded-xl border border-luxury-border bg-luxury-black text-sm text-white placeholder-gray-600" placeholder="تا" type="number"/>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-luxury-surface border border-luxury-border rounded-[2rem] overflow-hidden shadow-2xl">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-right border-collapse">
+<thead>
+<tr class="bg-luxury-black/40 border-b border-luxury-border">
+<th class="px-6 py-5 text-xs font-black text-gold uppercase tracking-widest">تصویر</th>
+<th class="px-6 py-5 text-xs font-black text-gold uppercase tracking-widest">نام محصول</th>
+<th class="px-6 py-5 text-xs font-black text-gold uppercase tracking-widest text-center">کد فنی</th>
+<th class="px-6 py-5 text-xs font-black text-gold uppercase tracking-widest text-center">برند</th>
+<th class="px-6 py-5 text-xs font-black text-gold uppercase tracking-widest">قیمت (تومان)</th>
+<th class="px-6 py-5 text-xs font-black text-gold uppercase tracking-widest text-center">موجودی</th>
+<th class="px-6 py-5 text-xs font-black text-gold uppercase tracking-widest text-center">وضعیت</th>
+<th class="px-6 py-5 text-xs font-black text-gold uppercase tracking-widest text-center">عملیات</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-luxury-border/50">
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="w-16 h-16 bg-luxury-black rounded-2xl border border-luxury-border p-2 group-hover:border-gold/50 transition-colors">
+<img alt="فیلتر روغن" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrypdwkTTjKAfamJzaZiBtGRH1C-HsMrbMgq8bAvzw-6A0i7l_oRcOlMGEo1adQPcowTfW3tCBxDZgEy23IP1diCx6Cow7_bukQZpb7EQX4y1nz62BedFUs3l27KMckF65SvVgxESmE-BxI8VzeSAwkNsz-x9Y3OwQmHgL-LS1Lk1f9V5kPFRc_NcZ-y0L26GnX2VxztZ_cxs86eSlXQ9c6DGDn-0md1qkF1EeKIPzZFLn-MWa6Dta6jq2rnt_dfr2jpqqKyCDn48"/>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-white group-hover:text-gold transition-colors">فیلتر روغن اورجینال سری M</span>
+<span class="text-[10px] text-gray-500 mt-1">مناسب برای مدل‌های ۲۰۲۲ به بالا</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="bg-luxury-black px-3 py-1 rounded-lg border border-luxury-border text-[10px] font-mono text-gray-400">BM-77420-FL</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="text-xs font-bold text-gray-300">BMW</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-black text-white">۳,۸۰۰,۰۰۰</span>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="flex flex-col items-center gap-1">
+<span class="text-sm font-bold text-white">۱۲</span>
+<div class="w-12 h-1 bg-luxury-black rounded-full overflow-hidden">
+<div class="bg-green-500 h-full w-[60%]"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="relative inline-block w-10 h-6 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-luxury-border transition-all right-4" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-700 cursor-pointer" for="toggle1"></label>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-center gap-3">
+<button class="text-gold hover:text-white transition-colors p-2 bg-gold/10 rounded-xl border border-gold/20" title="ویرایش سریع">
+<span class="material-symbols-outlined text-sm">edit_square</span>
+</button>
+<button class="text-red-500/80 hover:text-red-500 transition-colors p-2 bg-red-500/10 rounded-xl border border-red-500/20" title="حذف">
+<span class="material-symbols-outlined text-sm">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="w-16 h-16 bg-luxury-black rounded-2xl border border-luxury-border p-2 group-hover:border-gold/50 transition-colors">
+<img alt="دیسک ترمز" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpKH3BHIgaqOGCy-s7uElWjm0wuo5r5oP-ZI3OxbMzWkTSYnV9sY30Yi064DIFy9GOT657LVE3YYwFISkYjrGVG_ZUWqNm2J5_zqXHX7GkiHGbPHQGZInmLsVkhDRNeK5STZJWMITRHsB5VZtJTDJIjBEmcm4THxbFmo5Q7LfzcwMghsfteDXgNUb2f14uXW7WsNcy4eZOW4fbMpvQ0rQkAlNL5Qe2qdHiiZ-DOc_g-IUDIDsSI-pShlYUANiCfeIvrTpu__oSvpg"/>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-white group-hover:text-gold transition-colors">دیسک ترمز کربن-سرامیک پرفورمنس</span>
+<span class="text-[10px] text-gray-500 mt-1">تکنولوژی پیشرفته آلمانی</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="bg-luxury-black px-3 py-1 rounded-lg border border-luxury-border text-[10px] font-mono text-gray-400">CB-9981-D1</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="text-xs font-bold text-gray-300">PORSCHE</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-black text-white">۱۰,۸۰۰,۰۰۰</span>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="flex flex-col items-center gap-1">
+<span class="text-sm font-bold text-gold">۳</span>
+<div class="w-12 h-1 bg-luxury-black rounded-full overflow-hidden">
+<div class="bg-gold h-full w-[25%]"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="relative inline-block w-10 h-6 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-luxury-border transition-all right-4" id="toggle2" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-700 cursor-pointer" for="toggle2"></label>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-center gap-3">
+<button class="text-gold hover:text-white transition-colors p-2 bg-gold/10 rounded-xl border border-gold/20" title="ویرایش سریع">
+<span class="material-symbols-outlined text-sm">edit_square</span>
+</button>
+<button class="text-red-500/80 hover:text-red-500 transition-colors p-2 bg-red-500/10 rounded-xl border border-red-500/20" title="حذف">
+<span class="material-symbols-outlined text-sm">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="bg-luxury-black/40 px-8 py-5 border-t border-luxury-border flex items-center justify-between">
+<div class="flex items-center gap-2 text-xs text-gray-500">
+<span>نمایش</span>
+<select class="bg-luxury-surface border border-luxury-border rounded-lg text-xs px-2 py-1 focus:ring-0">
+<option>۱۰</option>
+<option selected="">۲۵</option>
+<option>۵۰</option>
+</select>
+<span>ردیف از ۱۲۸ مورد</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg border border-luxury-border text-gray-500 hover:text-gold hover:border-gold transition-all">
+<span class="material-icons text-sm">chevron_right</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-gold text-black font-black text-xs">۱</button>
+<button class="w-8 h-8 rounded-lg border border-luxury-border text-gray-500 hover:text-gold font-bold text-xs">۲</button>
+<button class="w-8 h-8 rounded-lg border border-luxury-border text-gray-500 hover:text-gold font-bold text-xs">۳</button>
+<span class="text-gray-600">...</span>
+<button class="w-8 h-8 rounded-lg border border-luxury-border text-gray-500 hover:text-gold font-bold text-xs">۶</button>
+<button class="p-2 rounded-lg border border-luxury-border text-gray-500 hover:text-gold hover:border-gold transition-all">
+<span class="material-icons text-sm">chevron_left</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

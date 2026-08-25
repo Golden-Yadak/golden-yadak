@@ -1,0 +1,342 @@
+<html dir="rtl" lang="fa"><head></head><body class="bg-luxury-black text-gray-200 min-h-screen">```html
+
+
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>مدیریت سفارش‌ها | یدک آنلاین</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-light: #F9E29C;
+            --gold-dark: #AA8B24;
+            --background: #0B0B0B;
+            --surface: #141414;
+            --card-border: #2A2A2A;
+            --text-main: #E5E5E5;
+            --text-muted: #8E8E8E;
+        }
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(to bottom right, var(--gold-light), var(--gold-primary), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .luxury-button {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+            transition: all 0.3s ease;
+        }
+        .luxury-button:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: var(--surface);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--gold-dark);
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "gold": {
+                            DEFAULT: "#D4AF37",
+                            light: "#F9E29C",
+                            dark: "#AA8B24"
+                        },
+                        "luxury-black": "#0B0B0B",
+                        "luxury-surface": "#141414",
+                        "luxury-border": "#2A2A2A"
+                    }
+                },
+            },
+        }
+    </script>
+
+
+<div class="flex">
+<aside class="w-64 min-h-screen bg-luxury-surface border-l border-luxury-border flex flex-col sticky top-0">
+<div class="p-6 border-b border-luxury-border flex items-center gap-3">
+<div class="bg-gold p-1.5 rounded-lg shadow-[0_0_10px_rgba(212,175,55,0.3)]">
+<span class="material-icons text-black text-xl">diamond</span>
+</div>
+<h1 class="text-xl font-black">یدک‌ <span class="gold-gradient-text">آنلاین</span></h1>
+</div>
+<nav class="flex-grow p-4 space-y-2">
+<a class="flex items-center gap-3 p-3 rounded-xl text-gray-400 hover:text-gold hover:bg-white/5 transition-all group" href="#">
+<span class="material-symbols-outlined text-gold">dashboard</span>
+<span class="text-sm font-bold">داشبورد</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-xl text-gray-400 hover:text-gold hover:bg-white/5 transition-all group" href="#">
+<span class="material-symbols-outlined text-gold">inventory_2</span>
+<span class="text-sm font-bold">مدیریت محصولات</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-xl text-gold bg-gold/5 border border-gold/20 transition-all" href="#">
+<span class="material-symbols-outlined text-gold">shopping_cart</span>
+<span class="text-sm font-bold">مدیریت سفارشات</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-xl text-gray-400 hover:text-gold hover:bg-white/5 transition-all group" href="#">
+<span class="material-symbols-outlined text-gold">confirmation_number</span>
+<span class="text-sm font-bold">کپن‌ها و تخفیفات</span>
+</a>
+</nav>
+<div class="p-4 border-t border-luxury-border">
+<div class="flex items-center gap-3 p-3">
+<div class="w-10 h-10 rounded-full bg-gold/20 border border-gold/50 flex items-center justify-center text-gold font-bold">
+                        مد
+                    </div>
+<div>
+<div class="text-xs font-black">مدیریت سیستم</div>
+<div class="text-[10px] text-gray-500">پنل ادمین</div>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-grow p-8">
+<header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
+<div>
+<h2 class="text-3xl font-black text-white mb-2">مدیریت <span class="gold-gradient-text">سفارش‌ها</span></h2>
+<p class="text-sm text-gray-500 font-light tracking-wide">نمای کلی و کنترل وضعیت تراکنش‌های جاری فروشگاه</p>
+</div>
+<div class="flex items-center gap-4 w-full md:w-auto">
+<div class="relative flex-grow md:w-80">
+<input class="w-full bg-luxury-surface border border-luxury-border rounded-xl px-12 py-3 text-sm focus:border-gold focus:ring-0 transition-all text-white placeholder-gray-600" placeholder="جستجوی کد سفارش، نام مشتری..." type="text"/>
+<span class="material-icons absolute right-4 top-3 text-gold/60">search</span>
+</div>
+<button class="bg-luxury-surface border border-luxury-border text-gray-400 p-3 rounded-xl hover:text-gold transition-colors">
+<span class="material-icons">filter_list</span>
+</button>
+</div>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+<div class="bg-luxury-surface border border-luxury-border p-6 rounded-3xl">
+<div class="flex justify-between items-center mb-4">
+<span class="text-gray-500 text-xs font-bold">کل سفارشات امروز</span>
+<span class="material-icons text-gold opacity-50">shopping_bag</span>
+</div>
+<div class="text-2xl font-black text-white">۴۸ سفارش</div>
+<div class="text-[10px] text-green-500 mt-2">+۱۲٪ نسبت به دیروز</div>
+</div>
+<div class="bg-luxury-surface border border-luxury-border p-6 rounded-3xl">
+<div class="flex justify-between items-center mb-4">
+<span class="text-gray-500 text-xs font-bold">در انتظار بررسی</span>
+<span class="material-icons text-amber-500 opacity-50">pending_actions</span>
+</div>
+<div class="text-2xl font-black text-white text-amber-500">۷ مورد</div>
+<div class="text-[10px] text-gray-500 mt-2">نیاز به تایید سریع</div>
+</div>
+<div class="bg-luxury-surface border border-luxury-border p-6 rounded-3xl">
+<div class="flex justify-between items-center mb-4">
+<span class="text-gray-500 text-xs font-bold">آماده ارسال</span>
+<span class="material-icons text-blue-500 opacity-50">local_shipping</span>
+</div>
+<div class="text-2xl font-black text-white">۱۲ سفارش</div>
+<div class="text-[10px] text-gray-500 mt-2">بسته‌بندی شده</div>
+</div>
+<div class="bg-luxury-surface border border-luxury-border p-6 rounded-3xl">
+<div class="flex justify-between items-center mb-4">
+<span class="text-gray-500 text-xs font-bold">مجموع فروش (ماه)</span>
+<span class="material-icons text-gold opacity-50">account_balance_wallet</span>
+</div>
+<div class="text-2xl font-black gold-gradient-text">۱,۸۵۰,۰۰۰,۰۰۰ <span class="text-xs font-normal">تومان</span></div>
+<div class="text-[10px] text-gray-500 mt-2">تا این لحظه</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 space-y-6">
+<div class="bg-luxury-surface border border-luxury-border rounded-[2rem] overflow-hidden">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-right border-collapse">
+<thead>
+<tr class="bg-luxury-black/40 border-b border-luxury-border">
+<th class="p-5 text-xs font-black text-gray-400">شناسه سفارش</th>
+<th class="p-5 text-xs font-black text-gray-400">تاریخ</th>
+<th class="p-5 text-xs font-black text-gray-400">مشتری</th>
+<th class="p-5 text-xs font-black text-gray-400">مبلغ کل</th>
+<th class="p-5 text-xs font-black text-gray-400">وضعیت</th>
+<th class="p-5 text-xs font-black text-gray-400">عملیات</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-luxury-border/50">
+<tr class="hover:bg-white/[0.02] transition-colors cursor-pointer group bg-gold/5">
+<td class="p-5 font-mono text-gold font-bold">#ORD-8821</td>
+<td class="p-5 text-gray-400">۱۴۰۳/۰۲/۲۴</td>
+<td class="p-5">امیررضا صادقی</td>
+<td class="p-5 font-bold">۱۴,۵۰۰,۰۰۰</td>
+<td class="p-5">
+<select class="bg-amber-500/10 border border-amber-500/30 text-amber-500 text-[10px] font-black rounded-lg py-1 px-2 focus:ring-0 outline-none">
+<option>در انتظار تایید</option>
+<option>پرداخت شده</option>
+<option>آماده برای ارسال</option>
+<option>ارسال شده</option>
+<option>تحویل شد</option>
+<option>لغو شده</option>
+</select>
+</td>
+<td class="p-5">
+<button class="text-gold hover:underline font-black text-xs">جزئیات</button>
+</td>
+</tr>
+<tr class="hover:bg-white/[0.02] transition-colors cursor-pointer">
+<td class="p-5 font-mono text-gray-500 font-bold">#ORD-8820</td>
+<td class="p-5 text-gray-400">۱۴۰۳/۰۲/۲۴</td>
+<td class="p-5">نازنین حمیدی</td>
+<td class="p-5 font-bold">۳,۲۰۰,۰۰۰</td>
+<td class="p-5">
+<select class="bg-blue-500/10 border border-blue-500/30 text-blue-500 text-[10px] font-black rounded-lg py-1 px-2 focus:ring-0 outline-none">
+<option>پرداخت شده</option>
+<option>در انتظار تایید</option>
+<option selected="">آماده برای ارسال</option>
+<option>ارسال شده</option>
+<option>تحویل شد</option>
+<option>لغو شده</option>
+</select>
+</td>
+<td class="p-5">
+<button class="text-gold hover:underline font-black text-xs">جزئیات</button>
+</td>
+</tr>
+<tr class="hover:bg-white/[0.02] transition-colors cursor-pointer">
+<td class="p-5 font-mono text-gray-500 font-bold">#ORD-8819</td>
+<td class="p-5 text-gray-400">۱۴۰۳/۰۲/۲۳</td>
+<td class="p-5">مهدی رستمی</td>
+<td class="p-5 font-bold">۸,۹۰۰,۰۰۰</td>
+<td class="p-5">
+<select class="bg-green-500/10 border border-green-500/30 text-green-500 text-[10px] font-black rounded-lg py-1 px-2 focus:ring-0 outline-none">
+<option>ارسال شده</option>
+<option>در انتظار تایید</option>
+<option>پرداخت شده</option>
+<option>آماده برای ارسال</option>
+<option selected="">تحویل شد</option>
+<option>لغو شده</option>
+</select>
+</td>
+<td class="p-5">
+<button class="text-gold hover:underline font-black text-xs">جزئیات</button>
+</td>
+</tr>
+<tr class="hover:bg-white/[0.02] transition-colors cursor-pointer">
+<td class="p-5 font-mono text-gray-500 font-bold">#ORD-8818</td>
+<td class="p-5 text-gray-400">۱۴۰۳/۰۲/۲۳</td>
+<td class="p-5">سارا کریمی</td>
+<td class="p-5 font-bold">۴۵,۰۰۰,۰۰۰</td>
+<td class="p-5">
+<select class="bg-red-500/10 border border-red-500/30 text-red-500 text-[10px] font-black rounded-lg py-1 px-2 focus:ring-0 outline-none">
+<option>لغو شده</option>
+<option>در انتظار تایید</option>
+<option>پرداخت شده</option>
+<option>آماده برای ارسال</option>
+<option>ارسال شده</option>
+<option>تحویل شد</option>
+</select>
+</td>
+<td class="p-5">
+<button class="text-gold hover:underline font-black text-xs">جزئیات</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-5 bg-luxury-black/40 border-t border-luxury-border flex justify-between items-center text-xs text-gray-500">
+<span>نمایش ۱۰ از ۱۲۴ سفارش</span>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded border border-luxury-border flex items-center justify-center hover:bg-gold hover:text-black transition-colors">۱</button>
+<button class="w-8 h-8 rounded border border-luxury-border flex items-center justify-center hover:bg-gold hover:text-black transition-colors bg-gold text-black">۲</button>
+<button class="w-8 h-8 rounded border border-luxury-border flex items-center justify-center hover:bg-gold hover:text-black transition-colors">۳</button>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-1">
+<div class="bg-luxury-surface border border-luxury-border rounded-[2rem] p-8 sticky top-32">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="text-xl font-black text-white mb-1">جزئیات سفارش</h3>
+<span class="text-xs font-mono text-gold">#ORD-8821</span>
+</div>
+<button class="bg-gold/10 text-gold p-2 rounded-xl hover:bg-gold hover:text-black transition-all">
+<span class="material-icons text-xl">print</span>
+</button>
+</div>
+<div class="space-y-6">
+<div class="border-b border-luxury-border pb-6">
+<h4 class="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+<span class="material-icons text-sm">person</span> اطلاعات تحویل گیرنده
+                                </h4>
+<div class="text-sm space-y-2">
+<p class="text-white font-bold">امیررضا صادقی</p>
+<p class="text-gray-400 leading-relaxed font-light">تهران، نیاوران، خیابان باهنر، کوچه مینا، پلاک ۱۲، واحد ۴</p>
+<p class="text-gray-500">تلفن: ۰۹۱۲۳۴۵۶۷۸۹</p>
+</div>
+</div>
+<div class="border-b border-luxury-border pb-6">
+<h4 class="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+<span class="material-icons text-sm">local_post_office</span> کد رهگیری پستی
+                                </h4>
+<div class="flex gap-2">
+<input class="flex-grow bg-luxury-black border border-luxury-border rounded-lg px-4 py-2 text-xs focus:border-gold focus:ring-0 text-white" placeholder="وارد کردن کد ۲۴ رقمی..." type="text"/>
+<button class="bg-gold text-black px-4 py-2 rounded-lg font-black text-xs hover:bg-gold-light transition-colors">ثبت</button>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+<span class="material-icons text-sm">list</span> اقلام سفارش
+                                </h4>
+<div class="flex items-center gap-4 bg-luxury-black/30 p-3 rounded-xl border border-luxury-border/30">
+<div class="w-12 h-12 bg-luxury-black rounded-lg border border-luxury-border p-1">
+<img alt="product" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrypdwkTTjKAfamJzaZiBtGRH1C-HsMrbMgq8bAvzw-6A0i7l_oRcOlMGEo1adQPcowTfW3tCBxDZgEy23IP1diCx6Cow7_bukQZpb7EQX4y1nz62BedFUs3l27KMckF65SvVgxESmE-BxI8VzeSAwkNsz-x9Y3OwQmHgL-LS1Lk1f9V5kPFRc_NcZ-y0L26GnX2VxztZ_cxs86eSlXQ9c6DGDn-0md1qkF1EeKIPzZFLn-MWa6Dta6jq2rnt_dfr2jpqqKyCDn48"/>
+</div>
+<div class="flex-grow">
+<div class="text-[11px] font-bold">فیلتر روغن اورجینال سری M</div>
+<div class="text-[10px] text-gray-500">تعداد: ۱ عدد</div>
+</div>
+<div class="text-xs font-bold text-gold">۳,۸۰۰,۰۰۰</div>
+</div>
+<div class="flex items-center gap-4 bg-luxury-black/30 p-3 rounded-xl border border-luxury-border/30">
+<div class="w-12 h-12 bg-luxury-black rounded-lg border border-luxury-border p-1">
+<img alt="product" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpKH3BHIgaqOGCy-s7uElWjm0wuo5r5oP-ZI3OxbMzWkTSYnV9sY30Yi064DIFy9GOT657LVE3YYwFISkYjrGVG_ZUWqNm2J5_zqXHX7GkiHGbPHQGZInmLsVkhDRNeK5STZJWMITRHsB5VZtJTDJIjBEmcm4THxbFmo5Q7LfzcwMghsfteDXgNUb2f14uXW7WsNcy4eZOW4fbMpvQ0rQkAlNL5Qe2qdHiiZ-DOc_g-IUDIDsSI-pShlYUANiCfeIvrTpu__oSvpg"/>
+</div>
+<div class="flex-grow">
+<div class="text-[11px] font-bold">دیسک ترمز کربن-سرامیک</div>
+<div class="text-[10px] text-gray-500">تعداد: ۱ عدد</div>
+</div>
+<div class="text-xs font-bold text-gold">۱۰,۷۰۰,۰۰۰</div>
+</div>
+</div>
+<div class="pt-6 border-t border-luxury-border">
+<div class="flex justify-between items-center mb-2">
+<span class="text-xs text-gray-500">جمع کل کالاها</span>
+<span class="text-xs font-bold">۱۴,۵۰۰,۰۰۰ تومان</span>
+</div>
+<div class="flex justify-between items-center mb-6">
+<span class="text-xs text-gray-500">هزینه ارسال اختصاصی</span>
+<span class="text-xs font-bold text-green-500">رایگان (VIP)</span>
+</div>
+<button class="w-full luxury-button text-black py-4 rounded-xl font-black text-sm shadow-xl flex items-center justify-center gap-2">
+<span class="material-icons text-sm">description</span>
+                                    چاپ فاکتور رسمی
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

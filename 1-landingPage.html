@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>لوکس‌یدک | مرجع قطعات لوکس و تخصصی</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-light: #F9E29C;
+            --gold-dark: #AA8B24;
+            --background: #0B0B0B;
+            --surface: #141414;
+            --card-border: #2A2A2A;
+            --text-main: #E5E5E5;
+            --text-muted: #8E8E8E;
+        }
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(to bottom right, var(--gold-light), var(--gold-primary), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border-hover:hover {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+        .luxury-button {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+            transition: all 0.3s ease;
+        }
+        .luxury-button:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "gold": {
+                            DEFAULT: "#D4AF37",
+                            light: "#F9E29C",
+                            dark: "#AA8B24"
+                        },
+                        "luxury-black": "#0B0B0B",
+                        "luxury-surface": "#141414",
+                        "luxury-border": "#2A2A2A"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-luxury-black text-gray-200">
+<header class="sticky top-0 z-50 bg-luxury-black/95 backdrop-blur-lg border-b border-luxury-border">
+<div class="container mx-auto px-4 py-5 flex items-center justify-between gap-8">
+<div class="flex items-center gap-4 order-1">
+<div class="bg-gradient-to-br from-gold-light via-gold to-gold-dark p-2.5 rounded-xl shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+<span class="material-icons text-black">diamond</span>
+</div>
+<h1 class="text-2xl font-black tracking-tighter">لوکس‌<span class="gold-gradient-text">یدک</span></h1>
+</div>
+<div class="flex-grow max-w-2xl relative order-3 lg:order-2">
+<input class="w-full h-12 pr-12 pl-4 rounded-xl border border-luxury-border bg-luxury-surface text-white focus:ring-1 focus:ring-gold focus:border-gold transition-all outline-none text-sm placeholder-gray-600" placeholder="جستجوی قطعات خاص و برندهای لوکس..." type="text"/>
+<span class="material-icons absolute right-4 top-3 text-gold opacity-70">search</span>
+</div>
+<div class="flex items-center gap-6 order-2 lg:order-3">
+<button class="flex items-center gap-2 text-gray-400 hover:text-gold transition-colors">
+<span class="material-icons text-xl">account_circle</span>
+<span class="hidden lg:inline text-sm font-bold">پنل کاربری</span>
+</button>
+<div class="h-6 w-px bg-luxury-border"></div>
+<button class="relative p-2 text-gray-400 hover:text-gold transition-colors">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute -top-1 -left-1 bg-gold text-black text-[10px] w-5 h-5 flex items-center justify-center rounded-full font-black shadow-lg">۲</span>
+</button>
+</div>
+</div>
+<nav class="bg-luxury-surface/30 border-t border-luxury-border/50 py-3">
+<div class="container mx-auto px-4 flex items-center gap-10 text-xs font-bold uppercase tracking-widest">
+<a class="flex items-center gap-2 text-gold hover:text-gold-light transition-colors" href="#">
+<span class="material-icons text-lg">menu</span>
+                مجموعه قطعات
+            </a>
+<a class="text-gray-500 hover:text-gold transition-colors hidden md:block" href="#">خودروهای آلمانی</a>
+<a class="text-gray-500 hover:text-gold transition-colors hidden md:block" href="#">برندهای ایتالیایی</a>
+<a class="text-gray-500 hover:text-gold transition-colors hidden md:block" href="#">قطعات سفارشی</a>
+<a class="text-gray-500 hover:text-gold transition-colors hidden md:block" href="#">اکسسوری لوکس</a>
+<a class="ms-auto gold-gradient-text font-black flex items-center gap-2 group" href="#">
+<span class="group-hover:translate-x-1 transition-transform">باشگاه مشتریان VIP</span>
+<span class="material-symbols-outlined text-sm">stars</span>
+</a>
+</div>
+</nav>
+</header>
+<main class="container mx-auto px-4 py-10">
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+<div class="lg:col-span-2 relative h-[550px] rounded-3xl overflow-hidden group border border-luxury-border shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+<img alt="قطعات لوکس" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUpti7vD27KZL1rZ41e-tVLZ3nGUHrC9KnjrgK4fVbCMoLG0UQ3rqqoh5774rEp76u52OPZXjW08vwCJAaeJp_exwCbSoqbYYFSxxMa5MvmL_Rgp8TmpFxIoGCD5tiN-HIfgI8pUWdDr79-JqGFkH7WgsA6f8BkB01mKyaIIa_9riOohzJ7gbnlNCAwdLoWA4jFdbEA6K1ymSgEPcWENcWwr-NpYzLcVuNYGkzp-vnj4VElxA7_LrFh4s1coVvfouQswWKFxbm04E"/>
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-black/20 to-black/90 flex flex-col justify-center px-16 text-white">
+<div class="flex items-center gap-2 mb-4">
+<span class="w-8 h-px bg-gold"></span>
+<span class="text-gold text-xs font-black tracking-widest">PREMIUM QUALITY</span>
+</div>
+<h2 class="text-5xl font-black mb-6 leading-tight">مهندسی دقیق برای<br/><span class="gold-gradient-text">برترین خودروها</span></h2>
+<p class="text-lg text-gray-400 mb-10 max-w-md leading-loose font-light">مجموعه‌ای برگزیده از قطعات اصلی و کمیاب برای کسانی که به دنبال کمال در جزئیات خودروی خود هستند.</p>
+<div class="flex gap-6">
+<button class="luxury-button text-black px-12 py-4 rounded-full font-black text-sm uppercase tracking-wider">مشاهده کلکسیون</button>
+<button class="bg-transparent border border-gold/30 text-gold px-12 py-4 rounded-full font-black text-sm hover:bg-gold/10 transition-all">خدمات VIP</button>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-gold/10 to-transparent pointer-events-none"></div>
+</div>
+<div class="flex flex-col gap-8">
+<div class="relative flex-1 rounded-3xl overflow-hidden group border border-luxury-border bg-luxury-surface">
+<img alt="تایر لوکس" class="w-full h-full object-cover opacity-40 grayscale group-hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeW35CiuEJx7es-Dbrzc0A_MsZzaDFznoJvFuAdoDpU-syBov55CGBV4kMlxjYWPYR9WiXRNgx0vJ4dqSHp2OdZXCX2iiz31YOi9gncPILHY8Wy4FW4qdBG9Nv3j_uJBh29ieRh9dbwTwcOxbXrsw8gQQVVSCEqoP_ZeAD10d6EPi_wRYKlPvYhiVWB6uXMNwPYIAwX591-bF5uY9OS8xmX9le8kZsvtQpXt_g1ack75w22TfrXXGnkrPSvniBu0YQrxuARPnjRHU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-8 text-white">
+<h3 class="text-2xl font-black mb-2 gold-gradient-text">تایرهای پرفورمنس</h3>
+<p class="text-xs text-gray-400 mb-4 tracking-wide uppercase">High Speed Stability</p>
+<div class="flex items-center gap-2 text-gold font-bold text-sm cursor-pointer group-hover:gap-4 transition-all">
+                        مشاهده جزئیات <span class="material-icons text-sm">arrow_back</span>
+</div>
+</div>
+</div>
+<div class="relative flex-1 rounded-3xl overflow-hidden group border border-luxury-border bg-luxury-surface">
+<img alt="بدنه خاص" class="w-full h-full object-cover opacity-40 grayscale group-hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvaYwjhYVbDFXN2Bh01PTc3WH2B7hS0upoVDsEJzqVS2RSScaMGoPVHesIq0sfjNz0EFFD7nGXTLz5dSlIT9pkRdEN-Qmcei3zTiw6JW5Lu5q3aDyFA3w5_sGGtWb5Zx9PqskD5Yp48IgOtZGD-6G0XxxBxclX0OxyJ6vHqiOQsxyeY0-I_m_vkEYWZQSpy2ZVg1NiE7I-loC6UU_uIMa1Xj1xbmTMFI8BCZZy_-Jo46f0rZMECx2_GNBQoROs2XnpWND1r0MaH-A"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-8 text-white">
+<h3 class="text-2xl font-black mb-2 gold-gradient-text">کیت‌های آیرودینامیک</h3>
+<p class="text-xs text-gray-400 mb-4 tracking-wide uppercase">Carbon Fiber Series</p>
+<div class="flex items-center gap-2 text-gold font-bold text-sm cursor-pointer group-hover:gap-4 transition-all">
+                        کاتالوگ محصولات <span class="material-icons text-sm">arrow_back</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-20">
+<div class="flex flex-col items-center mb-12">
+<h3 class="text-3xl font-black text-white mb-2">شرکای تجاری</h3>
+<div class="w-24 h-1 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+<a class="bg-luxury-surface p-10 rounded-2xl border border-luxury-border flex flex-col items-center justify-center gap-4 gold-border-hover transition-all group" href="#">
+<span class="font-black text-gray-600 group-hover:text-gold text-2xl transition-colors">PORSCHE</span>
+</a>
+<a class="bg-luxury-surface p-10 rounded-2xl border border-luxury-border flex flex-col items-center justify-center gap-4 gold-border-hover transition-all group" href="#">
+<span class="font-black text-gray-600 group-hover:text-gold text-2xl transition-colors">BMW</span>
+</a>
+<a class="bg-luxury-surface p-10 rounded-2xl border border-luxury-border flex flex-col items-center justify-center gap-4 gold-border-hover transition-all group" href="#">
+<span class="font-black text-gray-600 group-hover:text-gold text-2xl transition-colors">AUDI</span>
+</a>
+<a class="bg-luxury-surface p-10 rounded-2xl border border-luxury-border flex flex-col items-center justify-center gap-4 gold-border-hover transition-all group" href="#">
+<span class="font-black text-gray-600 group-hover:text-gold text-2xl transition-colors">MERCEDES</span>
+</a>
+<a class="bg-luxury-surface p-10 rounded-2xl border border-luxury-border flex flex-col items-center justify-center gap-4 gold-border-hover transition-all group" href="#">
+<span class="font-black text-gray-600 group-hover:text-gold text-2xl transition-colors">MASERATI</span>
+</a>
+<a class="bg-luxury-surface p-10 rounded-2xl border border-luxury-border flex flex-col items-center justify-center gap-4 gold-border-hover transition-all group" href="#">
+<span class="font-black text-gray-600 group-hover:text-gold text-2xl transition-colors">FERRARI</span>
+</a>
+</div>
+</section>
+<section class="bg-luxury-surface/40 border border-gold/20 rounded-[3rem] p-12 mb-20 relative overflow-hidden">
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-gold/5 blur-[120px] rounded-full"></div>
+<div class="flex flex-col lg:flex-row items-center gap-12 relative z-10">
+<div class="flex-shrink-0 text-center lg:text-right">
+<div class="inline-flex items-center gap-2 text-gold font-black mb-4 tracking-tighter">
+<span class="material-symbols-outlined">auto_awesome</span>
+                    پیشنهادات ویژه طلایی
+                </div>
+<h3 class="text-4xl font-black text-white mb-6">فرصت‌های محدود</h3>
+<div class="flex gap-4 justify-center lg:justify-start" dir="ltr">
+<div class="bg-gold text-black w-14 h-14 flex flex-col items-center justify-center rounded-xl shadow-lg">
+<span class="text-xl font-black">۴۲</span>
+</div>
+<div class="text-gold text-xl font-black self-center">:</div>
+<div class="bg-luxury-black border border-luxury-border text-gold w-14 h-14 flex flex-col items-center justify-center rounded-xl">
+<span class="text-xl font-black">۱۸</span>
+</div>
+<div class="text-gold text-xl font-black self-center">:</div>
+<div class="bg-luxury-black border border-luxury-border text-gold w-14 h-14 flex flex-col items-center justify-center rounded-xl">
+<span class="text-xl font-black">۰۵</span>
+</div>
+</div>
+</div>
+<div class="flex-grow grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+<div class="bg-luxury-black/60 p-7 rounded-3xl border border-luxury-border gold-border-hover transition-all group">
+<div class="relative mb-6 overflow-hidden rounded-2xl bg-luxury-surface p-4">
+<img alt="قطعه ۱" class="w-full h-48 object-contain group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrypdwkTTjKAfamJzaZiBtGRH1C-HsMrbMgq8bAvzw-6A0i7l_oRcOlMGEo1adQPcowTfW3tCBxDZgEy23IP1diCx6Cow7_bukQZpb7EQX4y1nz62BedFUs3l27KMckF65SvVgxESmE-BxI8VzeSAwkNsz-x9Y3OwQmHgL-LS1Lk1f9V5kPFRc_NcZ-y0L26GnX2VxztZ_cxs86eSlXQ9c6DGDn-0md1qkF1EeKIPzZFLn-MWa6Dta6jq2rnt_dfr2jpqqKyCDn48"/>
+</div>
+<h4 class="font-bold text-sm mb-6 h-10 text-gray-300 leading-relaxed group-hover:text-gold transition-colors">فیلتر روغن اورجینال سری M</h4>
+<div class="flex items-center justify-between border-t border-luxury-border pt-4">
+<span class="text-gold text-xs font-black px-2 py-1 rounded bg-gold/10">LIMITED</span>
+<div class="text-left">
+<div class="text-[10px] text-gray-600 line-through mb-1">۴,۵۰۰,۰۰۰</div>
+<div class="font-black text-white text-lg">۳,۸۰۰,۰۰۰ <span class="text-[10px] font-normal text-gray-500">تومان</span></div>
+</div>
+</div>
+</div>
+<div class="bg-luxury-black/60 p-7 rounded-3xl border border-luxury-border gold-border-hover transition-all group">
+<div class="relative mb-6 overflow-hidden rounded-2xl bg-luxury-surface p-4">
+<img alt="قطعه ۲" class="w-full h-48 object-contain group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD08aUpVbBjTo1BWsryX1imdfB-M5vR5cy1d7r2aTdZf6QgIz3_mMoR3e8ZlgcPHeyjnR5N7lIjrQ4oaq88dZze6clU4BByKIkEi8IiY16i1fd6AQhnwBDCGpEtrgFsFot50S82xfg947Lb4T0VCziQPZJkR1So70r1Hiwj1x8FCRQN5DOkA_phn05I5mYB02bvtsv-SDoFt7uAJPoZU_Rywic6ZPf_98cQtTbnRkDXin610yTXWU2FAAmK_mlpWpQ1RRr46QLkWfc"/>
+</div>
+<h4 class="font-bold text-sm mb-6 h-10 text-gray-300 leading-relaxed group-hover:text-gold transition-colors">شمع ایریدیوم لیزری - سفارش آلمان</h4>
+<div class="flex items-center justify-between border-t border-luxury-border pt-4">
+<span class="text-gold text-xs font-black px-2 py-1 rounded bg-gold/10">LIMITED</span>
+<div class="text-left">
+<div class="text-[10px] text-gray-600 line-through mb-1">۱,۲۰۰,۰۰۰</div>
+<div class="font-black text-white text-lg">۱,۰۵۰,۰۰۰ <span class="text-[10px] font-normal text-gray-500">تومان</span></div>
+</div>
+</div>
+</div>
+<div class="bg-luxury-black/60 p-7 rounded-3xl border border-luxury-border gold-border-hover transition-all group">
+<div class="relative mb-6 overflow-hidden rounded-2xl bg-luxury-surface p-4">
+<img alt="قطعه ۳" class="w-full h-48 object-contain group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpKH3BHIgaqOGCy-s7uElWjm0wuo5r5oP-ZI3OxbMzWkTSYnV9sY30Yi064DIFy9GOT657LVE3YYwFISkYjrGVG_ZUWqNm2J5_zqXHX7GkiHGbPHQGZInmLsVkhDRNeK5STZJWMITRHsB5VZtJTDJIjBEmcm4THxbFmo5Q7LfzcwMghsfteDXgNUb2f14uXW7WsNcy4eZOW4fbMpvQ0rQkAlNL5Qe2qdHiiZ-DOc_g-IUDIDsSI-pShlYUANiCfeIvrTpu__oSvpg"/>
+</div>
+<h4 class="font-bold text-sm mb-6 h-10 text-gray-300 leading-relaxed group-hover:text-gold transition-colors">دیسک ترمز کربن-سرامیک پرفورمنس</h4>
+<div class="flex items-center justify-between border-t border-luxury-border pt-4">
+<span class="text-gold text-xs font-black px-2 py-1 rounded bg-gold/10">LIMITED</span>
+<div class="text-left">
+<div class="text-[10px] text-gray-600 line-through mb-1">۱۲,۰۰۰,۰۰۰</div>
+<div class="font-black text-white text-lg">۱۰,۸۰۰,۰۰۰ <span class="text-[10px] font-normal text-gray-500">تومان</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
+<section>
+<div class="flex items-center justify-between mb-10 border-b border-luxury-border pb-5">
+<h3 class="text-2xl font-black text-white flex items-center gap-3">
+<span class="material-icons text-gold">workspace_premium</span>
+                    منتخب حرفه‌ای‌ها
+                </h3>
+<a class="text-gold text-xs font-black tracking-widest hover:text-white transition-all" href="#">VIEW ALL COLLECTION</a>
+</div>
+<div class="space-y-6">
+<div class="flex gap-6 bg-luxury-surface p-6 rounded-3xl border border-luxury-border items-center gold-border-hover transition-all">
+<div class="w-24 h-24 bg-luxury-black rounded-2xl p-2 border border-luxury-border flex-shrink-0">
+<img alt="باتری لوکس" class="w-full h-full object-contain grayscale group-hover:grayscale-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOdKme51mkE6otXDJZ8tBYYo1O6bMWiFyEOCNZ5PpHfca0awiDPPgoKXiSxKFS11w0udtKbt8fA62D8CGwT4UlnzCku1SKRMTVXjRytVlBe2I7NN6UqIJ1qBbiB2IFF8bNXunj1xEN6d1-iOr0ysNOWeMkaTgphdCsmO7Yfe-bdNHF2c06ACrnBOo5ggHA0tIsCWClurBlYWQzLTnAgHmS7-xZHboOcox7v5ooo5bfhRPyjKNZhH8lIsUbqaeU-mDlACr1k3XssCA"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-bold text-sm text-gray-200 mb-2">باتری لیتیومی فوق سبک موتوراسپرت</h4>
+<div class="flex items-center gap-4">
+<span class="text-[10px] text-gold font-bold px-2 py-0.5 border border-gold/30 rounded">VIP ONLY</span>
+<div class="font-black text-gold">۸,۹۰۰,۰۰۰ <span class="text-[10px] font-normal text-gray-500">تومان</span></div>
+</div>
+</div>
+<button class="bg-luxury-black border border-gold/40 text-gold p-3 rounded-2xl hover:bg-gold hover:text-black transition-all">
+<span class="material-icons">add_shopping_cart</span>
+</button>
+</div>
+<div class="flex gap-6 bg-luxury-surface p-6 rounded-3xl border border-luxury-border items-center gold-border-hover transition-all">
+<div class="w-24 h-24 bg-luxury-black rounded-2xl p-2 border border-luxury-border flex-shrink-0">
+<img alt="روغن لوکس" class="w-full h-full object-contain grayscale group-hover:grayscale-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs_9MCj8nW40lYUethz4GfwgrVcFslwB8X-j4RCSZ9IWSFjyA0GxM-w7oKvBqoFDoIGYd0YsSbHVLfMn4vDncA9dN8MDVkuuKwle6l4JuGwDynGK8k-vDkYRm5TT4daAl3JPOVXPEMkqzEeSyMazeiLk-_3F8CMeoHE63skVbWBI7f0TD5FonG2M6svx_tJIffk5sHmDDQ-Cgkoz3hxdN9kXoH8twoPUigAp2H1-bIkHxWH_hqesY2qlBa4qQfDw8sbM_XrFfCVBE"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-bold text-sm text-gray-200 mb-2">روغن موتور استر پایه سینتتیک - تاییدیه ریسینگ</h4>
+<div class="flex items-center gap-4">
+<span class="text-[10px] text-gray-500 font-bold px-2 py-0.5 border border-luxury-border rounded">۵ لیتر</span>
+<div class="font-black text-gold">۴,۲۰۰,۰۰۰ <span class="text-[10px] font-normal text-gray-500">تومان</span></div>
+</div>
+</div>
+<button class="bg-luxury-black border border-gold/40 text-gold p-3 rounded-2xl hover:bg-gold hover:text-black transition-all">
+<span class="material-icons">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</section>
+<section>
+<div class="flex items-center justify-between mb-10 border-b border-luxury-border pb-5">
+<h3 class="text-2xl font-black text-white flex items-center gap-3">
+<span class="material-icons text-gold">new_releases</span>
+                    تازه رسیده به انبار
+                </h3>
+<a class="text-gold text-xs font-black tracking-widest hover:text-white transition-all" href="#">EXPLORE NEW ARRIVALS</a>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="bg-luxury-surface p-6 rounded-3xl border border-luxury-border flex flex-col items-center gold-border-hover transition-all group">
+<div class="w-full h-40 bg-luxury-black rounded-2xl mb-5 border border-luxury-border p-4">
+<img alt="قطعه جدید ۱" class="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcd2DGnJlV2Co3kSuTzkJBTEhYQkW5uLQcDeorhJZG6-0QeKdnVg9iT4cZm4e7ukr0zySlzTw2KcuA9mpqaXMaBaQGbdgPKlMbRAfxiowU8koxoxRx6EtlbgF9CnGUd9ABrxDNPzm5T40Kv4BBBwRldNVWXcrEeFiq3jTOtWAEHbxCkAcv83FEQm7USL_ljbSJKNdV-B5IR91TlmyUM6-1H6nMrDzBdakyfQ5U7KdBg1nJgsu7tlDSxXs-D9Yx4fD4BgbzLyq46nU"/>
+</div>
+<h4 class="text-xs font-bold text-center text-gray-300 mb-4 h-8 overflow-hidden">کیت کلاچ تقویت شده پلاتینیوم</h4>
+<div class="font-black text-gold mb-5">۱۵,۵۰۰,۰۰۰ <span class="text-[10px] font-normal text-gray-500">تومان</span></div>
+<button class="w-full py-3 border border-gold text-gold rounded-xl text-xs font-black hover:bg-gold hover:text-black transition-all uppercase tracking-widest">خرید سریع</button>
+</div>
+<div class="bg-luxury-surface p-6 rounded-3xl border border-luxury-border flex flex-col items-center gold-border-hover transition-all group">
+<div class="w-full h-40 bg-luxury-black rounded-2xl mb-5 border border-luxury-border p-4">
+<img alt="قطعه جدید ۲" class="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjS2rlmnoHyvMpiADRRCL7LpLtZIrmJKRu3KMzXfPUMiohQJ70haHAjTA1-Q1yg4OgSvOdQsPicw8jFDx7K1UQDLS2rujbgvqK_LwDn1_3bV3RsxAUA2Bq4UqBsun0564ZLouGKo23WI05xQY1948Y5bqBkb0su-t1iAXlRIR7JMzAq-xRY1wbqlpUgHGkc6zojMsVjfNu8n0PLMuJRtT4tK3aHnP6pnky6fVqwV_1RSgmuk0qwMwOyOPqbYPhJtFVEhkFOcIBNIk"/>
+</div>
+<h4 class="text-xs font-bold text-center text-gray-300 mb-4 h-8 overflow-hidden">لاستیک تخصصی زمستانه سری Z</h4>
+<div class="font-black text-gold mb-5">۹,۸۰۰,۰۰۰ <span class="text-[10px] font-normal text-gray-500">تومان</span></div>
+<button class="w-full py-3 border border-gold text-gold rounded-xl text-xs font-black hover:bg-gold hover:text-black transition-all uppercase tracking-widest">خرید سریع</button>
+</div>
+</div>
+</section>
+</div>
+<section class="grid grid-cols-2 lg:grid-cols-4 gap-12 py-20 border-t border-luxury-border">
+<div class="flex flex-col items-center text-center gap-5 group">
+<div class="w-16 h-16 bg-luxury-surface rounded-full flex items-center justify-center text-gold border border-luxury-border group-hover:bg-gold group-hover:text-black transition-all shadow-xl">
+<span class="material-icons text-3xl">verified</span>
+</div>
+<h4 class="font-black text-xs text-white uppercase tracking-widest">اصالت تضمین شده</h4>
+<p class="text-[10px] text-gray-500 leading-relaxed max-w-[150px]">ارائه شناسنامه معتبر برای تمامی قطعات خاص</p>
+</div>
+<div class="flex flex-col items-center text-center gap-5 group">
+<div class="w-16 h-16 bg-luxury-surface rounded-full flex items-center justify-center text-gold border border-luxury-border group-hover:bg-gold group-hover:text-black transition-all shadow-xl">
+<span class="material-icons text-3xl">flight_takeoff</span>
+</div>
+<h4 class="font-black text-xs text-white uppercase tracking-widest">ارسال اختصاصی</h4>
+<p class="text-[10px] text-gray-500 leading-relaxed max-w-[150px]">حمل ایمن و سریع با سرویس اختصاصی وی‌آی‌پی</p>
+</div>
+<div class="flex flex-col items-center text-center gap-5 group">
+<div class="w-16 h-16 bg-luxury-surface rounded-full flex items-center justify-center text-gold border border-luxury-border group-hover:bg-gold group-hover:text-black transition-all shadow-xl">
+<span class="material-icons text-3xl">handyman</span>
+</div>
+<h4 class="font-black text-xs text-white uppercase tracking-widest">کارشناس فنی همراه</h4>
+<p class="text-[10px] text-gray-500 leading-relaxed max-w-[150px]">مشاوره تخصصی نصب و راه‌اندازی قطعات پیچیده</p>
+</div>
+<div class="flex flex-col items-center text-center gap-5 group">
+<div class="w-16 h-16 bg-luxury-surface rounded-full flex items-center justify-center text-gold border border-luxury-border group-hover:bg-gold group-hover:text-black transition-all shadow-xl">
+<span class="material-icons text-3xl">history_edu</span>
+</div>
+<h4 class="font-black text-xs text-white uppercase tracking-widest">گارانتی طلایی</h4>
+<p class="text-[10px] text-gray-500 leading-relaxed max-w-[150px]">طرح جایگزینی سریع قطعات بدون پرسش</p>
+</div>
+</section>
+</main>
+<footer class="bg-luxury-black text-white pt-24 pb-12 border-t border-luxury-border">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+<div class="col-span-1">
+<div class="flex items-center gap-4 mb-10">
+<div class="bg-gold p-2 rounded-lg">
+<span class="material-icons text-black text-xl">diamond</span>
+</div>
+<h1 class="text-3xl font-black">لوکس‌<span class="gold-gradient-text">یدک</span></h1>
+</div>
+<p class="text-sm text-gray-500 leading-loose mb-10 font-light">پیشرو در ارائه راه‌کارهای تامین قطعات برای خودروهای سوپرلوکس و خاص در منطقه با استانداردهای جهانی.</p>
+<div class="flex gap-5">
+<a class="w-10 h-10 border border-luxury-border rounded-full flex items-center justify-center hover:bg-gold hover:text-black transition-all text-gray-600" href="#"><span class="material-icons text-lg">public</span></a>
+<a class="w-10 h-10 border border-luxury-border rounded-full flex items-center justify-center hover:bg-gold hover:text-black transition-all text-gray-600" href="#"><span class="material-icons text-lg">mail_outline</span></a>
+<a class="w-10 h-10 border border-luxury-border rounded-full flex items-center justify-center hover:bg-gold hover:text-black transition-all text-gray-600" href="#"><span class="material-icons text-lg">phone_in_talk</span></a>
+</div>
+</div>
+<div>
+<h4 class="font-black mb-10 text-lg flex items-center gap-3">
+<span class="w-1.5 h-6 bg-gold rounded-full"></span>
+                    خدمات مشتریان
+                </h4>
+<ul class="space-y-6 text-sm text-gray-500">
+<li><a class="hover:text-gold transition-colors" href="#">رزرو نوبت کارشناسی</a></li>
+<li><a class="hover:text-gold transition-colors" href="#">سفارش قطعات نایاب</a></li>
+<li><a class="hover:text-gold transition-colors" href="#">پیگیری سفارش‌های VIP</a></li>
+<li><a class="hover:text-gold transition-colors" href="#">شرایط عضویت در کلوب</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-black mb-10 text-lg flex items-center gap-3">
+<span class="w-1.5 h-6 bg-gold rounded-full"></span>
+                    دسته‌بندی‌های لوکس
+                </h4>
+<ul class="space-y-6 text-sm text-gray-500">
+<li><a class="hover:text-gold transition-colors" href="#">کیت‌های بدنه فیبر کربن</a></li>
+<li><a class="hover:text-gold transition-colors" href="#">سیستم اگزوز تیتانیوم</a></li>
+<li><a class="hover:text-gold transition-colors" href="#">رینگ‌های فورج شده</a></li>
+<li><a class="hover:text-gold transition-colors" href="#">تزئینات داخلی چرم و چوب</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-black mb-10 text-lg flex items-center gap-3">
+<span class="w-1.5 h-6 bg-gold rounded-full"></span>
+                    مجوزهای بین‌المللی
+                </h4>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-luxury-surface border border-luxury-border p-6 rounded-2xl aspect-square flex items-center justify-center group cursor-pointer hover:border-gold transition-colors">
+<span class="text-gray-600 group-hover:text-gold font-black text-[10px] tracking-widest">ISO 9001</span>
+</div>
+<div class="bg-luxury-surface border border-luxury-border p-6 rounded-2xl aspect-square flex items-center justify-center group cursor-pointer hover:border-gold transition-colors">
+<span class="text-gray-600 group-hover:text-gold font-black text-[10px] tracking-widest">TÜV GERMANY</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-12 border-t border-luxury-border flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] text-gray-600 tracking-[0.2em] uppercase font-bold">
+<p>COPYRIGHT © 2024 LUXURY YADAK. ALL RIGHTS RESERVED.</p>
+<div class="flex gap-12">
+<a class="hover:text-gold transition-colors" href="#">PRIVACY POLICY</a>
+<a class="hover:text-gold transition-colors" href="#">TERMS OF SERVICE</a>
+</div>
+</div>
+</div>
+</footer>
+
+</body></html>
