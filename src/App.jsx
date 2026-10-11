@@ -32,6 +32,14 @@ function getSubdomain() {
     return "main";
   }
 
+  if (
+    hostname.endsWith(".run.app") ||
+    hostname.endsWith(".google.com") ||
+    hostname.endsWith(".applet.run")
+  ) {
+    return "main";
+  }
+
   if (hostname.endsWith(".localhost")) {
     const sub = hostname.replace(/\.localhost$/, "");
 

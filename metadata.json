@@ -1,0 +1,8 @@
+{
+  "name": "گلدن یدک",
+  "description": "مرجع تخصصی قطعات لوکس خودرو - فروشگاه آنلاین لوازم یدکی و قطعات اورجینال خودروهای برتر",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
