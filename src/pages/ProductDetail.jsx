@@ -1,293 +1,274 @@
 import { useState } from "react";
+import { useSearchParams, Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useCart } from "../hooks/useCart.js";
+import { useUserData } from "../hooks/useUserData.js";
+import { PRODUCTS } from "../data/products.js";
 import { PRODUCT_DETAIL as P } from "../data/productDetail.js";
-import { CONTACT } from "../lib/config.js";
 import { formatToman, toPersianDigits } from "../lib/format.js";
 
-// محصول نمایش‌داده‌شده در این صفحه (بعداً از API بر اساس آیدی لود می‌شه)
-const VIEWED_PRODUCT = {
-  id: "clutch-valeo-premium",
-  title: "کیت کلاچ والئو (VALEO) مدل پریمیوم",
-  price: 4750000,
-  oldPrice: 5400000,
-  image: P.mainImage,
-};
-
 export default function ProductDetail() {
+  const [searchParams] = useSearchParams();
+  const productId = searchParams.get("id");
   const { addItem } = useCart();
-  const [qty, setQty] = useState(1);
+  const { isInWishlist, toggleWishlist, products } = useUserData();
 
-  const discountPercent = Math.round(
-    (1 - VIEWED_PRODUCT.price / VIEWED_PRODUCT.oldPrice) * 100
-  );
+  const product =
+    (products || []).find((p) => p.id === productId) || (products || [])[0] || PRODUCTS[0];
+
+  const [qty, setQty] = useState(1);
+  const [activeImage, setActiveImage] = useState(product.image || P.mainImage);
+  const [addedToast, setAddedToast] = useState(false);
+
+  const isFavorited = isInWishlist(product.id);
+
+  const handleAddToCart = () => {
+    addItem({ ...product, qty });
+    setAddedToast(true);
+    setTimeout(() => setAddedToast(false), 2500);
+  };
+
+  const discountPercent = product.oldPrice
+    ? Math.round((1 - product.price / product.oldPrice) * 100)
+    : 0;
+
+  const compatibleCars = product.compatibleCars || P.compatibleCars;
 
   return (
-    <div dir="rtl" className="min-h-screen bg-zinc-950 text-white">
+    <div dir="rtl" className="min-h-screen bg-black text-white flex flex-col justify-between">
       <Header />
 
-      <main className="mx-auto w-full max-w-7xl px-4 py-10">
+      <main className="mx-auto w-full max-w-7xl px-4 py-8 flex-1">
         {/* Breadcrumb */}
-        <nav className="flex flex-wrap items-center gap-2 text-sm text-white/60">
-          <a href="/" className="transition hover:text-amber-300">
-            خانه
-          </a>
-
-          <span className="material-symbols-outlined text-base">
-            chevron_left
-          </span>
-
-          <a href="#" className="transition hover:text-amber-300">
-            قطعات فنی
-          </a>
-
-          <span className="material-symbols-outlined text-base">
-            chevron_left
-          </span>
-
-          <span className="text-white/90">دیسک و صفحه کلاچ والئو</span>
+        <nav className="flex flex-wrap items-center gap-2 text-xs text-zinc-400">
+          <Link to="/" className="hover:text-amber-400 transition">
+            صفحه اصلی
+          </Link>
+          <span className="material-symbols-outlined text-sm">chevron_left</span>
+          <Link to="/products" className="hover:text-amber-400 transition">
+            قطعات خودروهای ایرانی
+          </Link>
+          <span className="material-symbols-outlined text-sm">chevron_left</span>
+          <span className="text-zinc-500">{product.company || "لوازم یدکی"}</span>
+          <span className="material-symbols-outlined text-sm">chevron_left</span>
+          <span className="text-amber-400 font-bold truncate max-w-xs">{product.title}</span>
         </nav>
 
+        {/* Product Details Grid */}
         <div className="mt-8 grid gap-10 lg:grid-cols-2">
-          {/* گالری تصاویر */}
-          <section>
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/10">
+          {/* Gallery Column */}
+          <section className="space-y-4">
+            <div className="relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-950 p-4">
               <img
-                src={P.mainImage}
-                alt={VIEWED_PRODUCT.title}
-                className="h-[420px] w-full object-cover md:h-[520px]"
+                src={activeImage}
+                alt={product.title}
+                className="h-[380px] md:h-[460px] w-full rounded-2xl object-cover"
               />
 
-              <div className="absolute left-4 top-4 flex gap-2">
-                <button
-                  aria-label="favorite"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-black/60 backdrop-blur transition hover:text-amber-300"
+              {product.badge && (
+                <span
+                  className={`absolute top-8 right-8 rounded-full px-3.5 py-1 text-xs font-bold ${
+                    product.badgeColor || "bg-amber-400 text-black"
+                  }`}
                 >
-                  <span className="material-symbols-outlined">
-                    favorite_border
-                  </span>
-                </button>
+                  {product.badge}
+                </span>
+              )}
 
-                <button
-                  aria-label="share"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-black/60 backdrop-blur transition hover:text-amber-300"
-                >
-                  <span className="material-symbols-outlined">share</span>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={() => toggleWishlist(product.id)}
+                className={`absolute top-8 left-8 flex h-11 w-11 items-center justify-center rounded-full backdrop-blur-md transition ${
+                  isFavorited
+                    ? "bg-red-500 text-white shadow-lg"
+                    : "bg-black/60 text-white hover:text-red-400"
+                }`}
+                title="نشان کردن قطعه"
+              >
+                <span className="material-symbols-outlined text-xl">
+                  {isFavorited ? "favorite" : "favorite_border"}
+                </span>
+              </button>
             </div>
 
-            <div className="mt-4 grid grid-cols-4 gap-3">
-              {P.gallery.map((image, index) => (
+            {/* Thumbnail row */}
+            <div className="grid grid-cols-4 gap-3">
+              {[product.image, ...P.gallery.slice(1)].map((imgUrl, idx) => (
                 <button
-                  key={image}
-                  className={
-                    index === 0
-                      ? "overflow-hidden rounded-2xl border-2 border-amber-400"
-                      : "overflow-hidden rounded-2xl border border-white/10 opacity-70 transition hover:opacity-100"
-                  }
+                  key={idx}
+                  type="button"
+                  onClick={() => setActiveImage(imgUrl)}
+                  className={`overflow-hidden rounded-xl border-2 transition ${
+                    activeImage === imgUrl
+                      ? "border-amber-400 opacity-100"
+                      : "border-zinc-800 opacity-60 hover:opacity-100"
+                  }`}
                 >
-                  <img src={image} alt="" className="h-20 w-full object-cover" />
+                  <img
+                    src={imgUrl}
+                    alt={`تصویر ${idx + 1}`}
+                    className="h-20 w-full object-cover"
+                  />
                 </button>
               ))}
             </div>
           </section>
 
-          {/* اطلاعات محصول */}
-          <section>
-            <span className="inline-block rounded-full bg-amber-400 px-4 py-1 text-xs font-bold text-black">
-              محصول ویژه
-            </span>
-
-            <div className="mt-4 flex items-center gap-1 text-amber-400">
-              <span className="material-symbols-outlined">star</span>
-              <span className="material-symbols-outlined">star</span>
-              <span className="material-symbols-outlined">star</span>
-              <span className="material-symbols-outlined">star</span>
-              <span className="material-symbols-outlined">star_half</span>
-              <span className="ms-2 text-sm text-white/60">(۴.۸)</span>
-            </div>
-
-            <h1 className="mt-4 text-2xl font-extrabold leading-[1.6] md:text-3xl">
-              {VIEWED_PRODUCT.title} مناسب خودروهای گروه ایران‌خودرو
-            </h1>
-
-            <p className="mt-4 leading-8 text-white/70">
-              این کیت کلاچ اصلی والئو با تکنولوژی کره جنوبی ساخته شده و برای
-              ارائه نرمی فوق‌العاده در کلاچ‌گیری و انتقال قدرت بهینه در
-              ترافیک‌های سنگین طراحی شده است.
-            </p>
-
-            <div className="mt-6 rounded-2xl border border-white/10 bg-zinc-900 p-5">
-              <div className="flex items-center gap-2 font-extrabold">
-                <span className="material-symbols-outlined text-amber-400">
-                  directions_car
+          {/* Info & Buy Module Column */}
+          <section className="space-y-6">
+            <div>
+              <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-amber-400">
+                <span className="rounded-lg bg-amber-400/10 border border-amber-400/20 px-3 py-1">
+                  شرکت: {product.company || "ایران خودرو"}
                 </span>
-                خودروهای سازگار
+                <span className="rounded-lg bg-zinc-900 border border-zinc-800 px-3 py-1 text-zinc-300">
+                  برند: {product.brand || "ایساکو اصل"}
+                </span>
+                {product.code && (
+                  <span className="text-zinc-500 font-mono" dir="ltr">
+                    کد فنی: {product.code}
+                  </span>
+                )}
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-2">
-                {P.compatibleCars.map((car) => (
+              <h1 className="mt-3 text-2xl md:text-3xl font-black text-white leading-10">
+                {product.title}
+              </h1>
+            </div>
+
+            {/* Compatible Iranian Cars */}
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5">
+              <div className="flex items-center gap-2 text-xs font-bold text-zinc-300 mb-3">
+                <span className="material-symbols-outlined text-amber-400 text-lg">
+                  directions_car
+                </span>
+                <span>خودروهای ایرانی سازگار با این قطعه:</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {compatibleCars.map((car, idx) => (
                   <span
-                    key={car}
-                    className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"
+                    key={idx}
+                    className="rounded-lg bg-zinc-900 border border-zinc-800 px-3 py-1.5 text-xs text-zinc-200"
                   >
-                    {car}
+                    ✓ {car}
                   </span>
                 ))}
               </div>
             </div>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <span className="text-lg text-white/40 line-through">
-                {formatToman(VIEWED_PRODUCT.oldPrice)}
-              </span>
+            {/* Price Box */}
+            <div className="rounded-2xl border border-amber-400/30 bg-gradient-to-b from-zinc-900 to-zinc-950 p-6 shadow-[0_0_20px_rgba(212,175,55,0.06)]">
+              <div className="flex flex-wrap items-baseline justify-between gap-4">
+                <span className="text-sm text-zinc-400">قیمت قطعه با ضمانت اصالت:</span>
 
-              <span className="rounded-full bg-red-500 px-3 py-1 text-xs font-bold">
-                {toPersianDigits(discountPercent)}٪ تخفیف
-              </span>
+                <div className="flex items-baseline gap-3">
+                  {product.oldPrice && (
+                    <span className="text-sm text-zinc-500 line-through">
+                      {formatToman(product.oldPrice)}
+                    </span>
+                  )}
+                  {discountPercent > 0 && (
+                    <span className="rounded-md bg-red-500 px-2 py-0.5 text-xs font-bold text-white">
+                      %{toPersianDigits(discountPercent)} تخفیف
+                    </span>
+                  )}
+                  <span className="text-3xl font-black text-amber-400">
+                    {formatToman(product.price)}
+                  </span>
+                  <span className="text-sm text-zinc-400">تومان</span>
+                </div>
+              </div>
 
-              <span className="text-3xl font-extrabold text-amber-400">
-                {formatToman(VIEWED_PRODUCT.price)}
-                <span className="text-base font-medium text-white/70"> تومان</span>
-              </span>
-            </div>
+              {/* Quantity and CTA */}
+              <div className="mt-6 flex flex-col sm:flex-row items-center gap-4">
+                {/* Quantity Stepper */}
+                <div className="flex items-center rounded-xl border border-zinc-700 bg-zinc-900 px-3 py-1.5 w-full sm:w-auto justify-between sm:justify-start">
+                  <button
+                    type="button"
+                    onClick={() => setQty((q) => Math.max(1, q - 1))}
+                    className="flex h-9 w-9 items-center justify-center rounded-lg text-lg text-zinc-300 hover:bg-zinc-800 hover:text-white"
+                  >
+                    -
+                  </button>
+                  <span className="w-12 text-center font-extrabold text-white text-base">
+                    {toPersianDigits(qty)}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setQty((q) => q + 1)}
+                    className="flex h-9 w-9 items-center justify-center rounded-lg text-lg text-zinc-300 hover:bg-zinc-800 hover:text-white"
+                  >
+                    +
+                  </button>
+                </div>
 
-            <div className="mt-4 flex items-center gap-2 text-emerald-400">
-              <span className="material-symbols-outlined">check_circle</span>
-              موجود در انبار مرکزی (تحویل فوری)
-            </div>
-
-            <div className="mt-6 flex flex-wrap items-center gap-4">
-              {/* استپر تعداد */}
-              <div
-                dir="ltr"
-                className="flex items-center rounded-xl border border-white/10 bg-zinc-900"
-              >
+                {/* Add to Cart button */}
                 <button
                   type="button"
-                  aria-label="decrease"
-                  onClick={() => setQty((q) => Math.max(1, q - 1))}
-                  className="px-4 py-3 transition hover:text-amber-300"
+                  onClick={handleAddToCart}
+                  className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-l from-amber-500 via-amber-400 to-yellow-300 py-3.5 px-6 font-extrabold text-black transition hover:brightness-110 shadow-lg shadow-amber-400/20 w-full"
                 >
-                  -
-                </button>
-
-                <span className="w-10 text-center font-extrabold">
-                  {toPersianDigits(qty)}
-                </span>
-
-                <button
-                  type="button"
-                  aria-label="increase"
-                  onClick={() => setQty((q) => q + 1)}
-                  className="px-4 py-3 transition hover:text-amber-300"
-                >
-                  +
+                  <span className="material-symbols-outlined text-xl">
+                    {addedToast ? "done" : "add_shopping_cart"}
+                  </span>
+                  {addedToast ? "با موفقیت به سبد افزوده شد ✓" : "افزودن به سبد خرید"}
                 </button>
               </div>
 
-              <button
-                type="button"
-                onClick={() => addItem(VIEWED_PRODUCT, qty)}
-                className="flex min-w-[220px] flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-l from-amber-500 via-amber-400 to-yellow-300 py-3.5 font-extrabold text-black transition hover:brightness-110"
-              >
-                <span className="material-symbols-outlined">shopping_bag</span>
-                افزودن به سبد خرید
-              </button>
+              {addedToast && (
+                <div className="mt-4 flex items-center justify-between rounded-xl bg-emerald-500/10 border border-emerald-500/30 p-3 text-xs font-bold text-emerald-400">
+                  <span>این قطعه به سبد خرید اضافه شد.</span>
+                  <Link to="/cart" className="underline hover:text-emerald-300">
+                    مشاهده سبد و تسویه ←
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Trust Badges */}
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {P.trustBadges.map(([icon, label], idx) => (
+                <div
+                  key={idx}
+                  className="flex flex-col items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 p-3 text-center"
+                >
+                  <span className="material-symbols-outlined text-2xl text-amber-400">
+                    {icon}
+                  </span>
+                  <span className="mt-2 text-xs font-bold text-zinc-300">{label}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Specifications & Features */}
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 space-y-4">
+              <h3 className="text-sm font-extrabold text-white border-b border-zinc-800 pb-3">
+                مشخصات فنی و اصالت قطعه
+              </h3>
+              <div className="space-y-2.5 text-xs">
+                {P.specs.map(([title, val], idx) => (
+                  <div key={idx} className="flex justify-between py-1 border-b border-zinc-900">
+                    <span className="text-zinc-400">{title}:</span>
+                    <span className="font-bold text-zinc-200">{val}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-3">
+                <h4 className="text-xs font-bold text-amber-400 mb-2">ویژگی‌های برجسته:</h4>
+                <ul className="space-y-1.5 text-xs text-zinc-300 list-disc list-inside">
+                  {P.features.map((feat, idx) => (
+                    <li key={idx}>{feat}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </section>
         </div>
-
-        {/* مشخصات و ویژگی‌ها */}
-        <section className="mt-12 grid gap-6 md:grid-cols-2">
-          <div className="rounded-[1.75rem] border border-white/10 bg-zinc-900 p-6">
-            <h2 className="text-lg font-extrabold">مشخصات فنی</h2>
-
-            <dl className="mt-5 divide-y divide-white/5">
-              {P.specs.map(([label, value]) => (
-                <div
-                  key={label}
-                  className="flex items-center justify-between py-3 text-sm"
-                >
-                  <dt className="text-white/60">{label}</dt>
-                  <dd className="font-bold">{value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-
-          <div className="rounded-[1.75rem] border border-white/10 bg-zinc-900 p-6">
-            <h2 className="text-lg font-extrabold">ویژگی‌های ممتاز</h2>
-
-            <ul className="mt-5 space-y-4">
-              {P.features.map((feature) => (
-                <li key={feature} className="flex items-center gap-3 text-sm">
-                  <span className="material-symbols-outlined text-emerald-400">
-                    verified
-                  </span>
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        {/* نشان‌های اعتماد */}
-        <section className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {P.trustBadges.map(([icon, label]) => (
-            <div
-              key={label}
-              className="flex items-center gap-3 rounded-2xl border border-white/10 bg-zinc-900 p-5"
-            >
-              <span className="material-symbols-outlined text-2xl text-amber-400">
-                {icon}
-              </span>
-              <span className="font-bold">{label}</span>
-            </div>
-          ))}
-        </section>
       </main>
 
-      <Footer
-        columns={[
-          {
-            title: "منوی دسترسی",
-            links: [
-              { label: "فروشگاه لوکس", href: "#" },
-              { label: "رهگیری سفارش", href: "#" },
-              { label: "مجله خودرو", href: "#" },
-            ],
-          },
-          {
-            title: "تماس با ما",
-            links: [
-              { label: CONTACT.phone, href: "tel:" + CONTACT.phone },
-              { label: CONTACT.address, href: "#" },
-            ],
-          },
-        ]}
-        description="تجربه خرید لوکس و مطمئن قطعات خودرو در ایران. تامین مستقیم بهترین برندهای جهانی با ضمانت اصالت بی قید و شرط."
-        aside={
-          <div>
-            <h3 className="text-lg font-extrabold">عضویت در خبرنامه</h3>
-
-            <div className="mt-5 flex gap-2">
-              <input
-                type="email"
-                dir="ltr"
-                placeholder="ایمیل شما"
-                className="w-full rounded-xl border border-white/10 bg-zinc-900 px-4 py-3 text-left outline-none transition focus:border-amber-400/60"
-              />
-
-              <button className="rounded-xl bg-amber-400 px-5 py-3 font-bold text-black transition hover:bg-amber-300">
-                تایید
-              </button>
-            </div>
-          </div>
-        }
-      />
+      <Footer />
     </div>
   );
 }

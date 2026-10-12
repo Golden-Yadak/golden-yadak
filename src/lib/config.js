@@ -8,9 +8,9 @@ export const BRAND = {
   // نام نمایشی برند (فارسی) — در همه‌ی صفحات یکسان استفاده می‌شه
   name: "گلدن یدک",
   // نام لاتین (برای بخش‌های انگلیسی‌محور مثل کپی‌رایت)
-  nameLatin: "LUXURY YADAK",
+  nameLatin: "GOLDEN YADAK",
   // شعار
-  tagline: "مرجع تخصصی قطعات لوکس خودرو",
+  tagline: "مرجع تخصصی قطعات خودروهای ایرانی",
   // آیکون لوگو (نام Material Symbols)
   logoIcon: "diamond",
   // سال شمسی برای کپی‌رایت

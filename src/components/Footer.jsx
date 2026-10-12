@@ -69,6 +69,10 @@ export default function Footer({ columns = [], aside = null, description }) {
           <p>COPYRIGHT © {BRAND.copyrightYear} {BRAND.nameLatin}. ALL RIGHTS RESERVED.</p>
 
           <div className="flex items-center gap-5">
+            <a href="/admin" className="text-zinc-400 hover:text-amber-300 transition flex items-center gap-1 font-bold">
+              <span className="material-symbols-outlined text-sm">admin_panel_settings</span>
+              ورود به پنل مدیریت
+            </a>
             <a href="#" className="transition hover:text-amber-300">
               PRIVACY POLICY
             </a>

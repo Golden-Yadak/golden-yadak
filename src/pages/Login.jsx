@@ -1,16 +1,20 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Navigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth.js";
 import { BRAND } from "../lib/config.js";
 import { isValidIranMobile, normalizeMobile } from "../lib/validation.js";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { requestCode, error: ctxError, clearError } = useAuth();
+  const { isAuthenticated, requestCode, error: ctxError, clearError } = useAuth();
   const [phone, setPhone] = useState("");
   const [localError, setLocalError] = useState("");
 
   const error = localError || ctxError;
+
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" replace />;
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -53,8 +57,8 @@ export default function Login() {
             </h1>
 
             <p className="mt-5 max-w-md leading-8 text-white/60">
-              دسترسی به کمیاب‌ترین قطعات خودروهای لوکس و سوپر اسپرت با
-              ضمانت‌نامه بین‌المللی.
+              دسترسی به قطعات اورجینال و شرکتی خودروهای ایران‌خودرو و سایپا با
+              ضمانت‌نامه اصالت کالا.
             </p>
           </div>
         </section>
@@ -68,46 +72,44 @@ export default function Login() {
             <span className="text-2xl font-extrabold">{BRAND.name}</span>
           </Link>
 
-          <div className="mt-16">
-            <h2 className="text-3xl font-extrabold">خوش آمدید</h2>
+          <div className="mt-14">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-white">ورود یا ثبت‌نام</h2>
 
-            <p className="mt-4 leading-7 text-white/60">
-              برای ورود یا ثبت‌نام، شماره موبایل خود را وارد کنید.
+            <p className="mt-3 leading-7 text-white/60 text-sm">
+              برای پیگیری سفارشات، دسترسی به قیمت همکار و باشگاه مشتریان، شماره
+              موبایل خود را وارد کنید.
             </p>
 
             <form onSubmit={handleSubmit} noValidate>
               <label
-                htmlFor="mobile"
-                className="mt-8 block text-sm font-bold text-white/70"
+                htmlFor="phone"
+                className="mt-6 block text-sm font-bold text-white/90"
               >
-                شماره موبایل
+                شماره تلفن همراه
               </label>
 
-              <div className="mt-3 flex items-center gap-3 rounded-xl border border-white/10 bg-black/40 px-4 py-3.5 transition focus-within:border-amber-400/60">
-                <span className="material-symbols-outlined text-white/40">
-                  smartphone
-                </span>
-
+              <div className="relative mt-2">
                 <input
-                  id="mobile"
-                  name="mobile"
+                  id="phone"
                   type="tel"
                   dir="ltr"
-                  inputMode="numeric"
-                  autoComplete="tel"
-                  placeholder="09123456789"
+                  placeholder="۰۹۱۲۳۴۵۶۷۸۹"
                   value={phone}
                   onChange={(e) => {
                     setPhone(e.target.value);
                     if (localError) setLocalError("");
                     if (ctxError) clearError();
                   }}
-                  className="w-full bg-transparent text-left outline-none placeholder:text-white/30"
+                  className="w-full rounded-xl border border-white/10 bg-black/50 px-4 py-3.5 pr-12 text-left text-lg text-white outline-none transition focus:border-amber-400/80 focus:ring-1 focus:ring-amber-400"
                 />
+
+                <span className="material-symbols-outlined absolute right-4 top-3.5 text-white/40">
+                  smartphone
+                </span>
               </div>
 
               {error && (
-                <p className="mt-3 flex items-center gap-2 text-sm text-red-400">
+                <p className="mt-3 flex items-center gap-2 text-xs text-red-400">
                   <span className="material-symbols-outlined text-base">
                     error
                   </span>
@@ -117,26 +119,22 @@ export default function Login() {
 
               <button
                 type="submit"
-                className="mt-6 w-full rounded-xl bg-gradient-to-l from-amber-500 via-amber-400 to-yellow-300 py-3.5 font-extrabold text-black transition hover:brightness-110"
+                className="mt-6 w-full rounded-xl bg-gradient-to-l from-amber-500 via-amber-400 to-yellow-300 py-3.5 font-extrabold text-black transition hover:brightness-110 shadow-lg shadow-amber-400/20"
               >
-                ارسال کد تایید
+                ارسال کد تایید پیامکی
               </button>
             </form>
 
-            <p className="mt-6 text-center text-[11px] leading-6 text-white/40">
-              با ورود به {BRAND.name}، شما{" "}
-              <a href="#" className="font-bold text-amber-400 transition hover:text-amber-300">
+            <p className="mt-6 text-center text-xs leading-6 text-white/40">
+              ورود شما به معنای پذیرش{" "}
+              <a href="#" className="text-amber-400 underline hover:text-amber-300">
                 شرایط و قوانین
               </a>{" "}
-              و{" "}
-              <a href="#" className="font-bold text-amber-400 transition hover:text-amber-300">
-                سیاست حریم خصوصی
-              </a>{" "}
-              ما را می‌پذیرید.
+              گلدن یدک است.
             </p>
           </div>
 
-          <div className="mt-16 flex items-center justify-center gap-4 md:mt-auto md:pt-16">
+          <div className="mt-14 flex items-center justify-center gap-4 md:mt-auto md:pt-14">
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-400 text-black">
               <span className="material-symbols-outlined text-lg">verified</span>
             </span>

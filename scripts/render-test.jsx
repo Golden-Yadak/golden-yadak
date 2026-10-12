@@ -12,11 +12,14 @@ import { createElement as h } from "react";
 import { MemoryRouter } from "react-router-dom";
 import { CartProvider } from "../src/context/CartContext.jsx";
 import { AuthProvider } from "../src/context/AuthContext.jsx";
+import { UserDataProvider } from "../src/context/UserDataContext.jsx";
 
 import Homepage from "../src/pages/Homepage.jsx";
 import Products from "../src/pages/Products.jsx";
 import ProductDetail from "../src/pages/ProductDetail.jsx";
 import Cart from "../src/pages/Cart.jsx";
+import Checkout from "../src/pages/Checkout.jsx";
+import UserDashboard from "../src/pages/dashboard/UserDashboard.jsx";
 import AdminDashboard from "../src/pages/AdminDashboard.jsx";
 import Login from "../src/pages/Login.jsx";
 import Verify from "../src/pages/Verify.jsx";
@@ -26,6 +29,8 @@ const pages = {
   Products,
   ProductDetail,
   Cart,
+  Checkout,
+  UserDashboard,
   AdminDashboard,
   Login,
   Verify,
@@ -36,8 +41,14 @@ let failed = 0;
 for (const [name, Comp] of Object.entries(pages)) {
   try {
     const html = renderToString(
-      h(AuthProvider, null,
-        h(CartProvider, null, h(MemoryRouter, null, h(Comp)))
+      h(
+        AuthProvider,
+        null,
+        h(
+          UserDataProvider,
+          null,
+          h(CartProvider, null, h(MemoryRouter, null, h(Comp)))
+        )
       )
     );
     console.log(`✅ ${name}: رندر شد (${html.length} کاراکتر)`);
